@@ -2,7 +2,7 @@
 
 struct Data
 {
-    uint8_t index;
+    uint8_t id;
     const char* filepath;
 };
 
@@ -19,4 +19,10 @@ namespace Assets {
     namespace Sfx {
         static constexpr Data Test{ 0, "assets/sfx/test.wav" };
     }  // namespace Sfx
+
+    namespace Music {
+        static constexpr Data Test{ 0, "assets/music/test.ogg" };
+    }  // namespace Sfx
+
+
 }  // namespace Assets

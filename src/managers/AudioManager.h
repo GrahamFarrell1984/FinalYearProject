@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Audio/Music.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 
@@ -12,6 +13,11 @@ class AudioManager
 public:
     AudioManager(const ResourceManager<sf::SoundBuffer>& sfxBufferManager);
 
+    void playMusic(const Data data, const bool loop = false);
+    void stopMusic();
+    void pauseMusic();
+    void resumeMusic();
+
     void playSound(sf::Uint8 index);
     void stopAllSounds();
 
@@ -19,5 +25,6 @@ private:
     static constexpr auto MAXSOUNDS = 32;
 
     const ResourceManager<sf::SoundBuffer>& m_sfxBufferManager;
-    std::array <sf::Sound, MAXSOUNDS> m_sfx;
+    std::array<sf::Sound, MAXSOUNDS> m_sfx;
+    sf::Music m_music;
 };
