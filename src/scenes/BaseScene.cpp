@@ -3,7 +3,7 @@
 #include "SceneManager.h"
 
 BaseScene::BaseScene(SceneManager& sceneManager, const Scene::Name name)
-        : m_name{ name }
+        : m_name        { name }
         , m_sceneManager{ sceneManager }
 {
 }

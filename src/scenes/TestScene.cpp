@@ -1,5 +1,6 @@
 #include "TestScene.h"
 
+#include "AudioManager.h"
 #include "ResourceManager.h"
 
 TestScene::TestScene(SceneManager& sceneManager, const Scene::Name name)
@@ -22,6 +23,11 @@ void TestScene::processInput(const Keyboard& keyboard)
     } else if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::HOLD)) {
         m_sprite.move(0, 1);
     }
+
+    if (keyboard.checkKeyAndState(sf::Keyboard::Enter, State::PRESS)) {
+        AudioManager& audioManager = getSharedContext().audioManager;
+        audioManager.playSound(Assets::Sfx::Test.index);
+    }
 }
 
 void TestScene::update(const sf::Time deltaTime)
@@ -36,11 +42,11 @@ void TestScene::render(sf::RenderWindow& window)
 
 void TestScene::onEnter()
 {
-    const ResourceManager<sf::Texture>& textureManager = getSharedContext().textureManager;
-    m_sprite.setTexture(*textureManager.getResource(Assets::Texture::Player.index));
+    const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::Player.index));
 
-    const ResourceManager<sf::Font>& fontManager = getSharedContext().fontManager;
-    m_text.setFont(*fontManager.getResource(Assets::Font::EBB.index));
+    const ResourceManager<sf::Font>& fontHolder = getSharedContext().fontHolder;
+    m_text.setFont(*fontHolder.getResource(Assets::Font::EBB.index));
     m_text.setString("Testing");
     m_text.setPosition(sf::Vector2f(100, 100));
 }

@@ -1,18 +1,21 @@
 #include "App.h"
 
 App::App()
-        : m_initialised   { false }
-        , m_timePerFrame  { sf::seconds(1.f / 60.f) }
-        , m_window        { sf::VideoMode(1024, 768), "SFML", sf::Style::Close }
-        , m_fontManager   { }
-        , m_textureManager{ }
-        , m_sceneManager  { SharedContext{ m_fontManager, m_textureManager } }
-        , m_keyboard      { }
+        : m_initialised      { false }
+        , m_timePerFrame     { sf::seconds(1.f / 60.f) }
+        , m_window           { sf::VideoMode(1024, 768), "SFML", sf::Style::Close }
+        , m_fontManager      { }
+        , m_sfxBufferManager { }
+        , m_textureManager   { }
+        , m_audioManager     { m_sfxBufferManager }
+        , m_sceneManager     { SharedContext{ m_fontManager, m_textureManager, m_audioManager } }
+        , m_keyboard         { }
 {
 }
 
 bool App::setup()
 {
+    m_sfxBufferManager.loadResource(Assets::Sfx::Test.index, Assets::Sfx::Test.filepath);
     m_fontManager.loadResource(Assets::Font::EBB.index, Assets::Font::EBB.filepath);
     m_textureManager.loadResource(Assets::Texture::Player.index, Assets::Texture::Player.filepath);
 

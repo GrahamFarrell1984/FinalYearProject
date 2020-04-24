@@ -1,8 +1,7 @@
 #pragma once
 #include <SFML/Config.hpp>
 
-namespace Scene
-{
+namespace Scene {
     // Inc when adding new scenes. NONE is not added.
     static constexpr sf::Uint8 SCENECOUNT = 4;
 

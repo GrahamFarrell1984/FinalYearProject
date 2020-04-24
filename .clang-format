@@ -19,7 +19,7 @@ BreakBeforeBraces: Custom
 BraceWrapping:
   AfterEnum: true
   AfterStruct: true
-  AfterNamespace : true
+  AfterNamespace : false
   AfterFunction: true
   AfterClass: true
 BreakConstructorInitializers : BeforeComma
