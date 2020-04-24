@@ -1,15 +1,15 @@
 #include "SceneManager.h"
 
-#include "TitleScene.h"
 #include "GameScene.h"
 #include "GameoverScene.h"
 #include "TestScene.h"
+#include "TitleScene.h"
 
-SceneManager::SceneManager()
-        : m_sceneRequest{ Scene::Action::PUSH, Scene::Name::TITLE }
+SceneManager::SceneManager(SharedContext&& sharedContext)
+        : m_sharedContext{ std::move(sharedContext) }
+        , m_sceneRequest { Scene::Action::PUSH, Scene::Name::TEST }
 {
     m_sceneStack.reserve(Scene::SCENECOUNT);
-    lateUpdate();
 }
 
 void SceneManager::processInput(const Keyboard& keyboard) const
@@ -27,7 +27,7 @@ void SceneManager::render(sf::RenderWindow& window) const
     m_sceneStack.back()->render(window);
 }
 
-void SceneManager::lateUpdate()
+void SceneManager::checkForUpdates()
 {
     if (m_sceneRequest.action != Scene::Action::NONE) {
         switch (m_sceneRequest.action) {
@@ -64,6 +64,10 @@ void SceneManager::requestSceneChange(Scene::Action action, Scene::Name name)
 bool SceneManager::isSceneStackEmpty() const
 {
     return m_sceneStack.empty();
+}
+
+const SharedContext& SceneManager::getSharedContext() const {
+    return m_sharedContext;
 }
 
 void SceneManager::pushScene()

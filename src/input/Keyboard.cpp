@@ -10,7 +10,7 @@ void Keyboard::setKey(const sf::Keyboard::Key key, const bool keyDown)
     currState[key] = keyDown;
 }
 
-bool Keyboard::checkKeyAndState(sf::Keyboard::Key key, State state) const
+bool Keyboard::checkKeyAndState(const sf::Keyboard::Key key, const State state) const
 {
     State currentState = State::NONE;
     if (prevState[key]) {

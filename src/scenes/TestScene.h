@@ -1,5 +1,8 @@
 #pragma once
 
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+
 #include "BaseScene.h"
 
 class TestScene final : public BaseScene
@@ -14,4 +17,6 @@ public:
     void onExit() override;
 
 private:
+    sf::Text m_text;
+    sf::Sprite m_sprite;
 };

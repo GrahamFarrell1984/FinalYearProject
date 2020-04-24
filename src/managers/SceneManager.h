@@ -6,19 +6,22 @@
 
 #include "BaseScene.h"
 #include "SceneTypes.h"
+#include "SharedContext.h"
 
 class SceneManager
 {
 public:
-    explicit SceneManager();
+    explicit SceneManager(SharedContext&& sharedContext);
 
     void processInput(const Keyboard& keyboard) const;
     void update(sf::Time deltaTime) const;
     void render(sf::RenderWindow& window) const;
-    void lateUpdate();
+    void checkForUpdates();
 
     void requestSceneChange(Scene::Action action, Scene::Name name);
     bool isSceneStackEmpty() const;
+
+    const SharedContext& getSharedContext() const;
 
 private:
     void pushScene();
@@ -28,6 +31,7 @@ private:
     void popAllScenes();
     std::unique_ptr<BaseScene> createScene(Scene::Name name);
 
+    SharedContext m_sharedContext;
     Scene::Request m_sceneRequest;
     std::vector<std::unique_ptr<BaseScene>> m_sceneStack;
 };

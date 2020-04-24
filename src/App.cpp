@@ -1,16 +1,21 @@
 #include "App.h"
 
 App::App()
-        : m_initialised{ false }
-        , m_timePerFrame{ sf::seconds(1.f / 60.f) }
-        , m_window{ sf::VideoMode(1024, 768), "Outbreak", sf::Style::Close }
-        , m_sceneManager{}
-        , m_keyboard{}
+        : m_initialised   { false }
+        , m_timePerFrame  { sf::seconds(1.f / 60.f) }
+        , m_window        { sf::VideoMode(1024, 768), "SFML", sf::Style::Close }
+        , m_fontManager   { }
+        , m_textureManager{ }
+        , m_sceneManager  { SharedContext{ m_fontManager, m_textureManager } }
+        , m_keyboard      { }
 {
 }
 
 bool App::setup()
 {
+    m_fontManager.loadResource(Assets::Font::EBB.index, Assets::Font::EBB.filepath);
+    m_textureManager.loadResource(Assets::Texture::Player.index, Assets::Texture::Player.filepath);
+
     // Load assets here, failing to load assets should quit the game.
     m_initialised = true;
     return m_initialised;
@@ -28,16 +33,21 @@ void App::run()
         while (timeSinceLastUpdate > m_timePerFrame) {
             timeSinceLastUpdate -= m_timePerFrame;
 
+            checkForUpdates();
             processEvents();
             update();
             render();
-            lateUpdate();
 
             if (m_sceneManager.isSceneStackEmpty()) {
                 m_window.close();
             }
         }
     }
+}
+
+void App::checkForUpdates()
+{
+    m_sceneManager.checkForUpdates();
 }
 
 void App::processEvents()
@@ -66,9 +76,4 @@ void App::render()
     m_window.clear();
     m_sceneManager.render(m_window);
     m_window.display();
-}
-
-void App::lateUpdate()
-{
-    m_sceneManager.lateUpdate();
 }

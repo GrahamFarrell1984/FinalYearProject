@@ -10,7 +10,7 @@ class Keyboard
 public:
     void update();
     void setKey(sf::Keyboard::Key key, bool keyDown);
-    bool checkKeyAndState(sf::Keyboard::Key key, State state) const;
+    bool checkKeyAndState(const sf::Keyboard::Key key, const State state) const;
 
 private:
     std::array<bool, sf::Keyboard::KeyCount> currState{};
