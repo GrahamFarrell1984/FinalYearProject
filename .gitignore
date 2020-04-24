@@ -1,0 +1,10 @@
+# Please add missing filetypes.
+
+# idea
+.idea/*
+
+# CMake
+cmake-build-*/
+
+# DS_Store
+.DS_Store
