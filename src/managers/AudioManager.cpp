@@ -6,7 +6,7 @@ AudioManager::AudioManager(const ResourceManager<sf::SoundBuffer>& sfxBufferMana
 {
 }
 
-void AudioManager::playMusic(Data data, const bool loop)
+void AudioManager::playMusic(const Data data, const bool loop)
 {
     if (m_music.openFromFile(data.filepath)) {
         if (loop) {

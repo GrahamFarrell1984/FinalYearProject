@@ -22,7 +22,7 @@ public:
     void stopAllSounds();
 
 private:
-    static constexpr auto MAXSOUNDS = 32;
+    static constexpr auto MAXSOUNDS = 16;
 
     const ResourceManager<sf::SoundBuffer>& m_sfxBufferManager;
     std::array<sf::Sound, MAXSOUNDS> m_sfx;

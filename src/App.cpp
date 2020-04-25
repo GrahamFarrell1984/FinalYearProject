@@ -15,9 +15,8 @@ App::App()
 
 bool App::setup()
 {
-    m_sfxBufferManager.loadResource(Assets::Sfx::Test.id, Assets::Sfx::Test.filepath);
-    m_fontManager.loadResource(Assets::Font::EBB.id, Assets::Font::EBB.filepath);
-    m_textureManager.loadResource(Assets::Texture::Player.id, Assets::Texture::Player.filepath);
+    m_sfxBufferManager.loadResource(Assets::Sfx::SFXA.id, Assets::Sfx::SFXA.filepath);
+    m_textureManager.loadResource(Assets::Texture::TEXA.id, Assets::Texture::TEXA.filepath);
 
     // Load assets here, failing to load assets should quit the game.
     m_initialised = true;
@@ -37,12 +36,12 @@ void App::run()
             timeSinceLastUpdate -= m_timePerFrame;
 
             checkForUpdates();
-            processEvents();
-            update();
-            render();
-
             if (m_sceneManager.isSceneStackEmpty()) {
                 m_window.close();
+            } else {
+                processEvents();
+                update();
+                render();
             }
         }
     }

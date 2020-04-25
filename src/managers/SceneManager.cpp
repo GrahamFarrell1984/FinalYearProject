@@ -7,7 +7,7 @@
 
 SceneManager::SceneManager(SharedContext&& sharedContext)
         : m_sharedContext{ std::move(sharedContext) }
-        , m_sceneRequest { Scene::Action::PUSH, Scene::Name::TEST }
+        , m_sceneRequest { Scene::Action::PUSH, Scene::Name::TITLE }
 {
     m_sceneStack.reserve(Scene::SCENECOUNT);
 }

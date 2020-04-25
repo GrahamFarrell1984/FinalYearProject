@@ -1,6 +1,9 @@
 #pragma once
 
+#include <SFML/Graphics/Sprite.hpp>
+
 #include "BaseScene.h"
+#include "Types.h"
 
 class TitleScene final : public BaseScene
 {
@@ -14,4 +17,9 @@ public:
     void onExit() override;
 
 private:
+    enum class MENUOPTIONS : sf::Uint8 { START = 0, OPTIONS, QUIT };
+
+    MENUOPTIONS m_options;
+    sf::Sprite m_sprite;
+    sf::Vector2i m_cursorPos;
 };
