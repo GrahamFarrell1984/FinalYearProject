@@ -43,8 +43,6 @@ void TitleScene::processInput(const Keyboard& keyboard)
         switch (m_options) {
             case MENUOPTIONS::START:
                 requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAME);
-
-//                /* The line of code above is commented to test changing to the game over scene */
 //                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAMEOVER);
                 break;
             case MENUOPTIONS::OPTIONS:
@@ -95,10 +93,8 @@ void TitleScene::render(sf::RenderWindow& window)
 void TitleScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
-
-    /* The line of code above is commented to test texture TEXB */
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
 
     AudioManager& audioManager = getSharedContext().audioManager;
     audioManager.playMusic(Assets::Music::MUSICA);
