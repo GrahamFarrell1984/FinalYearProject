@@ -24,5 +24,7 @@ static constexpr Type::Point SKULL2SRCPOS {   0,   0 };
 static constexpr Type::Rect  TITLESRCRECT {   0, 512,  768, 256 };
 static constexpr Type::Rect  CURSORSRCRECT{ 512, 256,  32,   32 };
 
+static constexpr Type::Rect  GAMEOVERTITLESRCRECT {   0, 768,  768, 256 };
 
+static constexpr Type::Rect  OPTIONSRCRECT {   0, 1024,  256, 256 };
 

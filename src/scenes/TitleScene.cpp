@@ -8,7 +8,7 @@ TitleScene::TitleScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
         , m_options   { MENUOPTIONS::START }
         , m_sprite    { }
-        , m_cursorPos { 384, 559}
+        , m_cursorPos { 320, 559} // Testing cursor position. x was 384
 {
 }
 
@@ -42,7 +42,10 @@ void TitleScene::processInput(const Keyboard& keyboard)
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
             case MENUOPTIONS::START:
-                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAME);
+//                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAME);
+
+                /* The line of code above is commented to test changing to the game over scene */
+                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAMEOVER);
                 break;
             case MENUOPTIONS::OPTIONS:
                 requestSceneChange(Scene::Action::PUSH, Scene::Name::TEST);
@@ -83,7 +86,7 @@ void TitleScene::render(sf::RenderWindow& window)
     m_sprite.setTextureRect(sf::IntRect(TITLESRCRECT.x, TITLESRCRECT.y, TITLESRCRECT.w, TITLESRCRECT.h));
     window.draw(m_sprite);
 
-    // Draw the title text
+    // Draw the cursor
     m_sprite.setPosition(static_cast<float>(m_cursorPos.x), static_cast<float>(m_cursorPos.y));
     m_sprite.setTextureRect(sf::IntRect(CURSORSRCRECT.x, CURSORSRCRECT.y, CURSORSRCRECT.w, CURSORSRCRECT.h));
     window.draw(m_sprite);
@@ -92,7 +95,10 @@ void TitleScene::render(sf::RenderWindow& window)
 void TitleScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+
+    /* The line of code above is commented to test texture TEXB */
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
 
     AudioManager& audioManager = getSharedContext().audioManager;
     audioManager.playMusic(Assets::Music::MUSICA);

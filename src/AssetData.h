@@ -10,6 +10,7 @@ struct Data
 namespace Assets {
     namespace Texture {
         static constexpr Data TEXA{ 0, "assets/texture/TEX_A.png" };
+        static constexpr Data TEXB{ 0, "assets/texture/TEX_B.png" };
     }  // namespace Texture
 
     namespace Font {
