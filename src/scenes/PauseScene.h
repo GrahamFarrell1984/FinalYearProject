@@ -17,5 +17,9 @@ public:
     void onExit() override;
 
 private:
+    enum class MENUOPTIONS : sf::Uint8 { RESUME = 0, MAINMENU, QUIT };
+
+    MENUOPTIONS m_options;
     sf::Sprite m_sprite;
+    sf::Vector2i m_cursorPos;
 };

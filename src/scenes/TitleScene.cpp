@@ -42,8 +42,7 @@ void TitleScene::processInput(const Keyboard& keyboard)
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
             case MENUOPTIONS::START:
-                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAME);
-//                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAMEOVER);
+                requestSceneChange(Scene::Action::PUSH, Scene::Name::GAME);
                 break;
             case MENUOPTIONS::OPTIONS:
                 requestSceneChange(Scene::Action::PUSH, Scene::Name::TEST);
