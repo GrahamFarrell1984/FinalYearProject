@@ -5,7 +5,7 @@ if (WIN32)
 elseif (APPLE)
     set(SFML_DIR "./library/frameworks/SFML-2.5.1/lib/cmake/SFML")
 elseif (UNIX AND NOT APPLE)
-    # Add Rasberry PI path
+    set(SFML_DIR "/usr/lib/arm-linux-gnueabihf/cmake/SFML")
 endif ()
 
 find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
