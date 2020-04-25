@@ -34,7 +34,7 @@ void GameoverScene::processInput(const Keyboard& keyboard)
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
             case MENUOPTIONS::MAINMENU:
-                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::TITLE);
+                requestSceneChange(Scene::Action::POPUNTIL, Scene::Name::TITLE);
                 break;
             case MENUOPTIONS::QUIT:
                 requestSceneChange(Scene::Action::POPALL);
