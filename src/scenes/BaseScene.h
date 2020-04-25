@@ -15,7 +15,7 @@ class SceneManager;
 class BaseScene
 {
 public:
-    BaseScene(SceneManager& sceneManager, Scene::Name name);
+    BaseScene(SceneManager& sceneManager, Scene::Name name, bool isTransparent = false);
     virtual ~BaseScene() = default;
 
     virtual void processInput(const Keyboard& keyboard) = 0;
@@ -24,6 +24,7 @@ public:
     virtual void onEnter()                              = 0;
     virtual void onExit()                               = 0;
 
+    bool isTransparent();
     Scene::Name getName() const;
 
 protected:
@@ -31,6 +32,7 @@ protected:
     void requestSceneChange(Scene::Action action, Scene::Name name = Scene::Name::NONE) const;
 
 private:
+    bool m_isTransparent;
     Scene::Name m_name;
     SceneManager& m_sceneManager;
 };

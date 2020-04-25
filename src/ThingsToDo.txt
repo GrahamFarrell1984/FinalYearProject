@@ -1,6 +1,9 @@
 # This is a list of things to do
 
 # Managers
+    # AudioManager
+        1) Add pause sfx function
+        2) Add resume sfx function
 
 # Scenes
 

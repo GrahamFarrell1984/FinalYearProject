@@ -1,13 +1,14 @@
 #pragma once
+#include "BaseScene.h"
 
 #include <SFML/Graphics/Sprite.hpp>
 
-#include "BaseScene.h"
+#include "Types.h"
 
-class TitleScene final : public BaseScene
+class PauseScene final : public BaseScene
 {
 public:
-    TitleScene(SceneManager& sceneManager, Scene::Name name);
+    PauseScene(SceneManager& sceneManager, Scene::Name name);
 
     void processInput(const Keyboard& keyboard) override;
     void update(sf::Time deltaTime) override;
@@ -16,9 +17,5 @@ public:
     void onExit() override;
 
 private:
-    enum class MENUOPTIONS : sf::Uint8 { START = 0, OPTIONS, QUIT };
-
-    MENUOPTIONS m_options;
     sf::Sprite m_sprite;
-    sf::Vector2i m_cursorPos;
 };

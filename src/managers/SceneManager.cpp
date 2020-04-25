@@ -2,6 +2,7 @@
 
 #include "GameScene.h"
 #include "GameoverScene.h"
+#include "PauseScene.h"
 #include "TestScene.h"
 #include "TitleScene.h"
 
@@ -24,7 +25,13 @@ void SceneManager::update(const sf::Time deltaTime) const
 
 void SceneManager::render(sf::RenderWindow& window) const
 {
-    m_sceneStack.back()->render(window);
+    auto itr = m_sceneStack.end();
+    while (--itr != m_sceneStack.begin() && (*itr)->isTransparent())
+        ;
+    while (itr != m_sceneStack.end()) {
+        (*itr)->render(window);
+        ++itr;
+    }
 }
 
 void SceneManager::checkForUpdates()
@@ -66,7 +73,8 @@ bool SceneManager::isSceneStackEmpty() const
     return m_sceneStack.empty();
 }
 
-const SharedContext& SceneManager::getSharedContext() const {
+const SharedContext& SceneManager::getSharedContext() const
+{
     return m_sharedContext;
 }
 
@@ -119,6 +127,8 @@ std::unique_ptr<BaseScene> SceneManager::createScene(const Scene::Name name)
             return std::unique_ptr<BaseScene>(std::make_unique<TitleScene>(*this, name));
         case Scene::Name::GAME:
             return std::unique_ptr<BaseScene>(std::make_unique<GameScene>(*this, name));
+        case Scene::Name::PAUSE:
+            return std::unique_ptr<BaseScene>(std::make_unique<PauseScene>(*this, name));
         case Scene::Name::GAMEOVER:
             return std::unique_ptr<BaseScene>(std::make_unique<GameoverScene>(*this, name));
         case Scene::Name::TEST:

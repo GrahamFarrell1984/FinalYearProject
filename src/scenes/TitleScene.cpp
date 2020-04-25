@@ -42,10 +42,10 @@ void TitleScene::processInput(const Keyboard& keyboard)
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
             case MENUOPTIONS::START:
-//                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAME);
+                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAME);
 
-                /* The line of code above is commented to test changing to the game over scene */
-                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAMEOVER);
+//                /* The line of code above is commented to test changing to the game over scene */
+//                requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAMEOVER);
                 break;
             case MENUOPTIONS::OPTIONS:
                 requestSceneChange(Scene::Action::PUSH, Scene::Name::TEST);
