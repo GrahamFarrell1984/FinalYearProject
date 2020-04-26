@@ -77,6 +77,11 @@ void OptionsScene::render(sf::RenderWindow& window)
     m_sprite.setTextureRect(sf::IntRect(OPTIONSTITLESRCRECT.x, OPTIONSTITLESRCRECT.y, OPTIONSTITLESRCRECT.w, OPTIONSTITLESRCRECT.h));
     window.draw(m_sprite);
 
+    // Draw the controls text
+    m_sprite.setPosition(static_cast<float>(CONTROLTEXTPOS.x), static_cast<float>(CONTROLTEXTPOS.y));
+    m_sprite.setTextureRect(sf::IntRect(CONTROLSTEXTSRCRECT.x, CONTROLSTEXTSRCRECT.y, CONTROLSTEXTSRCRECT.w, CONTROLSTEXTSRCRECT.h));
+    window.draw(m_sprite);
+
     // Draw the cursor
     m_sprite.setPosition(static_cast<float>(m_cursorPos.x), static_cast<float>(m_cursorPos.y));
     m_sprite.setTextureRect(sf::IntRect(CURSORSRCRECT.x, CURSORSRCRECT.y, CURSORSRCRECT.w, CURSORSRCRECT.h));

@@ -16,6 +16,7 @@ static constexpr auto SIZE = 256;
 static constexpr Type::Point WSKULLPOS { 384, 256 };
 static constexpr Type::Point TEXTPOS   { 384, 512 };
 static constexpr Type::Point TITLEPOS  { 128,   0 };
+static constexpr Type::Point CONTROLTEXTPOS  { 128,   192 };
 
 static constexpr Type::Point FONTSRCPOS  {   0, 256 };
 static constexpr Type::Point FONT1SRCPOS  { 256, 256 };
@@ -28,3 +29,5 @@ static constexpr Type::Rect  GAMEOVERTITLESRCRECT {   0, 768,  768, 256 };
 static constexpr Type::Rect  OPTIONSRCRECT {   0, 1024,  256, 256 };
 static constexpr Type::Rect  PAUSEDTITLESRCRECT { 0, 1280, 768, 256 };
 static constexpr Type::Rect  OPTIONSTITLESRCRECT { 0, 1536, 768, 256 };
+static constexpr Type::Rect  CONTROLSTEXTSRCRECT { 0, 1792, 768, 384 };
+
