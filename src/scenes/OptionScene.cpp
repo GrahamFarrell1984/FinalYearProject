@@ -1,30 +1,31 @@
-#include "GameoverScene.h"
+#include "OptionsScene.h"
 
 #include "TextureData.h"
 #include "AudioManager.h"
 #include "ResourceManager.h"
 
-GameoverScene::GameoverScene(SceneManager& sceneManager, const Scene::Name name)
+OptionsScene::OptionsScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
-        , m_options   { MENUOPTIONS::MAINMENU }
-        , m_sprite    { }
+        , m_text   { }
+        , m_options   { MENUOPTIONS::RETURN }
+        , m_sprite { }
         , m_cursorPos { 320, 623} // Testing cursor position. x was 384
 {
 }
 
-void GameoverScene::processInput(const Keyboard& keyboard)
+void OptionsScene::processInput(const Keyboard& keyboard)
 {
     AudioManager& audioManager = getSharedContext().audioManager;
 
     if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::PRESS)) {
-        if (m_options == MENUOPTIONS::MAINMENU) {
+        if (m_options == MENUOPTIONS::RETURN) {
             m_options = MENUOPTIONS::QUIT;
             m_cursorPos.y += CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
         }
     } else if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::PRESS)) {
         if (m_options == MENUOPTIONS::QUIT) {
-            m_options = MENUOPTIONS::MAINMENU;
+            m_options = MENUOPTIONS::RETURN;
             m_cursorPos.y -= CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
         }
@@ -33,22 +34,25 @@ void GameoverScene::processInput(const Keyboard& keyboard)
     if (keyboard.checkKeyAndState(sf::Keyboard::Enter, State::PRESS)) {
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
-            case MENUOPTIONS::MAINMENU:
-                requestSceneChange(Scene::Action::POPALL);
-                requestSceneChange(Scene::Action::PUSH, Scene::Name::TITLE);
+            case MENUOPTIONS::RETURN:
+                requestSceneChange(Scene::Action::POP);
                 break;
             case MENUOPTIONS::QUIT:
                 requestSceneChange(Scene::Action::POPALL);
                 break;
         }
     }
+
+    if (keyboard.checkKeyAndState(sf::Keyboard::X, State::PRESS)) {
+        requestSceneChange(Scene::Action::POP);
+    }
 }
 
-void GameoverScene::update(const sf::Time deltaTime)
+void OptionsScene::update(const sf::Time deltaTime)
 {
 }
 
-void GameoverScene::render(sf::RenderWindow& window)
+void OptionsScene::render(sf::RenderWindow& window)
 {
     // Draw all the greyed out skulls
     m_sprite.setTextureRect(sf::IntRect(SKULL0SRCPOS.x, SKULL0SRCPOS.y, SIZE, SIZE));
@@ -70,7 +74,7 @@ void GameoverScene::render(sf::RenderWindow& window)
 
     // Draw the title text
     m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(GAMEOVERTITLESRCRECT.x, GAMEOVERTITLESRCRECT.y, GAMEOVERTITLESRCRECT.w, GAMEOVERTITLESRCRECT.h));
+    m_sprite.setTextureRect(sf::IntRect(OPTIONSTITLESRCRECT.x, OPTIONSTITLESRCRECT.y, OPTIONSTITLESRCRECT.w, OPTIONSTITLESRCRECT.h));
     window.draw(m_sprite);
 
     // Draw the cursor
@@ -79,18 +83,16 @@ void GameoverScene::render(sf::RenderWindow& window)
     window.draw(m_sprite);
 }
 
-void GameoverScene::onEnter()
+void OptionsScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
 
-    AudioManager& audioManager = getSharedContext().audioManager;
-    audioManager.playMusic(Assets::Music::MUSICA);
+//    AudioManager& audioManager = getSharedContext().audioManager;
+//    audioManager.playMusic(Assets::Music::MUSICA);
 }
 
-void GameoverScene::onExit()
+void OptionsScene::onExit()
 {
-    AudioManager& audioManager = getSharedContext().audioManager;
-    audioManager.stopMusic();
-    audioManager.stopAllSounds();
 }

@@ -27,4 +27,4 @@ static constexpr Type::Rect  CURSORSRCRECT{ 512, 256,  32,   32 };
 static constexpr Type::Rect  GAMEOVERTITLESRCRECT {   0, 768,  768, 256 };
 static constexpr Type::Rect  OPTIONSRCRECT {   0, 1024,  256, 256 };
 static constexpr Type::Rect  PAUSEDTITLESRCRECT { 0, 1280, 768, 256 };
-
+static constexpr Type::Rect  OPTIONSTITLESRCRECT { 0, 1536, 768, 256 };

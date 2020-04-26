@@ -45,7 +45,7 @@ void TitleScene::processInput(const Keyboard& keyboard)
                 requestSceneChange(Scene::Action::PUSH, Scene::Name::GAME);
                 break;
             case MENUOPTIONS::OPTIONS:
-                requestSceneChange(Scene::Action::PUSH, Scene::Name::TEST);
+                requestSceneChange(Scene::Action::PUSH, Scene::Name::OPTIONS);
                 break;
             case MENUOPTIONS::QUIT:
                 requestSceneChange(Scene::Action::POPALL);

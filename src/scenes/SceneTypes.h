@@ -3,12 +3,13 @@
 
 namespace Scene {
     // Inc when adding new scenes. NONE is not added.
-    static constexpr sf::Uint8 SCENECOUNT = 5;
+    static constexpr sf::Uint8 SCENECOUNT = 6;
 
     enum class Name : sf::Uint8
     {
         NONE = 0,
         TITLE,
+        OPTIONS,
         GAME,
         PAUSE,
         GAMEOVER,
