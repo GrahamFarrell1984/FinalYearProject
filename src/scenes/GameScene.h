@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseScene.h"
+#include "EntityManager.h"
 
 class GameScene final : public BaseScene
 {
@@ -14,4 +15,5 @@ public:
     void onExit() override;
 
 private:
+    EntityManager m_entityManager;
 };
