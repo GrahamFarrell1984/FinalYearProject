@@ -1,16 +1,19 @@
 #include "Zombie.h"
 
-Zombie::Zombie()
+#include <SFML/Graphics/Texture.hpp>
+
+
+Zombie::Zombie(sf::Vector2f position, const sf::Texture* texture)
 {
-    std::cout << "Creating Zombie \n";
+    m_sprite.setTexture(*texture);
+    m_sprite.setPosition(position);
 }
 
 void Zombie::update()
 {
-//    std::cout << "Updating Zombie \n";
 }
 
 void Zombie::render(sf::RenderWindow& window)
 {
-//    std::cout << "Drawing Zombie \n";
+    window.draw(m_sprite);
 }

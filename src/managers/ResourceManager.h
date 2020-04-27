@@ -11,7 +11,7 @@ template <typename ResourceType>
 class ResourceManager
 {
 public:
-    const ResourceType* getResource(uint8_t index) const
+    const ResourceType* getResource(sf::Uint8 index) const
     {
         const auto it = m_resources.find(index);
         return it != m_resources.end() ? it->second.get() : nullptr;

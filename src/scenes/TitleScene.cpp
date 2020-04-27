@@ -73,14 +73,14 @@ void TitleScene::render(sf::RenderWindow& window)
     m_sprite.setTextureRect(sf::IntRect(SKULL1SRCPOS.x, SKULL1SRCPOS.y, SIZE, SIZE));
     window.draw(m_sprite);
 
-    // Draw the text
-    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(FONTSRCPOS.x, FONTSRCPOS.y, SIZE, SIZE));
-    window.draw(m_sprite);
-
     // Draw the title text
     m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(TITLESRCRECT.x, TITLESRCRECT.y, TITLESRCRECT.w, TITLESRCRECT.h));
+    m_sprite.setTextureRect(sf::IntRect(MAINTITLESRCRECT.x, MAINTITLESRCRECT.y, MAINTITLESRCRECT.w, MAINTITLESRCRECT.h));
+    window.draw(m_sprite);
+
+    // Draw the menu options text
+    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
+    m_sprite.setTextureRect(sf::IntRect(FONTSRCPOS.x, FONTSRCPOS.y, SIZE, SIZE));
     window.draw(m_sprite);
 
     // Draw the cursor
@@ -92,8 +92,8 @@ void TitleScene::render(sf::RenderWindow& window)
 void TitleScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
-//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
+//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
 
     AudioManager& audioManager = getSharedContext().audioManager;
     audioManager.playMusic(Assets::Music::MUSICA);

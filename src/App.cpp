@@ -16,10 +16,11 @@ App::App()
 bool App::setup()
 {
     m_sfxBufferManager.loadResource(Assets::Sfx::SFXA.id, Assets::Sfx::SFXA.filepath);
-//    m_textureManager.loadResource(Assets::Texture::TEXA.id, Assets::Texture::TEXA.filepath);
-
-    /* The line of code above is commented out just for testing texture TEX_B.png below */
+    m_textureManager.loadResource(Assets::Texture::TEXA.id, Assets::Texture::TEXA.filepath);
     m_textureManager.loadResource(Assets::Texture::TEXB.id, Assets::Texture::TEXB.filepath);
+    m_textureManager.loadResource(Assets::Texture::PLAYER.id, Assets::Texture::PLAYER.filepath);
+    m_textureManager.loadResource(Assets::Texture::ZOMBIE.id, Assets::Texture::ZOMBIE.filepath);
+    m_textureManager.loadResource(Assets::Texture::MUMMY.id, Assets::Texture::MUMMY.filepath);
 
     // Load assets here, failing to load assets should quit the game.
     m_initialised = true;

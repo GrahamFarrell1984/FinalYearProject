@@ -1,16 +1,16 @@
 #include "Mummy.h"
 
-Mummy::Mummy()
+Mummy::Mummy(sf::Vector2f position, const sf::Texture* texture)
 {
-    std::cout << "Creating Mummy \n";
+    m_sprite.setTexture(*texture);
+    m_sprite.setPosition(position);
 }
 
 void Mummy::update()
 {
-//    std::cout << "Updating Mummy \n";
 }
 
 void Mummy::render(sf::RenderWindow& window)
 {
-//    std::cout << "Drawing Mummy \n";
+    window.draw(m_sprite);
 }
