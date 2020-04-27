@@ -87,8 +87,8 @@ void OptionsScene::render(sf::RenderWindow& window)
 void OptionsScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
-//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
+//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
 
 //    AudioManager& audioManager = getSharedContext().audioManager;
 //    audioManager.playMusic(Assets::Music::MUSICA);
