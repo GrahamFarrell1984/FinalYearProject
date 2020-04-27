@@ -76,23 +76,20 @@ void PauseScene::render(sf::RenderWindow& window)
         }
     }
 
-    // Draw the text
-    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(FONT1SRCPOS.x, FONT1SRCPOS.y, SIZE, SIZE));
-    window.draw(m_sprite);
-
     // Draw the title text
     m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
     m_sprite.setTextureRect(sf::IntRect(PAUSEDTITLESRCRECT.x, PAUSEDTITLESRCRECT.y, PAUSEDTITLESRCRECT.w, PAUSEDTITLESRCRECT.h));
+    window.draw(m_sprite);
+
+    // Draw the menu options text
+    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
+    m_sprite.setTextureRect(sf::IntRect(FONT1SRCPOS.x, FONT1SRCPOS.y, SIZE, SIZE));
     window.draw(m_sprite);
 
     // Draw the cursor
     m_sprite.setPosition(static_cast<float>(m_cursorPos.x), static_cast<float>(m_cursorPos.y));
     m_sprite.setTextureRect(sf::IntRect(CURSORSRCRECT.x, CURSORSRCRECT.y, CURSORSRCRECT.w, CURSORSRCRECT.h));
     window.draw(m_sprite);
-
-    // NOTE : Test - please remove
-//    window.draw(m_sprite);
 }
 
 void PauseScene::onEnter()

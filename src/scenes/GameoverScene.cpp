@@ -58,19 +58,15 @@ void GameoverScene::render(sf::RenderWindow& window)
             window.draw(m_sprite);
         }
     }
-//    // Draw the white skull
-//    m_sprite.setPosition(static_cast<float>(WSKULLPOS.x), static_cast<float>(WSKULLPOS.y));
-//    m_sprite.setTextureRect(sf::IntRect(SKULL1SRCPOS.x, SKULL1SRCPOS.y, SIZE, SIZE));
-//    window.draw(m_sprite);
-
-    // Draw the text
-    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(OPTIONSRCRECT.x, OPTIONSRCRECT.y, SIZE, SIZE));
-    window.draw(m_sprite);
 
     // Draw the title text
     m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
     m_sprite.setTextureRect(sf::IntRect(GAMEOVERTITLESRCRECT.x, GAMEOVERTITLESRCRECT.y, GAMEOVERTITLESRCRECT.w, GAMEOVERTITLESRCRECT.h));
+    window.draw(m_sprite);
+
+    // Draw the menu options text
+    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
+    m_sprite.setTextureRect(sf::IntRect(OPTIONSRCRECT.x, OPTIONSRCRECT.y, SIZE, SIZE));
     window.draw(m_sprite);
 
     // Draw the cursor

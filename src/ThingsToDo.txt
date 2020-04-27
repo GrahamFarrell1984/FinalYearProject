@@ -10,3 +10,17 @@
 # Bugs
 
 # Formatting
+
+# Animation
+
+# Camera
+
+# AI
+
+# Power ups
+
+# Scoring
+
+# Collision
+
+# Projectiles

@@ -62,15 +62,6 @@ void OptionsScene::render(sf::RenderWindow& window)
             window.draw(m_sprite);
         }
     }
-//    // Draw the white skull
-//    m_sprite.setPosition(static_cast<float>(WSKULLPOS.x), static_cast<float>(WSKULLPOS.y));
-//    m_sprite.setTextureRect(sf::IntRect(SKULL1SRCPOS.x, SKULL1SRCPOS.y, SIZE, SIZE));
-//    window.draw(m_sprite);
-
-    // Draw the text
-    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(OPTIONSRCRECT.x, OPTIONSRCRECT.y, SIZE, SIZE));
-    window.draw(m_sprite);
 
     // Draw the title text
     m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
@@ -80,6 +71,11 @@ void OptionsScene::render(sf::RenderWindow& window)
     // Draw the controls text
     m_sprite.setPosition(static_cast<float>(CONTROLTEXTPOS.x), static_cast<float>(CONTROLTEXTPOS.y));
     m_sprite.setTextureRect(sf::IntRect(CONTROLSTEXTSRCRECT.x, CONTROLSTEXTSRCRECT.y, CONTROLSTEXTSRCRECT.w, CONTROLSTEXTSRCRECT.h));
+    window.draw(m_sprite);
+
+    // Draw the menu options text
+    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
+    m_sprite.setTextureRect(sf::IntRect(OPTIONSRCRECT.x, OPTIONSRCRECT.y, SIZE, SIZE));
     window.draw(m_sprite);
 
     // Draw the cursor
