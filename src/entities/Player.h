@@ -1,11 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 #include "AnimatedSprite.h"
 #include "BaseEntity.h"
 #include "Keyboard.h"
 
+class RectangleShape;
 class Player : public BaseEntity
 {
 public:
@@ -15,9 +17,12 @@ public:
     void update() override;
     void render(sf::RenderWindow& window) override;
 
+    Rect getBounds() const;
+
 private:
     Entity::State m_prevState;
     Entity::State m_currState;
     sf::Vector2f m_pos;
     AnimatedSprite m_animSprite;
+    sf::RectangleShape m_rect;
 };

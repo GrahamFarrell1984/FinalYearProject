@@ -4,8 +4,13 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         : m_prevState{ Entity::State::MOVEDOWN }
         , m_currState{ Entity::State::MOVEDOWN }
         , m_pos{ position }
+        , m_rect { sf::Vector2f(52, 50) }
         , m_animSprite{ position, texture, PlayerSpriteData, PlayerAnimation }
 {
+    // Test
+    m_rect.setPosition(m_pos.x, m_pos.y);
+    m_rect.setFillColor(sf::Color(255,0,0,100));
+
     // Set Animation state
     m_animSprite.changeState(Entity::State::STANDFACINGDOWN);
 }
@@ -50,6 +55,7 @@ void Player::processInput(const Keyboard& keyboard)
 void Player::update()
 {
     m_animSprite.updatePosition(m_pos);
+    m_rect.setPosition(m_pos.x, m_pos.y);
 }
 
 void Player::render(sf::RenderWindow& window)
@@ -60,4 +66,17 @@ void Player::render(sf::RenderWindow& window)
     m_animSprite.checkForFrameUpdate();
     m_prevState = m_currState;
     m_animSprite.render(window);
+
+    // Toggle this to turn on and off collision boxes.
+    window.draw(m_rect);
+}
+
+Rect Player::getBounds() const
+{
+    return Rect {
+            static_cast<sf::Int32>(m_rect.getPosition().x),
+            static_cast<sf::Int32>(m_rect.getPosition().y),
+            static_cast<sf::Int32>(m_rect.getSize().x),
+            static_cast<sf::Int32>(m_rect.getSize().y)
+    };
 }

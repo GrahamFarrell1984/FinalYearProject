@@ -1,6 +1,7 @@
 #include "GameScene.h"
 
 #include "AudioManager.h"
+#include "CollisionManager.h"
 #include "Mummy.h"
 #include "Player.h"
 #include "ResourceManager.h"
@@ -21,13 +22,15 @@ void GameScene::processInput(const Keyboard& keyboard)
         requestSceneChange(Scene::Action::PUSH, Scene::Name::GAMEOVER);
     }
 
-    auto* player = m_entityManager.getEntityByType<Player>(0);
+    // Check if valid
+    Player* player = m_entityManager.getEntityGroup<Player>().front();
     player->processInput(keyboard);
 }
 
 void GameScene::update(const sf::Time deltaTime)
 {
     m_entityManager.update();
+    ClsnManager::playerZombieCollision(m_entityManager.getEntityGroup<Player>(), m_entityManager.getEntityGroup<Zombie>());
 }
 
 void GameScene::render(sf::RenderWindow& window)

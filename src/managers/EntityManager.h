@@ -15,17 +15,15 @@ public:
     void render(sf::RenderWindow& window);
 
     template <typename T>
-    T* getEntityByType(sf::Uint8 index)
+    auto getEntityGroup()
     {
+        std::vector<T*> entityGroupsWithCorrectType;
         auto& entityGroup = m_groupedEntities[std::type_index(typeid(T))];
-        return static_cast<T*>(entityGroup[index]);
-
-    }
-
-    template <typename T>
-    std::vector<T*>& getEntityGroupByType()
-    {
-        return m_groupedEntities[std::type_index(typeid(T))];
+        std::transform(std::begin(entityGroup), std::end(entityGroup), std::back_inserter(entityGroupsWithCorrectType),
+                       [](BaseEntity* e) {
+                           return static_cast<T*>(e);
+                       });
+        return entityGroupsWithCorrectType;
     }
 
     template <typename T, typename... Args>

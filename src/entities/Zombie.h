@@ -1,6 +1,7 @@
 #pragma once
 
-#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 #include "BaseEntity.h"
 
@@ -12,5 +13,12 @@ public:
     void update() override;
     void render(sf::RenderWindow& window) override;
 
+    void setPosition(sf::Vector2f pos);
+
+    Rect getBounds() const;
+
 private:
+    sf::Sprite m_sprite;
+    sf::Vector2f m_pos;
+    sf::RectangleShape m_rect;
 };
