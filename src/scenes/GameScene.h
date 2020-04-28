@@ -16,6 +16,5 @@ public:
     void onExit() override;
 
 private:
-    Player m_player;
     EntityManager m_entityManager;
 };

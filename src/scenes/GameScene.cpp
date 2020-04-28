@@ -21,18 +21,17 @@ void GameScene::processInput(const Keyboard& keyboard)
         requestSceneChange(Scene::Action::PUSH, Scene::Name::GAMEOVER);
     }
 
-    m_player.processInput(keyboard);
+    auto* player = m_entityManager.getEntityByType<Player>(0);
+    player->processInput(keyboard);
 }
 
 void GameScene::update(const sf::Time deltaTime)
 {
-    m_player.update();
     m_entityManager.update();
 }
 
 void GameScene::render(sf::RenderWindow& window)
 {
-    m_player.render(window);
     m_entityManager.render(window);
 }
 
@@ -44,7 +43,7 @@ void GameScene::onEnter()
 
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
 
-    m_player.setup(sf::Vector2f(0, 0),textureHolder.getResource(Assets::Texture::PLAYER.id));
+    m_entityManager.create<Player>(sf::Vector2f(0, 0), textureHolder.getResource(Assets::Texture::PLAYER.id));
     m_entityManager.create<Mummy>(sf::Vector2f(50.f, 50.f), textureHolder.getResource(Assets::Texture::MUMMY.id));
     m_entityManager.create<Zombie>(sf::Vector2f(150.f, 150.f), textureHolder.getResource(Assets::Texture::ZOMBIE.id));
 }

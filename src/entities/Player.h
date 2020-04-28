@@ -2,22 +2,24 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
-#include "Entity.h"
+#include "AnimatedSprite.h"
+#include "BaseEntity.h"
 #include "Keyboard.h"
 
-
-class Player
+class Player : public BaseEntity
 {
 public:
-    Player();
+    Player(sf::Vector2f position, const sf::Texture* texture);
 
-    void setup(sf::Vector2f position, const sf::Texture* texture);
     void processInput(const Keyboard& keyboard);
-    void update();
-    void render(sf::RenderWindow& window);
+    void update() override;
+    void render(sf::RenderWindow& window) override;
 
 private:
-    enum class Direction { UP = 0, DOWN, LEFT, RIGHT };
-    Direction m_dir;
-    sf::Sprite m_sprite;
+    Entity::State m_prevState;
+    Entity::State m_currState;
+    sf::Vector2f m_pos;
+    AnimatedSprite m_animSprite;
+
+
 };

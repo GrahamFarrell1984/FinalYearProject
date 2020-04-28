@@ -1,46 +1,46 @@
 #include "Player.h"
-#include "TextureData.h"
 
-Player::Player() : m_dir(Direction::DOWN)
+Player::Player(sf::Vector2f position, const sf::Texture* texture)
+        : m_prevState{ Entity::State::MOVEDOWN }
+        , m_currState{ Entity::State::MOVEDOWN }
+        , m_pos{ position }
+        , m_animSprite{ position, texture, PSD, PANIM }
 {
+    // Set Animation state
+    m_animSprite.changeState(Entity::State::STANDDOWN);
 }
-
-void Player::setup(sf::Vector2f position, const sf::Texture* texture)
-{
-    m_sprite.setTexture(*texture);
-    m_sprite.setTextureRect(sf::IntRect(PDOWN.x, PDOWN.y, PDOWN.w, PDOWN.h));
-    m_sprite.setPosition(position);
-}
-
 
 void Player::processInput(const Keyboard& keyboard)
 {
-    if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::HOLD)) {
-        m_sprite.move(0, -2);
-        m_dir = Direction::UP;
-        m_sprite.setTextureRect(sf::IntRect(PUP.x, PUP.y, PUP.w, PUP.h));
-    } else if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::HOLD)) {
-        m_sprite.move(0, 2);
-        m_dir = Direction::DOWN;
-        m_sprite.setTextureRect(sf::IntRect(PDOWN.x, PDOWN.y, PDOWN.w, PDOWN.h));
-    }
-
-    if (keyboard.checkKeyAndState(sf::Keyboard::Left, State::HOLD)) {
-        m_sprite.move(-2, 0);
-        m_dir = Direction::LEFT;
-        m_sprite.setTextureRect(sf::IntRect(PLEFT.x, PLEFT.y, PLEFT.w, PLEFT.h));
-    } else if (keyboard.checkKeyAndState(sf::Keyboard::Right, State::HOLD)) {
-        m_sprite.move(2, 0);
-        m_dir = Direction::RIGHT;
-        m_sprite.setTextureRect(sf::IntRect(PRIGHT.x, PRIGHT.y, PRIGHT.w, PRIGHT.h));
+    if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::HOLD)) {
+        m_pos.y +=2;
+        m_currState = Entity::State::MOVEDOWN;
+    } else if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::HOLD)) {
+        m_pos.y -=2;
+        m_currState = Entity::State::MOVEUP;
+    } else {
+        switch (m_currState) {
+            case Entity::State::MOVEDOWN:
+                m_currState = Entity::State::STANDDOWN;
+                break;
+            case Entity::State::MOVEUP:
+                m_currState = Entity::State::STANDUP;
+                break;
+        }
     }
 }
 
 void Player::update()
 {
+    m_animSprite.updatePosition(m_pos);
 }
 
 void Player::render(sf::RenderWindow& window)
 {
-    window.draw(m_sprite);
+    if (m_currState != m_prevState) {
+        m_animSprite.changeState(m_currState);
+    }
+    m_animSprite.checkForFrameUpdate();
+    m_prevState = m_currState;
+    m_animSprite.renderer(window);
 }

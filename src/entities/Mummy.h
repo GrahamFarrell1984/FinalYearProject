@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Entity.h"
-class Mummy : public Entity
+#include "BaseEntity.h"
+class Mummy : public BaseEntity
 {
 public:
     Mummy(sf::Vector2f position, const sf::Texture* texture);

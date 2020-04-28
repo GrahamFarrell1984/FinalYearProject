@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Entity.h"
-
 #include <SFML/System/Vector2.hpp>
 
-class Zombie : public Entity
+#include "BaseEntity.h"
+
+class Zombie : public BaseEntity
 {
 public:
     Zombie(sf::Vector2f position, const sf::Texture* texture);
