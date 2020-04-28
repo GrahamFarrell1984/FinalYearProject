@@ -4,10 +4,10 @@ namespace Entity {
     enum class State
     {
         NONE = 0,
-        STANDUP,
-        STANDDOWN,
-        STANDLEFT,
-        STANDRIGHT,
+        STANDFACINGUP,
+        STANDFACINGDOWN,
+        STANDFACINGLEFT,
+        STANDFACINGRIGHT,
         MOVEUP,
         MOVEDOWN,
         MOVELEFT,

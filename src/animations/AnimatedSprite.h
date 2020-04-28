@@ -20,7 +20,7 @@ public:
     void changeState(Entity::State state);
     void updatePosition(sf::Vector2f pos);
     void checkForFrameUpdate();
-    void renderer(sf::RenderWindow& window);
+    void render(sf::RenderWindow& window);
 
 private:
     sf::Uint8 m_tick;           // Current ticks

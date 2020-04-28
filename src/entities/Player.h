@@ -20,6 +20,4 @@ private:
     Entity::State m_currState;
     sf::Vector2f m_pos;
     AnimatedSprite m_animSprite;
-
-
 };

@@ -4,10 +4,10 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         : m_prevState{ Entity::State::MOVEDOWN }
         , m_currState{ Entity::State::MOVEDOWN }
         , m_pos{ position }
-        , m_animSprite{ position, texture, PSD, PANIM }
+        , m_animSprite{ position, texture, PlayerSpriteData, PlayerAnimation }
 {
     // Set Animation state
-    m_animSprite.changeState(Entity::State::STANDDOWN);
+    m_animSprite.changeState(Entity::State::STANDFACINGDOWN);
 }
 
 void Player::processInput(const Keyboard& keyboard)
@@ -21,10 +21,27 @@ void Player::processInput(const Keyboard& keyboard)
     } else {
         switch (m_currState) {
             case Entity::State::MOVEDOWN:
-                m_currState = Entity::State::STANDDOWN;
+                m_currState = Entity::State::STANDFACINGDOWN;
                 break;
             case Entity::State::MOVEUP:
-                m_currState = Entity::State::STANDUP;
+                m_currState = Entity::State::STANDFACINGUP;
+                break;
+        }
+    }
+
+    if (keyboard.checkKeyAndState(sf::Keyboard::Right, State::HOLD)) {
+        m_pos.x +=2;
+        m_currState = Entity::State::MOVERIGHT;
+    } else if (keyboard.checkKeyAndState(sf::Keyboard::Left, State::HOLD)) {
+        m_pos.x -=2;
+        m_currState = Entity::State::MOVELEFT;
+    } else {
+        switch (m_currState) {
+            case Entity::State::MOVERIGHT:
+                m_currState = Entity::State::STANDFACINGRIGHT;
+                break;
+            case Entity::State::MOVELEFT:
+                m_currState = Entity::State::STANDFACINGLEFT;
                 break;
         }
     }
@@ -42,5 +59,5 @@ void Player::render(sf::RenderWindow& window)
     }
     m_animSprite.checkForFrameUpdate();
     m_prevState = m_currState;
-    m_animSprite.renderer(window);
+    m_animSprite.render(window);
 }

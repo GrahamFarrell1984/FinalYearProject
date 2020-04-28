@@ -51,7 +51,7 @@ void AnimatedSprite::checkForFrameUpdate()
     }
 }
 
-void AnimatedSprite::renderer(sf::RenderWindow& window)
+void AnimatedSprite::render(sf::RenderWindow& window)
 {
     m_sprite.setTextureRect(sf::IntRect(m_frame.src.x, m_frame.src.y, m_frame.src.w, m_frame.src.h));
     window.draw(m_sprite);
