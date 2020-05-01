@@ -3,6 +3,7 @@
 #include "BaseScene.h"
 #include "Player.h"
 #include "EntityManager.h"
+#include "Camera.h"
 
 class GameScene final : public BaseScene
 {
@@ -15,6 +16,14 @@ public:
     void onEnter() override;
     void onExit() override;
 
+
 private:
+    static constexpr Point WORLDSIZE{ 2048, 1536 };
+    static constexpr Point VIEWSIZE {  512,  384 };
+
+//    static constexpr Point WORLDSIZE{ 1024, 768 };
+//    static constexpr Point VIEWSIZE { 1024, 768  };
+
+    Camera m_camera;
     EntityManager m_entityManager;
 };

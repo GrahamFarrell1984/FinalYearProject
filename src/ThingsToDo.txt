@@ -1,5 +1,8 @@
 # This is a list of things to do
 
+
+
+
 # Managers
     # AudioManager
         1) Add pause sfx function
@@ -17,6 +20,8 @@
 
 
 # Scenes
+    1) Clean up enum menuoptions, its used in most classes and repeated.
+
 
 # Bugs
 
@@ -25,13 +30,14 @@
 # Animation
 
 # Camera
+    1) Create the camera (Done)
+    2) Change to use centre point of the player as the position
+    3)
 
 # AI
 
 # Power ups
 
 # Scoring
-
-# Collision
 
 # Projectiles

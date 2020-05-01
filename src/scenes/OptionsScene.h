@@ -22,5 +22,4 @@ private:
     MENUOPTIONS m_options;
     sf::Sprite m_sprite;
     sf::Vector2i m_cursorPos;
-    sf::Text m_text;
 };

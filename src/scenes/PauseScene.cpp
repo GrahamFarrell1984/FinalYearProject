@@ -69,8 +69,8 @@ void PauseScene::render(sf::RenderWindow& window)
 {
     // Draw all the transparent skulls
     m_sprite.setTextureRect(sf::IntRect(SKULL2SRCPOS.x, SKULL2SRCPOS.y, SIZE, SIZE));
-    for (std::size_t row = 0; row < MAXROW; ++row) {
-        for (std::size_t col = 0; col < MAXCOL; ++col) {
+    for (int32_t row = 0; row < MAXROW; ++row) {
+        for (int32_t col = 0; col < MAXCOL; ++col) {
             m_sprite.setPosition(static_cast<float>(OFFSETX + (SIZE * col)), static_cast<float>(SIZE * row));
             window.draw(m_sprite);
         }

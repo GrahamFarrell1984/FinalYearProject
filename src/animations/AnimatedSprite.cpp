@@ -17,7 +17,6 @@ AnimatedSprite::AnimatedSprite(sf::Vector2f pos,
 {
     m_sprite.setPosition(pos);
     m_sprite.setTexture(*texture);
-    m_sprite.setScale(2, 2);
 }
 
 void AnimatedSprite::changeState(const Entity::State state)

@@ -8,7 +8,7 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         , m_state{ Entity::State::STANDFACINGDOWN }
         , m_pos{ position }
         , m_vel{ 0, 1 }
-        , m_rect{ sf::Vector2f(52, 50) }
+        , m_rect{ sf::Vector2f(26, 25) }
         , m_animSprite{ position, texture, PlayerSpriteData, PlayerAnimation }
 {
     // Test

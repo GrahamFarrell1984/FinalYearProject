@@ -1,15 +1,14 @@
 #include "OptionsScene.h"
 
-#include "TextureData.h"
 #include "AudioManager.h"
 #include "ResourceManager.h"
+#include "TextureData.h"
 
 OptionsScene::OptionsScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
-        , m_text   { }
-        , m_options   { MENUOPTIONS::RETURN }
-        , m_sprite { }
-        , m_cursorPos { 320, 623} // Testing cursor position. x was 384
+        , m_options{ MENUOPTIONS::RETURN }
+        , m_sprite{}
+        , m_cursorPos{ 320, 623 }  // Testing cursor position. x was 384
 {
 }
 
@@ -56,8 +55,8 @@ void OptionsScene::render(sf::RenderWindow& window)
 {
     // Draw all the greyed out skulls
     m_sprite.setTextureRect(sf::IntRect(SKULL0SRCPOS.x, SKULL0SRCPOS.y, SIZE, SIZE));
-    for (std::size_t row = 0; row < MAXROW; ++row) {
-        for (std::size_t col = 0; col < MAXCOL; ++col) {
+    for (int32_t row = 0; row < MAXROW; ++row) {
+        for (int32_t col = 0; col < MAXCOL; ++col) {
             m_sprite.setPosition(static_cast<float>(OFFSETX + (SIZE * col)), static_cast<float>(SIZE * row));
             window.draw(m_sprite);
         }
@@ -65,12 +64,14 @@ void OptionsScene::render(sf::RenderWindow& window)
 
     // Draw the title text
     m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(OPTIONSTITLESRCRECT.x, OPTIONSTITLESRCRECT.y, OPTIONSTITLESRCRECT.w, OPTIONSTITLESRCRECT.h));
+    m_sprite.setTextureRect(
+            sf::IntRect(OPTIONSTITLESRCRECT.x, OPTIONSTITLESRCRECT.y, OPTIONSTITLESRCRECT.w, OPTIONSTITLESRCRECT.h));
     window.draw(m_sprite);
 
     // Draw the controls text
     m_sprite.setPosition(static_cast<float>(CONTROLTEXTPOS.x), static_cast<float>(CONTROLTEXTPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(CONTROLSTEXTSRCRECT.x, CONTROLSTEXTSRCRECT.y, CONTROLSTEXTSRCRECT.w, CONTROLSTEXTSRCRECT.h));
+    m_sprite.setTextureRect(
+            sf::IntRect(CONTROLSTEXTSRCRECT.x, CONTROLSTEXTSRCRECT.y, CONTROLSTEXTSRCRECT.w, CONTROLSTEXTSRCRECT.h));
     window.draw(m_sprite);
 
     // Draw the menu options text
@@ -87,11 +88,11 @@ void OptionsScene::render(sf::RenderWindow& window)
 void OptionsScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+    //    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
 
-//    AudioManager& audioManager = getSharedContext().audioManager;
-//    audioManager.playMusic(Assets::Music::MUSICA);
+    //    AudioManager& audioManager = getSharedContext().audioManager;
+    //    audioManager.playMusic(Assets::Music::MUSICA);
 }
 
 void OptionsScene::onExit()

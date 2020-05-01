@@ -1,15 +1,15 @@
 #include "App.h"
 
 App::App()
-        : m_initialised      { false }
-        , m_timePerFrame     { sf::seconds(1.f / 60.f) }
-        , m_window           { sf::VideoMode(1024, 768), "SFML", sf::Style::Close }
-        , m_fontManager      { }
-        , m_sfxBufferManager { }
-        , m_textureManager   { }
-        , m_audioManager     { m_sfxBufferManager }
-        , m_sceneManager     { SharedContext{ m_fontManager, m_textureManager, m_audioManager } }
-        , m_keyboard         { }
+        : m_initialised{ false }
+        , m_timePerFrame{ sf::seconds(1.f / 60.f) }
+        , m_window{ sf::VideoMode(1024, 768), "SFML", sf::Style::Close }
+        , m_fontManager{}
+        , m_sfxBufferManager{}
+        , m_textureManager{}
+        , m_audioManager{ m_sfxBufferManager }
+        , m_sceneManager{ SharedContext{ m_fontManager, m_textureManager, m_audioManager } }
+        , m_keyboard{}
 {
 }
 
