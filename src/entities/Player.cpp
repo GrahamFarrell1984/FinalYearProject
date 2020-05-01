@@ -4,11 +4,12 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         : m_hasFired{ false }
         , m_moving{ false }
         , m_speed{ NormalSpeed }
+        , m_bulletTick { BulletTickCD }
         , m_dir{ Entity::Direction::Down }
         , m_state{ Entity::State::STANDFACINGDOWN }
         , m_pos{ position }
         , m_vel{ 0, 1 }
-        , m_rect{ sf::Vector2f(26, 25) }
+        , m_rect{ sf::Vector2f(26, 42) }
         , m_animSprite{ position, texture, PlayerSpriteData, PlayerAnimation }
 {
     // Test
@@ -37,16 +38,24 @@ void Player::processInput(const Keyboard& keyboard)
         m_vel = sf::Vector2f(0, 0);
     }
 
-    if (keyboard.checkKeyAndState(sf::Keyboard::Space, State::PRESS)) {
+    if (keyboard.checkKeyAndState(sf::Keyboard::Space, State::HOLD)) {
         if (!m_hasFired) {
-            m_hasFired = true;
+            if (m_bulletTick >= BulletTickCD) {
+                m_hasFired = true;
+                m_bulletTick = 0;
+            }
+            // Temp
+            m_vel = sf::Vector2f(0, 0);
+            updateFiringState();
         }
+    } else {
+        updateMovingState();
     }
-    updateStateFromInput();
 }
 
 void Player::update()
 {
+    ++m_bulletTick;
     m_pos.x += m_vel.x * m_speed;
     m_pos.y += m_vel.y * m_speed;
 
@@ -92,7 +101,7 @@ void Player::setHasFired(bool hasFired)
     m_hasFired = hasFired;
 }
 
-void Player::updateStateFromInput()
+void Player::updateMovingState()
 {
     switch (m_dir) {
         case Entity::Direction::Up :
@@ -106,6 +115,28 @@ void Player::updateStateFromInput()
             break;
         case Entity::Direction::Right:
             m_state = m_moving ? Entity::State::MOVERIGHT : Entity::State::STANDFACINGRIGHT;
+            break;
+    }
+}
+
+void Player::updateFiringState()
+{
+    switch (m_dir) {
+        case Entity::Direction::Up :
+            m_state = Entity::State::SHOOTUP;
+            //m_state = m_moving ? Entity::State::MOVEUP : Entity::State::STANDFACINGUP;
+            break;
+        case Entity::Direction::Down:
+            m_state = Entity::State::SHOOTDOWN;
+            //m_state = m_moving ? Entity::State::MOVEDOWN : Entity::State::STANDFACINGDOWN;
+            break;
+        case Entity::Direction::Left:
+            m_state = Entity::State::SHOOTLEFT;
+            //m_state = m_moving ? Entity::State::MOVELEFT : Entity::State::STANDFACINGLEFT;
+            break;
+        case Entity::Direction::Right:
+            m_state = Entity::State::SHOOTRIGHT;
+            //m_state = m_moving ? Entity::State::MOVERIGHT : Entity::State::STANDFACINGRIGHT;
             break;
     }
 }

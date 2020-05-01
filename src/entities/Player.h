@@ -28,12 +28,15 @@ public:
 private:
     static constexpr auto NormalSpeed  = 2;
     static constexpr auto PowerUpSpeed = 4;
+    static constexpr auto BulletTickCD = 8;
 
-    void updateStateFromInput();
+    void updateMovingState();
+    void updateFiringState();
 
     bool m_hasFired;
     bool m_moving;
-    int32_t m_speed;
+    uint32_t m_speed;
+    uint32_t m_bulletTick;
     Entity::Direction m_dir;
     Entity::State m_state;
     sf::Vector2f m_pos;

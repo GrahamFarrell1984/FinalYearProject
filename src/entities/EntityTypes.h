@@ -16,6 +16,10 @@ namespace Entity {
         MOVEDOWN,
         MOVELEFT,
         MOVERIGHT,
+        SHOOTDOWN,
+        SHOOTRIGHT,
+        SHOOTUP,
+        SHOOTLEFT,
         DIE,
         SHOOT
     };

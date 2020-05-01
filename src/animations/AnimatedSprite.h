@@ -17,7 +17,7 @@ public:
                    const FrameData& frameData,
                    const AnimData& animData);
 
-    void changeState(Entity::State state);
+    void changeState(Entity::State state, bool resetCurrentData = true);
     void updatePosition(sf::Vector2f pos);
     void checkForFrameUpdate();
     bool isAnimFinishedPlaying() const;
