@@ -19,18 +19,23 @@ public:
     void render(sf::RenderWindow& window) override;
 
     Rect getBounds() const;
-
     sf::Vector2f getPos() const;
-    sf::Vector2f getVel() const;
+    Entity::Direction getDir() const;
 
     bool checkHasFired() const;
     void setHasFired(bool fire);
 
 private:
+    static constexpr auto NormalSpeed  = 2;
+    static constexpr auto PowerUpSpeed = 4;
+
+    void updateStateFromInput();
+
     bool m_hasFired;
-    Entity::State m_prevState;
-    Entity::State m_currState;
-    float    m_speed;
+    bool m_moving;
+    int32_t m_speed;
+    Entity::Direction m_dir;
+    Entity::State m_state;
     sf::Vector2f m_pos;
     sf::Vector2f m_vel;
     sf::RectangleShape m_rect;

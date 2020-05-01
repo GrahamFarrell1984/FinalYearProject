@@ -36,7 +36,7 @@ void GameScene::update()
     // Firing bullet
     Player* player = m_entityManager.getEntityGroup<Player>().front();
     if (player->checkHasFired()) {
-        m_entityManager.create<Bullet>(player->getPos(), player->getVel());
+        m_entityManager.create<Bullet>(player->getPos(), player->getDir());
         player->setHasFired(false);
     }
 

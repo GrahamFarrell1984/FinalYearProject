@@ -9,8 +9,12 @@
 
 # Entites
     # Player
-        1) Clean up inout handler its a mess.
-        2) Set up a direction flag.
+        1) Clean up input handler its a mess. (DONE)
+        2) Set up a direction flag.           (DONE)
+        3) Get Camera working.
+        4) Health
+        5) Handle holding the fire button ?
+
 
 # Scenes
 
