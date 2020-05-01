@@ -19,7 +19,7 @@ public:
     virtual ~BaseScene() = default;
 
     virtual void processInput(const Keyboard& keyboard) = 0;
-    virtual void update(sf::Time deltaTime)             = 0;
+    virtual void update()                               = 0;
     virtual void render(sf::RenderWindow& window)       = 0;
     virtual void onEnter()                              = 0;
     virtual void onExit()                               = 0;

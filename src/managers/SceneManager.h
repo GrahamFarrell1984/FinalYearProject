@@ -14,7 +14,7 @@ public:
     explicit SceneManager(SharedContext&& sharedContext);
 
     void processInput(const Keyboard& keyboard) const;
-    void update(sf::Time deltaTime) const;
+    void update() const;
     void render(sf::RenderWindow& window) const;
     void checkForUpdates();
 

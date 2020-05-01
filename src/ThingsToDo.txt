@@ -5,6 +5,13 @@
         1) Add pause sfx function
         2) Add resume sfx function
 
+    # CollisionManager
+
+# Entites
+    # Player
+        1) Clean up inout handler its a mess.
+        2) Set up a direction flag.
+
 # Scenes
 
 # Bugs

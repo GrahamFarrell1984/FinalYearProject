@@ -74,7 +74,7 @@ void App::processEvents()
 
 void App::update()
 {
-    m_sceneManager.update(m_timePerFrame);
+    m_sceneManager.update();
 }
 
 void App::render()

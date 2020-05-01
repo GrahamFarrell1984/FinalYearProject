@@ -48,7 +48,7 @@ void OptionsScene::processInput(const Keyboard& keyboard)
     }
 }
 
-void OptionsScene::update(const sf::Time deltaTime)
+void OptionsScene::update()
 {
 }
 
@@ -56,8 +56,8 @@ void OptionsScene::render(sf::RenderWindow& window)
 {
     // Draw all the greyed out skulls
     m_sprite.setTextureRect(sf::IntRect(SKULL0SRCPOS.x, SKULL0SRCPOS.y, SIZE, SIZE));
-    for (sf::Int32 row = 0; row < MAXROW; ++row) {
-        for (int32_t col = 0; col < MAXCOL; ++col) {
+    for (std::size_t row = 0; row < MAXROW; ++row) {
+        for (std::size_t col = 0; col < MAXCOL; ++col) {
             m_sprite.setPosition(static_cast<float>(OFFSETX + (SIZE * col)), static_cast<float>(SIZE * row));
             window.draw(m_sprite);
         }

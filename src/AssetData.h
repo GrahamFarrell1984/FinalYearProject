@@ -2,7 +2,7 @@
 
 struct Data
 {
-    sf::Uint8 id;
+    uint8_t id;
     const char* filepath;
 };
 

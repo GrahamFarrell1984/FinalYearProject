@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "ResourceManager.h"
 #include "Zombie.h"
+#include "Bullet.h"
+
 
 GameScene::GameScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
@@ -22,15 +24,29 @@ void GameScene::processInput(const Keyboard& keyboard)
         requestSceneChange(Scene::Action::PUSH, Scene::Name::GAMEOVER);
     }
 
-    // Check if valid
-    Player* player = m_entityManager.getEntityGroup<Player>().front();
-    player->processInput(keyboard);
+//    if (keyboard.checkKeyAndState(sf::Keyboard::Space, State::PRESS)) {
+//        m_entityManager.create<Bullet>(sf::Vector2f(50, 50), sf::Vector2f(5, 0));
+//    }
+//
+    m_entityManager.getEntityGroup<Player>().front()->processInput(keyboard);
 }
 
-void GameScene::update(const sf::Time deltaTime)
+void GameScene::update()
 {
+    // Firing bullet
+    Player* player = m_entityManager.getEntityGroup<Player>().front();
+    if (player->checkHasFired()) {
+        m_entityManager.create<Bullet>(player->getPos(), player->getVel());
+        player->setHasFired(false);
+    }
+
     m_entityManager.update();
-    ClsnManager::playerZombieCollision(m_entityManager.getEntityGroup<Player>(), m_entityManager.getEntityGroup<Zombie>());
+
+    ClsnManager::pzClsn(m_entityManager.getEntityGroup<Player>(), m_entityManager.getEntityGroup<Zombie>());
+    ClsnManager::bzClsn(m_entityManager.getEntityGroup<Bullet>(), m_entityManager.getEntityGroup<Zombie>());
+
+    // Clean up any entities that are destroyed.
+    m_entityManager.cleanup();
 }
 
 void GameScene::render(sf::RenderWindow& window)

@@ -3,9 +3,9 @@
 
 namespace Scene {
     // Inc when adding new scenes. NONE is not added.
-    static constexpr sf::Uint8 SCENECOUNT = 6;
+    static constexpr uint8_t SCENECOUNT = 6;
 
-    enum class Name : sf::Uint8
+    enum class Name : uint8_t
     {
         NONE = 0,
         TITLE,
@@ -16,7 +16,7 @@ namespace Scene {
         TEST
     };
 
-    enum class Action : sf::Uint8
+    enum class Action : uint8_t
     {
         NONE,
         PUSH,

@@ -19,9 +19,9 @@ void SceneManager::processInput(const Keyboard& keyboard) const
     m_sceneStack.back()->processInput(keyboard);
 }
 
-void SceneManager::update(const sf::Time deltaTime) const
+void SceneManager::update() const
 {
-    m_sceneStack.back()->update(deltaTime);
+    m_sceneStack.back()->update();
 }
 
 void SceneManager::render(sf::RenderWindow& window) const

@@ -54,7 +54,7 @@ void TitleScene::processInput(const Keyboard& keyboard)
     }
 }
 
-void TitleScene::update(const sf::Time deltaTime)
+void TitleScene::update()
 {
 }
 
@@ -62,8 +62,8 @@ void TitleScene::render(sf::RenderWindow& window)
 {
     // Draw all the greyed out skulls
     m_sprite.setTextureRect(sf::IntRect(SKULL0SRCPOS.x, SKULL0SRCPOS.y, SIZE, SIZE));
-    for (sf::Int32 row = 0; row < MAXROW; ++row) {
-        for (int32_t col = 0; col < MAXCOL; ++col) {
+    for (size_t row = 0; row < MAXROW; ++row) {
+        for (size_t col = 0; col < MAXCOL; ++col) {
             m_sprite.setPosition(static_cast<float>(OFFSETX + (SIZE * col)), static_cast<float>(SIZE * row));
             window.draw(m_sprite);
         }

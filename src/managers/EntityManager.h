@@ -13,6 +13,7 @@ class EntityManager
 public:
     void update();
     void render(sf::RenderWindow& window);
+    void cleanup();
 
     template <typename T>
     auto getEntityGroup()

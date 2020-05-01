@@ -37,7 +37,7 @@ void AnimatedSprite::checkForFrameUpdate()
 {
     ++m_tick;
     if (auto animState = m_animData.find(m_state); animState != m_animData.end()) {
-        const sf::Uint8 tick = animState->second.frames[m_frameIndex].tick;
+        const uint8_t tick = animState->second.frames[m_frameIndex].tick;
         if (tick != 0 ) { // No need to check animation.
             if (m_tick >= tick) {
                 ++m_frameIndex;

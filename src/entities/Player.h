@@ -1,13 +1,14 @@
 #pragma once
 
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <functional>
+#include <utility>
 
 #include "AnimatedSprite.h"
 #include "BaseEntity.h"
 #include "Keyboard.h"
 
-class RectangleShape;
 class Player : public BaseEntity
 {
 public:
@@ -19,10 +20,19 @@ public:
 
     Rect getBounds() const;
 
+    sf::Vector2f getPos() const;
+    sf::Vector2f getVel() const;
+
+    bool checkHasFired() const;
+    void setHasFired(bool fire);
+
 private:
+    bool m_hasFired;
     Entity::State m_prevState;
     Entity::State m_currState;
+    float    m_speed;
     sf::Vector2f m_pos;
-    AnimatedSprite m_animSprite;
+    sf::Vector2f m_vel;
     sf::RectangleShape m_rect;
+    AnimatedSprite m_animSprite;
 };

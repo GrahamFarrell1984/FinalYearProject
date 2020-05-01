@@ -17,7 +17,7 @@ void TestScene::processInput(const Keyboard& keyboard)
     }
 }
 
-void TestScene::update(const sf::Time deltaTime)
+void TestScene::update()
 {
 }
 

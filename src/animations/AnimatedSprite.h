@@ -23,8 +23,8 @@ public:
     void render(sf::RenderWindow& window);
 
 private:
-    sf::Uint8 m_tick;           // Current ticks
-    sf::Uint8 m_frameIndex;     // Current Frame Index
+    uint8_t m_tick;           // Current ticks
+    uint8_t m_frameIndex;     // Current Frame Index
     Frame m_frame;
     Entity::State m_state;
     sf::Sprite m_sprite;

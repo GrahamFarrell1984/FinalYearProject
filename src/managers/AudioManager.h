@@ -11,14 +11,14 @@
 class AudioManager
 {
 public:
-    AudioManager(const ResourceManager<sf::SoundBuffer>& sfxBufferManager);
+    explicit AudioManager(const ResourceManager<sf::SoundBuffer>& sfxBufferManager);
 
-    void playMusic(const Data data, const bool loop = false);
+    void playMusic(Data data, const bool loop = false);
     void stopMusic();
     void pauseMusic();
     void resumeMusic();
 
-    void playSound(sf::Uint8 index);
+    void playSound(uint8_t index);
     void stopAllSounds();
 
 private:

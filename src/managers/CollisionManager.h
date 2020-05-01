@@ -3,10 +3,11 @@
 #include "BaseEntity.h"
 #include "Player.h"
 #include "Zombie.h"
+#include "Bullet.h"
 #include "RectUtils.h"
 
 namespace ClsnManager {
-    static void playerZombieCollision(std::vector<Player*>players, std::vector<Zombie*>zombies)
+    static void pzClsn(std::vector<Player*>players, std::vector<Zombie*>zombies)
     {
         for (auto player : players) {
             for (auto zombie : zombies) {
@@ -17,12 +18,15 @@ namespace ClsnManager {
         }
     }
 
-    static void bulletEnemyCollision()
+    static void bzClsn(std::vector<Bullet*> bullets, std::vector<Zombie*> zombies)
     {
+        for (auto bullet : bullets) {
+            for (auto zombie : zombies) {
+                if (Utils::isIntersecting(bullet->getBounds(), zombie->getBounds())) {
+                    bullet->m_destroyed = true;
+                    zombie->m_destroyed = true;
+                }
+            }
+        }
     }
-
-    static void playerItemCollision()
-    {
-    }
-
 }

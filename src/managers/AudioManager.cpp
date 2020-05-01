@@ -38,7 +38,7 @@ void AudioManager::resumeMusic()
     }
 }
 
-void AudioManager::playSound(const sf::Uint8 index)
+void AudioManager::playSound(const uint8_t index)
 {
     auto sfx = std::find_if(m_sfx.begin(), m_sfx.end(), [](const auto& sfx) {
         return sfx.getStatus() == sf::SoundSource::Status::Stopped;

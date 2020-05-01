@@ -1,13 +1,16 @@
 #pragma once
 
+#include <stdint.h>
+#include <vector>
+
 struct Point
 {
-    sf::Int32 x, y;
+    int32_t x, y;
 };
 
 struct Rect
 {
-    sf::Int32 x, y, w, h;
+    int32_t x, y, w, h;
 };
 
 struct Frame
@@ -18,13 +21,13 @@ struct Frame
 
 struct AnimFrame
 {
-    sf::Uint8 tick;
-    sf::Uint8 index;
+    uint8_t tick;
+    uint8_t index;
 };
 
 struct Animation
 {
     bool looping;
-    sf::Uint8 loopFrameIndex;
+    uint8_t loopFrameIndex;
     std::vector<AnimFrame> frames;
 };
