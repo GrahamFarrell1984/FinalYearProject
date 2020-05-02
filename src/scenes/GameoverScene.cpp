@@ -51,7 +51,7 @@ void GameoverScene::update()
 void GameoverScene::render(sf::RenderWindow& window)
 {
     // Draw all the greyed out skulls
-    m_sprite.setTextureRect(sf::IntRect(SKULL0SRCPOS.x, SKULL0SRCPOS.y, SIZE, SIZE));
+    m_sprite.setTextureRect(sf::IntRect(BIG_GREY_SKULL_SRC_RECT.x, BIG_GREY_SKULL_SRC_RECT.y, BIG_GREY_SKULL_SRC_RECT.w, BIG_GREY_SKULL_SRC_RECT.h));
     for (int32_t row = 0; row < MAXROW; ++row) {
         for (int32_t col = 0; col < MAXCOL; ++col) {
             m_sprite.setPosition(static_cast<float>(OFFSETX + (SIZE * col)), static_cast<float>(SIZE * row));
@@ -59,26 +59,26 @@ void GameoverScene::render(sf::RenderWindow& window)
         }
     }
 
-    // Draw the title text
-    m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(GAMEOVERTITLESRCRECT.x, GAMEOVERTITLESRCRECT.y, GAMEOVERTITLESRCRECT.w, GAMEOVERTITLESRCRECT.h));
+    // Draw the gamer over title text
+    m_sprite.setPosition(static_cast<float>(TITLE_POS.x), static_cast<float>(TITLE_POS.y));
+    m_sprite.setTextureRect(sf::IntRect(GAME_OVER_TITLE_SRC_RECT.x, GAME_OVER_TITLE_SRC_RECT.y, GAME_OVER_TITLE_SRC_RECT.w, GAME_OVER_TITLE_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Draw the menu options text
-    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(OPTIONSRCRECT.x, OPTIONSRCRECT.y, SIZE, SIZE));
+    m_sprite.setPosition(static_cast<float>(OPTIONS_AND_GAME_OVER_MENU_POS.x), static_cast<float>(OPTIONS_AND_GAME_OVER_MENU_POS.y));
+    m_sprite.setTextureRect(sf::IntRect(OPTIONS_AND_GAME_OVER_MENU_SRC_RECT.x, OPTIONS_AND_GAME_OVER_MENU_SRC_RECT.y, OPTIONS_AND_GAME_OVER_MENU_SRC_RECT.w, OPTIONS_AND_GAME_OVER_MENU_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Draw the cursor
     m_sprite.setPosition(static_cast<float>(m_cursorPos.x), static_cast<float>(m_cursorPos.y));
-    m_sprite.setTextureRect(sf::IntRect(CURSORSRCRECT.x, CURSORSRCRECT.y, CURSORSRCRECT.w, CURSORSRCRECT.h));
+    m_sprite.setTextureRect(sf::IntRect(CURSOR_SRC_RECT.x, CURSOR_SRC_RECT.y, CURSOR_SRC_RECT.w, CURSOR_SRC_RECT.h));
     window.draw(m_sprite);
 }
 
 void GameoverScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
     AudioManager& audioManager = getSharedContext().audioManager;
     audioManager.playMusic(Assets::Music::MUSICA);

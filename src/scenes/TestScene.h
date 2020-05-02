@@ -7,7 +7,7 @@
 
 class TestScene final : public BaseScene
 {
-public:
+  public:
     TestScene(SceneManager& sceneManager, Scene::Name name);
 
     void processInput(const Keyboard& keyboard) override;
@@ -16,7 +16,5 @@ public:
     void onEnter() override;
     void onExit() override;
 
-private:
-    sf::Text m_text;
-    sf::Sprite m_sprite;
+  private:
 };

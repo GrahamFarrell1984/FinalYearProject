@@ -22,6 +22,8 @@ public:
     sf::Vector2f getPos() const;
     Entity::Direction getDir() const;
 
+    bool isDead() const;
+
     bool checkHasFired() const;
     void setHasFired(bool fire);
 

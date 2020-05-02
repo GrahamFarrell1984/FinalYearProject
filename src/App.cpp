@@ -17,7 +17,6 @@ bool App::setup()
 {
     m_sfxBufferManager.loadResource(Assets::Sfx::SFXA.id, Assets::Sfx::SFXA.filepath);
     m_textureManager.loadResource(Assets::Texture::TEXA.id, Assets::Texture::TEXA.filepath);
-    m_textureManager.loadResource(Assets::Texture::TEXB.id, Assets::Texture::TEXB.filepath);
     m_textureManager.loadResource(Assets::Texture::PLAYER.id, Assets::Texture::PLAYER.filepath);
     m_textureManager.loadResource(Assets::Texture::ZOMBIE.id, Assets::Texture::ZOMBIE.filepath);
     m_textureManager.loadResource(Assets::Texture::MUMMY.id, Assets::Texture::MUMMY.filepath);

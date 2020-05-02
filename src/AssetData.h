@@ -9,11 +9,10 @@ struct Data
 // NOTE : Make sure indexes are unique.
 namespace Assets {
     namespace Texture {
-        static constexpr Data TEXA  { 0, "assets/texture/TEX_A.png" };
-        static constexpr Data TEXB  { 1, "assets/texture/TEX_B.png" };
-        static constexpr Data PLAYER{ 2, "assets/texture/player.png"};
-        static constexpr Data ZOMBIE{ 3, "assets/texture/zombie.png"};
-        static constexpr Data MUMMY { 4, "assets/texture/mummy.png" };
+        static constexpr Data TEXA   { 0, "assets/texture/TEX_A.png" };
+        static constexpr Data PLAYER { 1, "assets/texture/player.png" };
+        static constexpr Data ZOMBIE { 2, "assets/texture/zombie.png" };
+        static constexpr Data MUMMY  { 3, "assets/texture/mummy.png" };
     }  // namespace Texture
 
     namespace Font {

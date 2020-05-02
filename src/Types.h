@@ -3,6 +3,9 @@
 #include <stdint.h>
 #include <vector>
 
+
+
+
 struct Point
 {
     int32_t x, y;

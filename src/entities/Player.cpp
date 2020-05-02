@@ -4,7 +4,7 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         : m_hasFired{ false }
         , m_moving{ false }
         , m_speed{ NormalSpeed }
-        , m_bulletTick { BulletTickCD }
+        , m_bulletTick{ BulletTickCD }
         , m_dir{ Entity::Direction::Down }
         , m_state{ Entity::State::STANDFACINGDOWN }
         , m_pos{ position }
@@ -20,37 +20,56 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
 void Player::processInput(const Keyboard& keyboard)
 {
     m_moving = true;
-
-    if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::HOLD)) {
-        m_dir = Entity::Direction::Up;
-        m_vel = sf::Vector2f(0, -1);
-    } else if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::HOLD)) {
-        m_dir = Entity::Direction::Down;
-        m_vel = sf::Vector2f(0, 1);
-    } else if (keyboard.checkKeyAndState(sf::Keyboard::Left, State::HOLD)) {
-        m_dir = Entity::Direction::Left;
-        m_vel = sf::Vector2f(-1, 0);
-    } else if (keyboard.checkKeyAndState(sf::Keyboard::Right, State::HOLD)) {
-        m_dir = Entity::Direction::Right;
-        m_vel = sf::Vector2f(1, 0);
-    } else {
-        m_moving = false;
-        m_vel = sf::Vector2f(0, 0);
-    }
-
-    if (keyboard.checkKeyAndState(sf::Keyboard::Space, State::HOLD)) {
-        if (!m_hasFired) {
-            if (m_bulletTick >= BulletTickCD) {
-                m_hasFired = true;
-                m_bulletTick = 0;
-            }
-            // Temp
-            m_vel = sf::Vector2f(0, 0);
-            updateFiringState();
+    // Only allow input from the keyboard if the player is not dead
+    if (m_state != Entity::State::DYING) {
+        if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::HOLD)) {
+            m_dir = Entity::Direction::Up;
+            m_vel = sf::Vector2f(0, -1);
+        } else if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::HOLD)) {
+            m_dir = Entity::Direction::Down;
+            m_vel = sf::Vector2f(0, 1);
+        } else if (keyboard.checkKeyAndState(sf::Keyboard::Left, State::HOLD)) {
+            m_dir = Entity::Direction::Left;
+            m_vel = sf::Vector2f(-1, 0);
+        } else if (keyboard.checkKeyAndState(sf::Keyboard::Right, State::HOLD)) {
+            m_dir = Entity::Direction::Right;
+            m_vel = sf::Vector2f(1, 0);
+        } else {
+            m_moving = false;
+            m_vel    = sf::Vector2f(0, 0);
         }
-    } else {
-        updateMovingState();
+
+        if (keyboard.checkKeyAndState(sf::Keyboard::Space, State::HOLD)) {
+            if (!m_hasFired) {
+                if (m_bulletTick >= BulletTickCD) {
+                    m_hasFired   = true;
+                    m_bulletTick = 0;
+                }
+                // Temp
+                m_vel = sf::Vector2f(0, 0);
+                updateFiringState();
+            }
+        } else {
+            updateMovingState();
+        }
+
+        // Testing animation for when the player dies
+        if (keyboard.checkKeyAndState(sf::Keyboard::X, State::PRESS)) {
+            m_vel   = sf::Vector2f(0, 0);
+            m_state = Entity::State::DYING;
+        }
     }
+
+    if (keyboard.checkKeyAndState(sf::Keyboard::D, State::PRESS)) {
+        m_state = Entity::State::PLAYERHITFACINGDOWN;
+    } else if (keyboard.checkKeyAndState(sf::Keyboard::R, State::PRESS)) {
+        m_state = Entity::State::PLAYERHITFACINGRIGHT;
+    } else if (keyboard.checkKeyAndState(sf::Keyboard::L, State::PRESS)) {
+        m_state = Entity::State::PLAYERHITFACINGLEFT;
+    } else if (keyboard.checkKeyAndState(sf::Keyboard::U, State::PRESS)) {
+        m_state = Entity::State::PLAYERHITFACINGUP;
+    }
+
 }
 
 void Player::update()
@@ -61,6 +80,9 @@ void Player::update()
 
     m_animSprite.updatePosition(m_pos);
     m_rect.setPosition(m_pos.x, m_pos.y);
+    if (m_state == Entity::State::DYING && m_animSprite.isAnimFinishedPlaying()) {
+        m_state = Entity::State::DEAD;
+    }
 }
 
 void Player::render(sf::RenderWindow& window)
@@ -91,6 +113,11 @@ Entity::Direction Player::getDir() const
     return m_dir;
 }
 
+bool Player::isDead() const
+{
+    return m_state == Entity::State::DEAD;
+}
+
 bool Player::checkHasFired() const
 {
     return m_hasFired;
@@ -104,7 +131,7 @@ void Player::setHasFired(bool hasFired)
 void Player::updateMovingState()
 {
     switch (m_dir) {
-        case Entity::Direction::Up :
+        case Entity::Direction::Up:
             m_state = m_moving ? Entity::State::MOVEUP : Entity::State::STANDFACINGUP;
             break;
         case Entity::Direction::Down:
@@ -122,7 +149,7 @@ void Player::updateMovingState()
 void Player::updateFiringState()
 {
     switch (m_dir) {
-        case Entity::Direction::Up :
+        case Entity::Direction::Up:
             m_state = Entity::State::SHOOTUP;
             //m_state = m_moving ? Entity::State::MOVEUP : Entity::State::STANDFACINGUP;
             break;

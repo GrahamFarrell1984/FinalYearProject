@@ -20,7 +20,12 @@ namespace Entity {
         SHOOTRIGHT,
         SHOOTUP,
         SHOOTLEFT,
-        DIE,
+        PLAYERHITFACINGDOWN,
+        PLAYERHITFACINGRIGHT,
+        PLAYERHITFACINGLEFT,
+        PLAYERHITFACINGUP,
+        DYING,
+        DEAD,
         SHOOT
     };
 } // NS Entity

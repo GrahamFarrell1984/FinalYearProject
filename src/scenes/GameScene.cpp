@@ -21,10 +21,6 @@ void GameScene::processInput(const Keyboard& keyboard)
         requestSceneChange(Scene::Action::PUSH, Scene::Name::PAUSE);
     }
 
-    if (keyboard.checkKeyAndState(sf::Keyboard::D, State::PRESS)) {
-        requestSceneChange(Scene::Action::PUSH, Scene::Name::GAMEOVER);
-    }
-
 //    if (keyboard.checkKeyAndState(sf::Keyboard::Space, State::PRESS)) {
 //        m_entityManager.create<Bullet>(sf::Vector2f(50, 50), sf::Vector2f(5, 0));
 //    }
@@ -48,6 +44,10 @@ void GameScene::update()
 
     // Clean up any entities that are destroyed.
     m_entityManager.cleanup();
+
+    if (player->isDead()) {
+        requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAMEOVER);
+    }
 
 }
 

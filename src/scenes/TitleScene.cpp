@@ -61,39 +61,39 @@ void TitleScene::update()
 void TitleScene::render(sf::RenderWindow& window)
 {
     // Draw all the greyed out skulls
-    m_sprite.setTextureRect(sf::IntRect(SKULL0SRCPOS.x, SKULL0SRCPOS.y, SIZE, SIZE));
+    m_sprite.setTextureRect(sf::IntRect(BIG_GREY_SKULL_SRC_RECT.x, BIG_GREY_SKULL_SRC_RECT.y, BIG_GREY_SKULL_SRC_RECT.w, BIG_GREY_SKULL_SRC_RECT.h));
     for (int32_t row = 0; row < MAXROW; ++row) {
         for (int32_t col = 0; col < MAXCOL; ++col) {
             m_sprite.setPosition(static_cast<float>(OFFSETX + (SIZE * col)), static_cast<float>(SIZE * row));
             window.draw(m_sprite);
         }
     }
+
+    // Draw the main title text
+    m_sprite.setPosition(static_cast<float>(TITLE_POS.x), static_cast<float>(TITLE_POS.y));
+    m_sprite.setTextureRect(sf::IntRect(MAIN_TITLE_SRC_RECT.x, MAIN_TITLE_SRC_RECT.y, MAIN_TITLE_SRC_RECT.w, MAIN_TITLE_SRC_RECT.h));
+    window.draw(m_sprite);
+
     // Draw the white skull
-    m_sprite.setPosition(static_cast<float>(WSKULLPOS.x), static_cast<float>(WSKULLPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(SKULL1SRCPOS.x, SKULL1SRCPOS.y, SIZE, SIZE));
+    m_sprite.setPosition(static_cast<float>(BIG_WHITE_SKULL_POS.x), static_cast<float>(BIG_WHITE_SKULL_POS.y));
+    m_sprite.setTextureRect(sf::IntRect(BIG_WHITE_SKULL_SRC_POS.x, BIG_WHITE_SKULL_SRC_POS.y, SIZE, SIZE));
     window.draw(m_sprite);
 
-    // Draw the title text
-    m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(MAINTITLESRCRECT.x, MAINTITLESRCRECT.y, MAINTITLESRCRECT.w, MAINTITLESRCRECT.h));
-    window.draw(m_sprite);
-
-    // Draw the menu options text
-    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(FONTSRCPOS.x, FONTSRCPOS.y, SIZE, SIZE));
+    // Draw the title options text
+    m_sprite.setPosition(static_cast<float>(MAIN_TITLE_MENU_POS.x), static_cast<float>(MAIN_TITLE_MENU_POS.y));
+    m_sprite.setTextureRect(sf::IntRect(MAIN_TITLE_MENU_SRC_RECT.x, MAIN_TITLE_MENU_SRC_RECT.y, MAIN_TITLE_MENU_SRC_RECT.w, MAIN_TITLE_MENU_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Draw the cursor
     m_sprite.setPosition(static_cast<float>(m_cursorPos.x), static_cast<float>(m_cursorPos.y));
-    m_sprite.setTextureRect(sf::IntRect(CURSORSRCRECT.x, CURSORSRCRECT.y, CURSORSRCRECT.w, CURSORSRCRECT.h));
+    m_sprite.setTextureRect(sf::IntRect(CURSOR_SRC_RECT.x, CURSOR_SRC_RECT.y, CURSOR_SRC_RECT.w, CURSOR_SRC_RECT.h));
     window.draw(m_sprite);
 }
 
 void TitleScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-//    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
     AudioManager& audioManager = getSharedContext().audioManager;
     audioManager.playMusic(Assets::Music::MUSICA);

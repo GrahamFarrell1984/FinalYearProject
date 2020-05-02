@@ -68,7 +68,7 @@ void PauseScene::update()
 void PauseScene::render(sf::RenderWindow& window)
 {
     // Draw all the transparent skulls
-    m_sprite.setTextureRect(sf::IntRect(SKULL2SRCPOS.x, SKULL2SRCPOS.y, SIZE, SIZE));
+    m_sprite.setTextureRect(sf::IntRect(BIG_TRANSPARENT_SKULL_SRC_POS.x, BIG_TRANSPARENT_SKULL_SRC_POS.y, SIZE, SIZE));
     for (int32_t row = 0; row < MAXROW; ++row) {
         for (int32_t col = 0; col < MAXCOL; ++col) {
             m_sprite.setPosition(static_cast<float>(OFFSETX + (SIZE * col)), static_cast<float>(SIZE * row));
@@ -76,28 +76,26 @@ void PauseScene::render(sf::RenderWindow& window)
         }
     }
 
-    // Draw the title text
-    m_sprite.setPosition(static_cast<float>(TITLEPOS.x), static_cast<float>(TITLEPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(PAUSEDTITLESRCRECT.x, PAUSEDTITLESRCRECT.y, PAUSEDTITLESRCRECT.w, PAUSEDTITLESRCRECT.h));
+    // Draw the paused title text
+    m_sprite.setPosition(static_cast<float>(TITLE_POS.x), static_cast<float>(TITLE_POS.y));
+    m_sprite.setTextureRect(sf::IntRect(PAUSED_TITLE_SRC_RECT.x, PAUSED_TITLE_SRC_RECT.y, PAUSED_TITLE_SRC_RECT.w, PAUSED_TITLE_SRC_RECT.h));
     window.draw(m_sprite);
 
-    // Draw the menu options text
-    m_sprite.setPosition(static_cast<float>(TEXTPOS.x), static_cast<float>(TEXTPOS.y));
-    m_sprite.setTextureRect(sf::IntRect(FONT1SRCPOS.x, FONT1SRCPOS.y, SIZE, SIZE));
+    // Draw the paused menu text
+    m_sprite.setPosition(static_cast<float>(PAUSED_MENU_POS.x), static_cast<float>(PAUSED_MENU_POS.y));
+    m_sprite.setTextureRect(sf::IntRect(PAUSED_MENU_SRC_RECT.x, PAUSED_MENU_SRC_RECT.y, SIZE, SIZE));
     window.draw(m_sprite);
 
     // Draw the cursor
     m_sprite.setPosition(static_cast<float>(m_cursorPos.x), static_cast<float>(m_cursorPos.y));
-    m_sprite.setTextureRect(sf::IntRect(CURSORSRCRECT.x, CURSORSRCRECT.y, CURSORSRCRECT.w, CURSORSRCRECT.h));
+    m_sprite.setTextureRect(sf::IntRect(CURSOR_SRC_RECT.x, CURSOR_SRC_RECT.y, CURSOR_SRC_RECT.w, CURSOR_SRC_RECT.h));
     window.draw(m_sprite);
 }
 
 void PauseScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXB.id));
-//    m_sprite.setTextureRect(sf::IntRect(SKULL2SRCPOS.x, SKULL2SRCPOS.y, SIZE, SIZE));
-//    m_sprite.setScale(4,3);
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
     AudioManager& audioManager = getSharedContext().audioManager;
     audioManager.pauseMusic();
