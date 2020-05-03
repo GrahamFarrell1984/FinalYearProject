@@ -10,7 +10,7 @@ AnimatedSprite::AnimatedSprite(sf::Vector2f pos,
         , m_tick{ 0 }
         , m_frameIndex{ 0 }
         , m_frame{}
-        , m_state{ Entity::State::NONE }
+        , m_state{ Anim::State::NONE }
         , m_sprite{}
         , m_frameData{ frameData }
         , m_animData{ animData }
@@ -19,7 +19,7 @@ AnimatedSprite::AnimatedSprite(sf::Vector2f pos,
     m_sprite.setTexture(*texture);
 }
 
-void AnimatedSprite::changeState(const Entity::State state, bool resetCurrentData)
+void AnimatedSprite::changeState(const Anim::State state, bool resetCurrentData)
 {
     if (state != m_state) {
         if (auto animState = m_animData.find(state); animState != m_animData.end()) {

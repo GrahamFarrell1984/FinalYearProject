@@ -37,10 +37,11 @@ void GameScene::update()
         player->setHasFired(false);
     }
 
-    m_entityManager.update();
-
     ClsnManager::pzClsn(m_entityManager.getEntityGroup<Player>(), m_entityManager.getEntityGroup<Zombie>());
     ClsnManager::bzClsn(m_entityManager.getEntityGroup<Bullet>(), m_entityManager.getEntityGroup<Zombie>());
+
+
+    m_entityManager.update();
 
     // Clean up any entities that are destroyed.
     m_entityManager.cleanup();

@@ -12,7 +12,10 @@ namespace ClsnManager {
         for (auto player : players) {
             for (auto zombie : zombies) {
                 if (Utils::isIntersecting(player->getBounds(), zombie->getBounds())) {
-                    zombie->setPosition(sf::Vector2f(rand() % 700 + 1, rand() % 700 + 1));
+                    //zombie->setPosition(sf::Vector2f(rand() % 700 + 1, rand() % 700 + 1));
+                    if (!player->isInvincible() && player->getState() != Entity::State::HIT && player->getState() != Entity::State::DYING) {
+                        player->setIsHit();
+                    }
                 }
             }
         }
