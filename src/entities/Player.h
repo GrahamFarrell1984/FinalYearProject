@@ -6,7 +6,9 @@
 #include <utility>
 
 #include "AnimatedSprite.h"
+#include "AnimationStates.h"
 #include "BaseEntity.h"
+#include "EntityTypes.h"
 #include "Keyboard.h"
 
 class Player : public BaseEntity
@@ -21,8 +23,11 @@ public:
     Rect getBounds() const;
     sf::Vector2f getPos() const;
     Entity::Direction getDir() const;
+    Entity::State getState() const;
 
     bool isDead() const;
+    bool isInvincible() const;
+    void setIsHit();
 
     bool checkHasFired() const;
     void setHasFired(bool fire);
@@ -31,16 +36,22 @@ private:
     static constexpr auto NormalSpeed  = 2;
     static constexpr auto PowerUpSpeed = 4;
     static constexpr auto BulletTickCD = 8;
+    static constexpr auto InvincibleTickCD = 100;
 
     void updateMovingState();
     void updateFiringState();
+    void updateHitState();
 
     bool m_hasFired;
     bool m_moving;
+    bool m_invincible;
+    int32_t m_health;
     uint32_t m_speed;
     uint32_t m_bulletTick;
+    uint32_t m_invincibleTick;
     Entity::Direction m_dir;
     Entity::State m_state;
+    Anim::State m_animState;
     sf::Vector2f m_pos;
     sf::Vector2f m_vel;
     sf::RectangleShape m_rect;

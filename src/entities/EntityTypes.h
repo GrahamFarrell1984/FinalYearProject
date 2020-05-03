@@ -8,24 +8,11 @@ namespace Entity {
     enum class State
     {
         NONE = 0,
-        STANDFACINGUP,
-        STANDFACINGDOWN,
-        STANDFACINGLEFT,
-        STANDFACINGRIGHT,
-        MOVEUP,
-        MOVEDOWN,
-        MOVELEFT,
-        MOVERIGHT,
-        SHOOTDOWN,
-        SHOOTRIGHT,
-        SHOOTUP,
-        SHOOTLEFT,
-        PLAYERHITFACINGDOWN,
-        PLAYERHITFACINGRIGHT,
-        PLAYERHITFACINGLEFT,
-        PLAYERHITFACINGUP,
+        STANDING,
+        MOVING,
+        SHOOTING,
+        HIT,
         DYING,
-        DEAD,
-        SHOOT
+        DEAD
     };
 } // NS Entity

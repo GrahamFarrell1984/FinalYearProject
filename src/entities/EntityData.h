@@ -2,12 +2,12 @@
 
 #include <array>
 
-#include "EntityTypes.h"
+#include "AnimationStates.h"
 #include "Types.h"
 
 // Player Sprite Data - Maybe move to texture data
 using FrameData = std::vector<Frame>;
-using AnimData  = std::unordered_map<Entity::State, Animation>;
+using AnimData  = std::unordered_map<Anim::State, Animation>;
 
 static const FrameData PlayerSpriteData{ {
      // Origin,                            Source
@@ -75,38 +75,38 @@ static const FrameData PlayerSpriteData{ {
 
 static const AnimData PlayerAnimation{
     // State,                       loop,          loopframe,            frameIdx[]
-    { Entity::State::STANDFACINGDOWN, { true, 0, { { 0, 0 } } } },
+    { Anim::State::STANDFACINGDOWN, { true, 0, { { 0, 0 } } } },
 
-    { Entity::State::STANDFACINGLEFT,   { true, 0, { { 0, 7 } } } },
+    { Anim::State::STANDFACINGLEFT,   { true, 0, { { 0, 7 } } } },
 
-    { Entity::State::STANDFACINGRIGHT, { true, 0, { { 0, 14 } } } },
+    { Anim::State::STANDFACINGRIGHT, { true, 0, { { 0, 14 } } } },
 
-    { Entity::State::STANDFACINGUP,   { true, 0, { { 0, 21 } } } },
+    { Anim::State::STANDFACINGUP,   { true, 0, { { 0, 21 } } } },
 
-    { Entity::State::MOVEDOWN,  { true, 0, { { 10, 1 }, { 10, 2 }, { 10, 3 }, { 10, 4 } } } },
+    { Anim::State::MOVEDOWN,  { true, 0, { { 10, 1 }, { 10, 2 }, { 10, 3 }, { 10, 4 } } } },
 
-    { Entity::State::MOVELEFT,    { true, 0, { { 10, 8 }, { 10, 9 }, { 10, 10 }, { 10, 11 } } } },
+    { Anim::State::MOVELEFT,    { true, 0, { { 10, 8 }, { 10, 9 }, { 10, 10 }, { 10, 11 } } } },
 
-    { Entity::State::MOVERIGHT,    { true, 0, { { 10, 15 }, { 10, 16 }, { 10, 17 }, { 10, 18 } } } },
+    { Anim::State::MOVERIGHT,    { true, 0, { { 10, 15 }, { 10, 16 }, { 10, 17 }, { 10, 18 } } } },
 
-    { Entity::State::MOVEUP,  { true, 0, { { 10, 22 }, { 10, 23 }, { 10, 24 }, { 10, 25 } } } },
+    { Anim::State::MOVEUP,  { true, 0, { { 10, 22 }, { 10, 23 }, { 10, 24 }, { 10, 25 } } } },
 
-    { Entity::State::SHOOTDOWN,  { true, 0, { { 0, 5 } } } },
+    { Anim::State::SHOOTDOWN,  { true, 0, { { 0, 5 } } } },
 
-    { Entity::State::SHOOTLEFT,  { true, 0, { { 0, 12 } } } },
+    { Anim::State::SHOOTLEFT,  { true, 0, { { 0, 12 } } } },
 
-    { Entity::State::SHOOTRIGHT,  { true, 0, { { 0, 19 } } } },
+    { Anim::State::SHOOTRIGHT,  { true, 0, { { 0, 19 } } } },
 
-    { Entity::State::SHOOTUP,  { true, 0, { { 0, 26 } } } },
+    { Anim::State::SHOOTUP,  { true, 0, { { 0, 26 } } } },
 
-    { Entity::State::PLAYERHITFACINGDOWN,  {false, 0, { { 10, 46 }, { 10, 47 }, { 10, 0 } } } },
+    { Anim::State::HITFACINGDOWN,  {false, 0, { { 10, 46 }, { 10, 47 } } } },
 
-    { Entity::State::PLAYERHITFACINGRIGHT,  { false, 0, { { 10, 48 }, { 10, 49 }, { 10, 7 } } } },
+    { Anim::State::HITFACINGRIGHT,  { false, 0, { { 10, 48 }, { 10, 49 } } } },
 
-    { Entity::State::PLAYERHITFACINGLEFT,  { false, 0, { { 10, 50 }, { 10, 51 }, { 10, 14 } } } },
+    { Anim::State::HITFACINGLEFT,  { false, 0, { { 10, 50 }, { 10, 51 } } } },
 
-    { Entity::State::PLAYERHITFACINGUP,  { false, 0, { { 10, 52 }, { 10, 53 }, { 10, 21 } } } },
+    { Anim::State::HITFACINGUP,  { false, 0, { { 10, 52 }, { 10, 53 } } } },
 
-    { Entity::State::DYING,  { false, 0, { { 10, 27 }, { 10, 28 }, { 10, 29 }, { 10, 30 }, { 10, 31 }, { 10, 32 }, { 10, 33 }, { 10, 34 }, { 10, 35 }, { 10, 36 }, { 10, 37 }, { 10, 38 }, { 10, 39 }, { 10, 40 }, { 10, 41 }, { 10, 42 }, { 10, 43 }, { 10, 44 }, { 10, 45 } } } }
+    { Anim::State::DYING,  { false, 0, { { 10, 27 }, { 10, 28 }, { 10, 29 }, { 10, 30 }, { 10, 31 }, { 10, 32 }, { 10, 33 }, { 10, 34 }, { 10, 35 }, { 10, 36 }, { 10, 37 }, { 10, 38 }, { 10, 39 }, { 10, 40 }, { 10, 41 }, { 10, 42 }, { 10, 43 }, { 10, 44 }, { 10, 45 } } } }
 
 };
