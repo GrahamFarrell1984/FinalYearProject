@@ -1,10 +1,10 @@
-#include "OptionsScene.h"
+#include "ControlsScene.h"
 
 #include "AudioManager.h"
 #include "ResourceManager.h"
 #include "TextureData.h"
 
-OptionsScene::OptionsScene(SceneManager& sceneManager, const Scene::Name name)
+ControlsScene::ControlsScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
         , m_options{ MENUOPTIONS::RETURN }
         , m_sprite{}
@@ -12,7 +12,7 @@ OptionsScene::OptionsScene(SceneManager& sceneManager, const Scene::Name name)
 {
 }
 
-void OptionsScene::processInput(const Keyboard& keyboard)
+void ControlsScene::processInput(const Keyboard& keyboard)
 {
     AudioManager& audioManager = getSharedContext().audioManager;
 
@@ -47,11 +47,11 @@ void OptionsScene::processInput(const Keyboard& keyboard)
     }
 }
 
-void OptionsScene::update()
+void ControlsScene::update()
 {
 }
 
-void OptionsScene::render(sf::RenderWindow& window)
+void ControlsScene::render(sf::RenderWindow& window)
 {
     // Draw all the greyed out skulls
     m_sprite.setTextureRect(sf::IntRect(BIG_GREY_SKULL_SRC_RECT.x, BIG_GREY_SKULL_SRC_RECT.y, BIG_GREY_SKULL_SRC_RECT.w, BIG_GREY_SKULL_SRC_RECT.h));
@@ -84,7 +84,7 @@ void OptionsScene::render(sf::RenderWindow& window)
     window.draw(m_sprite);
 }
 
-void OptionsScene::onEnter()
+void ControlsScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
@@ -93,6 +93,6 @@ void OptionsScene::onEnter()
     //    audioManager.playMusic(Assets::Music::MUSICA);
 }
 
-void OptionsScene::onExit()
+void ControlsScene::onExit()
 {
 }
