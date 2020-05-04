@@ -30,6 +30,7 @@ namespace Anim {
         BULLETDYINGUP,
         BULLETDYINGDOWN,
         BULLETDYINGLEFT,
-        BULLETDYINGRIGHT
+        BULLETDYINGRIGHT,
+        JUMPING
     };
 } // NS Anim

@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Zombie.h"
 #include "Bullet.h"
+#include "Civilian.h"
 #include "RectUtils.h"
 
 namespace ClsnManager {
@@ -27,6 +28,17 @@ namespace ClsnManager {
             for (auto zombie : zombies) {
                 if (Utils::isIntersecting(bullet->getBounds(), zombie->getBounds())) {
                     bullet->setIsHit();
+                }
+            }
+        }
+    }
+
+    static void playerCivilianCollision(std::vector<Player*> players, std::vector<Civilian*> civilians)
+    {
+        for (auto player : players) {
+            for (auto civilian : civilians) {
+                if (Utils::isIntersecting(player->getBounds(), civilian->getBounds())) {
+                    civilian->m_destroyed = true;
                 }
             }
         }

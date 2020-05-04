@@ -14,7 +14,7 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         , m_pos{ position }
         , m_vel{ 0, 0 }
         , m_rect{ sf::Vector2f(18, 20) }
-        , m_animSprite{ position, texture, PlayerSpriteData, PlayerAnimation }
+        , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
 {
     // Test
     m_rect.setPosition(m_pos.x, m_pos.y);
