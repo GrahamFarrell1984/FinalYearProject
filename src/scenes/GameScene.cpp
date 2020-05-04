@@ -7,6 +7,7 @@
 #include "ResourceManager.h"
 #include "Zombie.h"
 #include "Bullet.h"
+#include "Civilian.h"
 
 
 GameScene::GameScene(SceneManager& sceneManager, const Scene::Name name)
@@ -39,6 +40,7 @@ void GameScene::update()
 
     ClsnManager::pzClsn(m_entityManager.getEntityGroup<Player>(), m_entityManager.getEntityGroup<Zombie>());
     ClsnManager::bzClsn(m_entityManager.getEntityGroup<Bullet>(), m_entityManager.getEntityGroup<Zombie>());
+    ClsnManager::playerCivilianCollision(m_entityManager.getEntityGroup<Player>(), m_entityManager.getEntityGroup<Civilian>());
 
 
     m_entityManager.update();
@@ -70,6 +72,10 @@ void GameScene::onEnter()
     m_entityManager.create<Player>(sf::Vector2f(100, 100), textureHolder.getResource(Assets::Texture::PLAYER.id));
     m_entityManager.create<Mummy>(sf::Vector2f(50.f, 50.f), textureHolder.getResource(Assets::Texture::MUMMY.id));
     m_entityManager.create<Zombie>(sf::Vector2f(150.f, 150.f), textureHolder.getResource(Assets::Texture::ZOMBIE.id));
+    m_entityManager.create<Civilian>(sf::Vector2f(250, 250), textureHolder.getResource(Assets::Texture::PLAYER.id));
+//    for (int i = 0; i < 10; ++i) {
+//        m_entityManager.create<Civilian>(sf::Vector2f(rand() % 250 + 1, rand() % 250 + 1), textureHolder.getResource(Assets::Texture::CIVILIAN.id));
+//    }
 }
 
 void GameScene::onExit()

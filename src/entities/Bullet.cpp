@@ -10,7 +10,7 @@ Bullet::Bullet(sf::Vector2f position, Entity::Direction direction, const sf::Tex
         , m_direction { direction }
         , m_state { Entity::State::MOVING }
         , m_animState { Anim::State::NONE }
-        , m_animSprite{ position, texture, PlayerSpriteData, PlayerAnimation }
+        , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
 {
     switch (m_direction) {
         case Entity::Direction::Up:

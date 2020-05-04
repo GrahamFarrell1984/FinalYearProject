@@ -9,73 +9,78 @@
 using FrameData = std::vector<TexSrc>;
 using AnimData  = std::unordered_map<Anim::State, Animation>;
 
-static const FrameData PlayerSpriteData{
-        { // Origin,                            Source
-                { { 0, 0, 26, 42 } },  // Index [0] - TexSrc for player facing down
-                { { 26, 0, 26, 42 } },  // Index [1] - TexSrc for player moving down
-                { { 52, 0, 26, 42 } },  // Index [2] - TexSrc for player moving down
-                { { 78, 0, 26, 42 } },  // Index [3] - TexSrc for player moving down
-                { { 104, 0, 26, 42 } },  // Index [4] - TexSrc for player moving down
-                { { 130, 0, 26, 42 } },  // Index [5] - TexSrc for player firing gun down
-                { { 156, 0, 26, 42 } },  // Index [6] - TexSrc for player aiming fire extinguisher down
-                { { 0, 42, 26, 42 } },  // Index [7] - TexSrc for player facing left
-                { { 26, 42, 26, 42 } },  // Index [8] - TexSrc for player moving left
-                { { 52, 42, 26, 42 } },  // Index [9] - TexSrc for player moving left
-                { { 78, 42, 26, 42 } },  // Index [10] - TexSrc for player moving left
-                { { 104, 42, 26, 42 } },  // Index [11] - TexSrc for player moving left
-                { { 130, 42, 32, 42 } },  // Index [12] - TexSrc for player firing gun left
-                { { 156, 42, 38, 42 } },  // Index [13] - TexSrc for player aiming fire extinguisher left
-                { { 0, 84, 26, 42 } },  // Index [14] - TexSrc for player facing right
-                { { 26, 84, 26, 42 } },  // Index [15] - TexSrc for player moving right
-                { { 52, 84, 26, 42 } },  // Index [16] - TexSrc for player moving right
-                { { 78, 84, 26, 42 } },  // Index [17] - TexSrc for player moving right
-                { { 104, 84, 26, 42 } },  // Index [18] - TexSrc for player moving right
-                { { 130, 84, 32, 42 } },  // Index [19] - TexSrc for player firing gun right
-                { { 156, 84, 38, 42 } },  // Index [20] - TexSrc for player aiming fire extinguisher right
-                { { 0, 126, 26, 42 } },  // Index [21] - TexSrc for player facing up
-                { { 26, 126, 26, 42 } },  // Index [22] - TexSrc for player moving up
-                { { 52, 126, 26, 42 } },  // Index [23] - TexSrc for player moving up
-                { { 78, 126, 26, 42 } },  // Index [24] - TexSrc for player moving up
-                { { 104, 126, 26, 42 } },  // Index [25] - TexSrc for player moving up
-                { { 130,126,26,42 } },  // Index [26] - TexSrc for player firing up - it is used for both the gun and the fire extinguisher
-                { { 0, 168, 39, 45 } },  // Index [27] - TexSrc for player dying
-                { { 39, 168, 39, 45 } },  // Index [28] - TexSrc for player dying
-                { { 78, 168, 39, 45 } },  // Index [29] - TexSrc for player dying
-                { { 117, 168, 39, 45 } },  // Index [30] - TexSrc for player dying
-                { { 156, 168, 39, 45 } },  // Index [31] - TexSrc for player dying
-                { { 0, 213, 39, 45 } },  // Index [32] - TexSrc for player dying
-                { { 39, 213, 39, 45 } },  // Index [33] - TexSrc for player dying
-                { { 78, 213, 39, 45 } },  // Index [34] - TexSrc for player dying
-                { { 117, 213, 39, 45 } },  // Index [35] - TexSrc for player dying
-                { { 156, 213, 39, 45 } },  // Index [36] - TexSrc for player dying
-                { { 0, 258, 39, 45 } },  // Index [37] - TexSrc for player dying
-                { { 39, 258, 39, 45 } },  // Index [38] - TexSrc for player dying
-                { { 78, 258, 39, 45 } },  // Index [39] - TexSrc for player dying
-                { { 117, 258, 39, 45 } },  // Index [40] - TexSrc for player dying
-                { { 156, 258, 39, 45 } },  // Index [41] - TexSrc for player dying
-                { { 0, 303, 39, 45 } },  // Index [42] - TexSrc for player dying
-                { { 39, 303, 39, 45 } },  // Index [43] - TexSrc for player dying
-                { { 78, 303, 39, 45 } },  // Index [44] - TexSrc for player dying
-                { { 117, 303, 39, 45 } },  // Index [45] - TexSrc for player dying
-                { { 0, 348, 41, 60 } },  // Index [46] - TexSrc for player hit
-                { { 41, 348, 41, 60 } },  // Index [47] - TexSrc for player hit
-                { { 82, 348, 41, 60 } },  // Index [48] - TexSrc for player hit
-                { { 123, 348, 41, 60 } },  // Index [49] - TexSrc for player hit
-                { { 0, 408, 41, 60 } },  // Index [50] - TexSrc for player hit
-                { { 41, 408, 41, 60 } },  // Index [51] - TexSrc for player hit
-                { { 82, 408, 41, 60 } },  // Index [52] - TexSrc for player hit
-                { { 123, 408, 41, 60 } },  // Index [53] - TexSrc for player hit
-                { { 82, 348, 41, 60 } },  // Index [54] - TexSrc for player hit
-                { { 171, 136, 7, 16 } },  // Index [55] - TexSrc for bullet up
-                { { 164, 136, 7, 16 } },  // Index [56] - TexSrc for bullet down
-                { { 164, 157, 18, 5 } },  // Index [57] - TexSrc for bullet left
-                { { 164, 152, 18, 5 } },  // Index [58] - TexSrc for bullet right
-                { { 182, 152, 15, 13 } },  // Index [59] - TexSrc for bullet splash1
-                { { 178, 136, 16, 16 } } }  // Index [60] - TexSrc for bullet splash2
+static const FrameData SpriteData{{
+      // Source
+      { { 0, 0, 26, 42 } },  // Index [0] - TexSrc for player facing down
+      { { 26, 0, 26, 42 } },  // Index [1] - TexSrc for player moving down
+      { { 52, 0, 26, 42 } },  // Index [2] - TexSrc for player moving down
+      { { 78, 0, 26, 42 } },  // Index [3] - TexSrc for player moving down
+      { { 104, 0, 26, 42 } },  // Index [4] - TexSrc for player moving down
+      { { 130, 0, 26, 42 } },  // Index [5] - TexSrc for player firing gun down
+      { { 156, 0, 26, 42 } },  // Index [6] - TexSrc for player aiming fire extinguisher down
+      { { 0, 42, 26, 42 } },  // Index [7] - TexSrc for player facing left
+      { { 26, 42, 26, 42 } },  // Index [8] - TexSrc for player moving left
+      { { 52, 42, 26, 42 } },  // Index [9] - TexSrc for player moving left
+      { { 78, 42, 26, 42 } },  // Index [10] - TexSrc for player moving left
+      { { 104, 42, 26, 42 } },  // Index [11] - TexSrc for player moving left
+      { { 130, 42, 32, 42 } },  // Index [12] - TexSrc for player firing gun left
+      { { 156, 42, 38, 42 } },  // Index [13] - TexSrc for player aiming fire extinguisher left
+      { { 0, 84, 26, 42 } },  // Index [14] - TexSrc for player facing right
+      { { 26, 84, 26, 42 } },  // Index [15] - TexSrc for player moving right
+      { { 52, 84, 26, 42 } },  // Index [16] - TexSrc for player moving right
+      { { 78, 84, 26, 42 } },  // Index [17] - TexSrc for player moving right
+      { { 104, 84, 26, 42 } },  // Index [18] - TexSrc for player moving right
+      { { 130, 84, 32, 42 } },  // Index [19] - TexSrc for player firing gun right
+      { { 156, 84, 38, 42 } },  // Index [20] - TexSrc for player aiming fire extinguisher right
+      { { 0, 126, 26, 42 } },  // Index [21] - TexSrc for player facing up
+      { { 26, 126, 26, 42 } },  // Index [22] - TexSrc for player moving up
+      { { 52, 126, 26, 42 } },  // Index [23] - TexSrc for player moving up
+      { { 78, 126, 26, 42 } },  // Index [24] - TexSrc for player moving up
+      { { 104, 126, 26, 42 } },  // Index [25] - TexSrc for player moving up
+      { { 130,126,26,42 } },  // Index [26] - TexSrc for player firing up - it is used for both the gun and the fire extinguisher
+      { { 0, 168, 39, 45 } },  // Index [27] - TexSrc for player dying
+      { { 39, 168, 39, 45 } },  // Index [28] - TexSrc for player dying
+      { { 78, 168, 39, 45 } },  // Index [29] - TexSrc for player dying
+      { { 117, 168, 39, 45 } },  // Index [30] - TexSrc for player dying
+      { { 156, 168, 39, 45 } },  // Index [31] - TexSrc for player dying
+      { { 0, 213, 39, 45 } },  // Index [32] - TexSrc for player dying
+      { { 39, 213, 39, 45 } },  // Index [33] - TexSrc for player dying
+      { { 78, 213, 39, 45 } },  // Index [34] - TexSrc for player dying
+      { { 117, 213, 39, 45 } },  // Index [35] - TexSrc for player dying
+      { { 156, 213, 39, 45 } },  // Index [36] - TexSrc for player dying
+      { { 0, 258, 39, 45 } },  // Index [37] - TexSrc for player dying
+      { { 39, 258, 39, 45 } },  // Index [38] - TexSrc for player dying
+      { { 78, 258, 39, 45 } },  // Index [39] - TexSrc for player dying
+      { { 117, 258, 39, 45 } },  // Index [40] - TexSrc for player dying
+      { { 156, 258, 39, 45 } },  // Index [41] - TexSrc for player dying
+      { { 0, 303, 39, 45 } },  // Index [42] - TexSrc for player dying
+      { { 39, 303, 39, 45 } },  // Index [43] - TexSrc for player dying
+      { { 78, 303, 39, 45 } },  // Index [44] - TexSrc for player dying
+      { { 117, 303, 39, 45 } },  // Index [45] - TexSrc for player dying
+      { { 0, 348, 41, 60 } },  // Index [46] - TexSrc for player hit
+      { { 41, 348, 41, 60 } },  // Index [47] - TexSrc for player hit
+      { { 82, 348, 41, 60 } },  // Index [48] - TexSrc for player hit
+      { { 123, 348, 41, 60 } },  // Index [49] - TexSrc for player hit
+      { { 0, 408, 41, 60 } },  // Index [50] - TexSrc for player hit
+      { { 41, 408, 41, 60 } },  // Index [51] - TexSrc for player hit
+      { { 82, 408, 41, 60 } },  // Index [52] - TexSrc for player hit
+      { { 123, 408, 41, 60 } },  // Index [53] - TexSrc for player hit
+      { { 82, 348, 41, 60 } },  // Index [54] - TexSrc for player hit
+      { { 171, 136, 7, 16 } },  // Index [55] - TexSrc for bullet up
+      { { 164, 136, 7, 16 } },  // Index [56] - TexSrc for bullet down
+      { { 164, 157, 18, 5 } },  // Index [57] - TexSrc for bullet left
+      { { 164, 152, 18, 5 } },  // Index [58] - TexSrc for bullet right
+      { { 182, 152, 15, 13 } },  // Index [59] - TexSrc for bullet splash1
+      { { 178, 136, 16, 16 } },  // Index [60] - TexSrc for bullet splash2
+      { { 0, 468, 46, 70 } },       // Index [61] - Frame for cheerleader jumping
+      { { 46, 468, 46, 70 } },      // Index [62] - Frame for cheerleader jumping
+      { { 92, 468, 46, 70 } },      // Index [63] - Frame for cheerleader jumping
+      { { 138, 468, 46, 70 } },     // Index [64] - Frame for cheerleader jumping
+      { { 184, 468, 46, 70 } } }    // Index [65] - Frame for cheerleader jumping
 };
 
-static const AnimData PlayerAnimation{
-        // State,                       loop,          loopframe,            frameIdx[]
+static const AnimData SpriteAnimation{
+        // State,                         // loop,            // loopFrame,         // frameIdx[]
         { Anim::State::STANDFACINGDOWN, { true, 0, { { 0, 0, { 0, 0 } } } } },
         { Anim::State::STANDFACINGLEFT, { true, 0, { { 0, 7, { 0, 0 } } } } },
         { Anim::State::STANDFACINGRIGHT, { true, 0, { { 0, 14, { 0, 0 } } } } },
@@ -100,5 +105,21 @@ static const AnimData PlayerAnimation{
         { Anim::State::BULLETDYINGUP, { false, 0, { { 5, 59, { 5, -10 } }, { 10, 60, { 0, 0 } } } } },
         { Anim::State::BULLETDYINGDOWN, { false, 0, { { 5, 59, { 5, 34 } }, { 10, 60, { 0, 0 } } } } },
         { Anim::State::BULLETDYINGLEFT, { false, 0, { { 5, 59, { -24, 10 } }, { 10, 60, { 0, 0 } } } } },
-        { Anim::State::BULLETDYINGRIGHT, { false, 0, { { 5, 59, { 34, 10 } }, { 10, 60, { 0, 0 } } } } }
+        { Anim::State::BULLETDYINGRIGHT, { false, 0, { { 5, 59, { 34, 10 } }, { 10, 60, { 0, 0 } } } } },
+        { Anim::State::JUMPING, { true, 0, { { 10, 61, {0,0} }, { 10, 62, {0,0} }, { 10, 63, {0,0} }, { 10, 64, {0,0} }, { 10, 65, {0,0} }, { 10, 64, {0,0} }, { 10, 63, {0,0} }, { 10, 62, {0,0} } } } }
 };
+
+//static const FrameData CivilianSpriteData{ {
+//          // Source
+//     { { 0, 468, 46, 70 } },      // Index [0] - Frame for cheerleader jumping
+//     { { 46, 468, 46, 70 } },     // Index [1] - Frame for cheerleader jumping
+//     { { 92, 468, 46, 70 } },     // Index [2] - Frame for cheerleader jumping
+//     { { 138, 468, 46, 70 } },    // Index [3] - Frame for cheerleader jumping
+//     { { 184, 468, 46, 70 } } }   // Index [4] - Frame for cheerleader jumping
+//
+//};
+
+//static const AnimData CivilianAnimation{
+//       // State,                  // loop,            // loopFrame,         // frameIdx[]
+//    { Anim::State::JUMPING,  { true, 0, { { 10, 61, {0,0} }, { 10, 62, {0,0} }, { 10, 63, {0,0} }, { 10, 64, {0,0} }, { 10, 65, {0,0} }, { 10, 64, {0,0} }, { 10, 63, {0,0} }, { 10, 62, {0,0} } } } }
+//};
