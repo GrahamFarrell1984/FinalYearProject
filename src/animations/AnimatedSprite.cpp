@@ -74,3 +74,11 @@ void AnimatedSprite::render(sf::RenderWindow& window)
         window.draw(m_sprite);
     }
 }
+Rect AnimatedSprite::getBounds() const
+{
+    return Rect{ static_cast<sf::Int32>(m_sprite.getPosition().x + m_animFrame.origin.x),
+                 static_cast<sf::Int32>(m_sprite.getPosition().y + m_animFrame.origin.y),
+                 static_cast<sf::Int32>(m_frame.src.w),
+                 static_cast<sf::Int32>(m_frame.src.h)
+    };
+}

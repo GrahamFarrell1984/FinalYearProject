@@ -21,7 +21,6 @@ bool App::setup()
     m_textureManager.loadResource(Assets::Texture::ZOMBIE.id, Assets::Texture::ZOMBIE.filepath);
     m_textureManager.loadResource(Assets::Texture::MUMMY.id, Assets::Texture::MUMMY.filepath);
 
-
     // Load assets here, failing to load assets should quit the game.
     m_initialised = true;
     return m_initialised;

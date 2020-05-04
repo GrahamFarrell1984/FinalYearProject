@@ -49,11 +49,11 @@ void Player::processInput(const Keyboard& keyboard)
                     m_hasFired   = true;
                     m_bulletTick = 0;
                 }
-                // Temp
                 m_vel = sf::Vector2f(0, 0);
                 updateFiringState();
             }
         } else {
+            m_bulletTick = BulletTickCD;
             updateMovingState();
         }
     }
@@ -73,30 +73,31 @@ void Player::update()
         }
     }
 
-    m_animSprite.updatePosition(m_pos);
-    m_rect.setPosition(m_pos.x + ClsnOffset.x, m_pos.y + ClsnOffset.y);
-
     if (m_animState == Anim::State::DYING && m_animSprite.isAnimFinishedPlaying()) {
         m_animState = Anim::State::NONE;
         m_state     = Entity::State::DEAD;
     } else if (m_state == Entity::State::HIT && m_animSprite.isAnimFinishedPlaying()) {
         if (m_health <= 0) {
-            m_state     = Entity::State::DYING;
-            m_animState = Anim::State::DYING;
+            m_state      = Entity::State::DYING;
+            m_animState  = Anim::State::DYING;
             m_invincible = false;
         } else {
             m_invincible = true;
-            m_state     = Entity::State::STANDING;
+            m_state      = Entity::State::STANDING;
             updateMovingState();
         }
     }
+
+    m_animSprite.updatePosition(m_pos);
+    m_rect.setPosition(m_pos.x + ClsnOffset.x, m_pos.y + ClsnOffset.y);
+    m_animSprite.changeState(m_animState);
+    m_animSprite.checkForFrameUpdate();
+
+    m_localBounds = m_animSprite.getBounds();
 }
 
 void Player::render(sf::RenderWindow& window)
 {
-    m_animSprite.changeState(m_animState);
-    m_animSprite.checkForFrameUpdate();
-
     if (!m_invincible || (m_invincible && m_invincibleTick % InvisibleDrawTicks == 0)) {
         m_animSprite.render(window);
     }
@@ -109,7 +110,8 @@ Rect Player::getBounds() const
     return Rect{ static_cast<sf::Int32>(m_rect.getPosition().x),
                  static_cast<sf::Int32>(m_rect.getPosition().y),
                  static_cast<sf::Int32>(m_rect.getSize().x),
-                 static_cast<sf::Int32>(m_rect.getSize().y) };
+                 static_cast<sf::Int32>(m_rect.getSize().y)
+    };
 }
 
 sf::Vector2f Player::getPos() const
@@ -127,7 +129,6 @@ Entity::State Player::getState() const
     return m_state;
 }
 
-
 bool Player::isDead() const
 {
     return m_state == Entity::State::DEAD;
@@ -141,8 +142,8 @@ bool Player::isInvincible() const
 void Player::setIsHit()
 {
     --m_health;
-    m_vel        = sf::Vector2f(0, 0);
-    m_state      = Entity::State::HIT;
+    m_vel   = sf::Vector2f(0, 0);
+    m_state = Entity::State::HIT;
     updateHitState();
 }
 
