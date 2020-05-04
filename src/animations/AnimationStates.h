@@ -22,6 +22,14 @@ namespace Anim {
         HITFACINGLEFT,
         HITFACINGUP,
         DYING,
-        DEAD
+        DEAD,
+        BULLETUP,
+        BULLETDOWN,
+        BULLETLEFT,
+        BULLETRIGHT,
+        BULLETDYINGUP,
+        BULLETDYINGDOWN,
+        BULLETDYINGLEFT,
+        BULLETDYINGRIGHT
     };
 } // NS Anim

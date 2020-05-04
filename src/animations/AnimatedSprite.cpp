@@ -10,6 +10,7 @@ AnimatedSprite::AnimatedSprite(sf::Vector2f pos,
         , m_tick{ 0 }
         , m_frameIndex{ 0 }
         , m_frame{}
+        , m_animFrame {}
         , m_state{ Anim::State::NONE }
         , m_sprite{}
         , m_frameData{ frameData }
@@ -27,7 +28,8 @@ void AnimatedSprite::changeState(const Anim::State state, bool resetCurrentData)
                 m_finishedPlaying = false;
                 m_tick            = 0;
                 m_frameIndex      = 0;
-                m_frame           = m_frameData[animState->second.frames[m_frameIndex].index];
+                m_animFrame       = animState->second.frames[m_frameIndex];
+                m_frame           = m_frameData[m_animFrame.index];
             }
             m_state = state;
         }
@@ -67,7 +69,7 @@ bool AnimatedSprite::isAnimFinishedPlaying() const
 void AnimatedSprite::render(sf::RenderWindow& window)
 {
     if (!m_finishedPlaying) {
-        m_sprite.move(m_frame.origin.x, m_frame.origin.y);
+        m_sprite.move(m_animFrame.origin.x, m_animFrame.origin.y);
         m_sprite.setTextureRect(sf::IntRect(m_frame.src.x, m_frame.src.y, m_frame.src.w, m_frame.src.h));
         window.draw(m_sprite);
     }

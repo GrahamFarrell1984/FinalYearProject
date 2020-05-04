@@ -26,8 +26,9 @@ public:
 private:
     bool m_finishedPlaying;
     uint8_t m_tick;           // Current ticks
-    uint8_t m_frameIndex;     // Current Frame Index
-    Frame m_frame;
+    uint8_t m_frameIndex;     // Current TexSrc Index
+    TexSrc m_frame;
+    AnimFrame m_animFrame;
     Anim::State m_state;
     sf::Sprite m_sprite;
 
