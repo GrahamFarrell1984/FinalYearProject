@@ -43,10 +43,11 @@ void GameScene::update()
     ClsnManager::playerCivilianCollision(m_entityManager.getEntityGroup<Player>(), m_entityManager.getEntityGroup<Civilian>());
 
 
-    m_entityManager.update();
+    m_entityManager.update(m_camera.getBounds());
 
     // Clean up any entities that are destroyed.
     m_entityManager.cleanup();
+
 
     if (player->isDead()) {
         requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAMEOVER);
@@ -70,12 +71,12 @@ void GameScene::onEnter()
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
 
     m_entityManager.create<Player>(sf::Vector2f(100, 100), textureHolder.getResource(Assets::Texture::PLAYER.id));
-    m_entityManager.create<Mummy>(sf::Vector2f(50.f, 50.f), textureHolder.getResource(Assets::Texture::MUMMY.id));
-    m_entityManager.create<Zombie>(sf::Vector2f(150.f, 150.f), textureHolder.getResource(Assets::Texture::ZOMBIE.id));
-    m_entityManager.create<Civilian>(sf::Vector2f(250, 250), textureHolder.getResource(Assets::Texture::PLAYER.id));
-//    for (int i = 0; i < 10; ++i) {
-//        m_entityManager.create<Civilian>(sf::Vector2f(rand() % 250 + 1, rand() % 250 + 1), textureHolder.getResource(Assets::Texture::CIVILIAN.id));
-//    }
+//    m_entityManager.create<Mummy>(sf::Vector2f(50.f, 50.f), textureHolder.getResource(Assets::Texture::MUMMY.id));
+//    m_entityManager.create<Zombie>(sf::Vector2f(150.f, 150.f), textureHolder.getResource(Assets::Texture::ZOMBIE.id));
+
+    for (int i = 0; i < 10; ++i) {
+        m_entityManager.create<Civilian>(sf::Vector2f(rand() % 250 * i, rand() % 250 * i), textureHolder.getResource(Assets::Texture::PLAYER.id));
+    }
 }
 
 void GameScene::onExit()

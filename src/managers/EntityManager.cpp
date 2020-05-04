@@ -1,16 +1,30 @@
 #include "EntityManager.h"
+#include "RectUtils.h"
 
-void EntityManager::update()
+
+// Always update each entity the first time to set positions etc.
+void EntityManager::update(Rect camView)
 {
+    // Extending the camera view so partial sprites inside the camera get updated and drawn also.
+    camView = Rect{ camView.x - Offset, camView.y - Offset, camView.w + Offset, camView.h + Offset };
     for (const auto& e : m_entities) {
-        e->update();
+        if (e->m_visable) {
+            e->update();
+        }
+        Point p{ static_cast<int32_t>(e->m_localBounds.x + e->m_localBounds.w * 0.5f),
+                 static_cast<int32_t>(e->m_localBounds.y + e->m_localBounds.w * 0.5f) };
+        Utils::contains(camView, p) ? e->m_visable = true : e->m_visable = false;
+
     }
+    sortDrawOrder();
 }
 
 void EntityManager::render(sf::RenderWindow &window)
 {
     for (const auto& e : m_entities) {
-        e->render(window);
+        if (e->m_visable) {
+            e->render(window);
+        }
     }
 }
 void EntityManager::cleanup()
@@ -27,4 +41,12 @@ void EntityManager::cleanup()
     m_entities.erase(std::remove_if(std::begin(m_entities), std::end(m_entities), [](const auto& e) {
         return e->m_destroyed;
     }), std::end(m_entities));
+}
+
+void EntityManager::sortDrawOrder()
+{
+    // TEST THIS, LOOKS GOOD SO FAR BUT YOU NEVER KNOW
+    std::sort(m_entities.begin(),m_entities.end(), [](const auto& e1, const auto& e2){
+        return (e1->m_localBounds.y + e1->m_localBounds.w) < (e2->m_localBounds.y + e2->m_localBounds.w);
+    });
 }

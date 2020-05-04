@@ -13,6 +13,7 @@ struct Rect
     int32_t x, y, w, h;
 };
 
+
 struct TexSrc
 {
     Rect src;

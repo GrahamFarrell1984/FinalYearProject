@@ -13,6 +13,6 @@ namespace Entity {
         SHOOTING,
         HIT,
         DYING,
-        DEAD
+        DEAD,
     };
 } // NS Entity

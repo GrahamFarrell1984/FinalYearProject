@@ -3,6 +3,10 @@
 #include "Types.h"
 
 namespace Utils {
+    static bool contains(const Rect& r, const Point& p) noexcept {
+        return p.x > r.x && p.x < r.x + r.w && p.y > r.y && p.y < r.y + r.h;
+    }
+
     static bool isIntersecting(const Rect& a, const Rect& b) noexcept
     {
         return (a.x + a.w) >= b.x && a.x <= (b.x + b.w) && (a.y + a.h) >= b.y && a.y <= (b.y + b.h);

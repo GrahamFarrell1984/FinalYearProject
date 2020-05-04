@@ -11,7 +11,7 @@
 class EntityManager
 {
 public:
-    void update();
+    void update(Rect view);
     void render(sf::RenderWindow& window);
     void cleanup();
 
@@ -38,8 +38,12 @@ public:
         m_entities.emplace_back(std::move(entity));
         return *static_cast<T*>(m_entities.back().get());
     }
-
 private:
+    static constexpr auto Offset = 50;
+
+    void sortDrawOrder();
+
+
     std::vector<std::unique_ptr<BaseEntity>> m_entities;
     std::map<std::type_index, std::vector<BaseEntity*>> m_groupedEntities;
 };

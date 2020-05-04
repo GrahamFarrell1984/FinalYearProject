@@ -28,3 +28,11 @@ sf::View Camera::update(sf::Vector2f target)
     m_view.setCenter(target);
     return m_view;
 }
+Rect Camera::getBounds() const
+{
+    return Rect{ static_cast<sf::Int32>(m_view.getCenter().x - m_viewSize.x * 0.5f),
+                 static_cast<sf::Int32>(m_view.getCenter().y - m_viewSize.y * 0.5f),
+                 static_cast<sf::Int32>(m_viewSize.x),
+                 static_cast<sf::Int32>(m_viewSize.y)
+    };
+}

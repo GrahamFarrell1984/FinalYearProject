@@ -109,17 +109,7 @@ static const AnimData SpriteAnimation{
         { Anim::State::JUMPING, { true, 0, { { 10, 61, {0,0} }, { 10, 62, {0,0} }, { 10, 63, {0,0} }, { 10, 64, {0,0} }, { 10, 65, {0,0} }, { 10, 64, {0,0} }, { 10, 63, {0,0} }, { 10, 62, {0,0} } } } }
 };
 
-//static const FrameData CivilianSpriteData{ {
-//          // Source
-//     { { 0, 468, 46, 70 } },      // Index [0] - Frame for cheerleader jumping
-//     { { 46, 468, 46, 70 } },     // Index [1] - Frame for cheerleader jumping
-//     { { 92, 468, 46, 70 } },     // Index [2] - Frame for cheerleader jumping
-//     { { 138, 468, 46, 70 } },    // Index [3] - Frame for cheerleader jumping
-//     { { 184, 468, 46, 70 } } }   // Index [4] - Frame for cheerleader jumping
-//
-//};
-
-//static const AnimData CivilianAnimation{
-//       // State,                  // loop,            // loopFrame,         // frameIdx[]
-//    { Anim::State::JUMPING,  { true, 0, { { 10, 61, {0,0} }, { 10, 62, {0,0} }, { 10, 63, {0,0} }, { 10, 64, {0,0} }, { 10, 65, {0,0} }, { 10, 64, {0,0} }, { 10, 63, {0,0} }, { 10, 62, {0,0} } } } }
-//};
+static const AnimData CivilianAnimation{
+        // State,                  // loop,            // loopFrame,         // frameIdx[]
+        { Anim::State::JUMPING,  { true, 0, { { 10, 61, {0,0} }, { 10, 62, {0,0} }, { 10, 63, {0,0} }, { 10, 64, {0,0} }, { 10, 65, {0,0} }, { 10, 64, {0,0} }, { 10, 63, {0,0} }, { 10, 62, {0,0} } } } }
+};

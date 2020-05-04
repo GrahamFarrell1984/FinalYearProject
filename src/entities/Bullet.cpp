@@ -6,10 +6,10 @@ Bullet::Bullet(sf::Vector2f position, Entity::Direction direction, const sf::Tex
         : m_position{ position }
         , m_velocity{ 0, 0 }
         , m_rect{ }
-        , m_clsnOffset { }
-        , m_direction { direction }
-        , m_state { Entity::State::MOVING }
-        , m_animState { Anim::State::NONE }
+        , m_clsnOffset{ }
+        , m_direction{ direction }
+        , m_state{ Entity::State::MOVING }
+        , m_animState{ Anim::State::NONE }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
 {
     switch (m_direction) {
@@ -38,7 +38,6 @@ Bullet::Bullet(sf::Vector2f position, Entity::Direction direction, const sf::Tex
             m_animState = Anim::State::BULLETRIGHT;
             break;
     }
-
     m_rect.setPosition(m_position.x, m_position.y);
     m_rect.setFillColor(sf::Color(255, 0, 0, 100));
 }
@@ -59,15 +58,17 @@ void Bullet::update()
             m_destroyed = true;
         }
     }
+    m_animSprite.changeState(m_animState);
+    m_animSprite.checkForFrameUpdate();
+
+    m_localBounds = m_animSprite.getBounds();
 }
 
 void Bullet::render(sf::RenderWindow& window)
 {
-    m_animSprite.changeState(m_animState);
-    m_animSprite.checkForFrameUpdate();
     m_animSprite.render(window);
     // Uncomment to see collision boxes
-    // window.draw(m_rect);
+    window.draw(m_rect);
 }
 
 Rect Bullet::getBounds() const

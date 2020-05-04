@@ -23,6 +23,8 @@ public:
     bool isAnimFinishedPlaying() const;
     void render(sf::RenderWindow& window);
 
+    Rect getBounds() const;
+
 private:
     bool m_finishedPlaying;
     uint8_t m_tick;           // Current ticks
