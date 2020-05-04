@@ -5,10 +5,10 @@
 
 #include "BaseScene.h"
 
-class OptionsScene final : public BaseScene
+class ControlsScene final : public BaseScene
 {
 public:
-    OptionsScene(SceneManager& sceneManager, Scene::Name name);
+    ControlsScene(SceneManager& sceneManager, Scene::Name name);
 
     void processInput(const Keyboard& keyboard) override;
     void update() override;

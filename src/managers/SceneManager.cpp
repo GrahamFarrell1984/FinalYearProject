@@ -5,7 +5,7 @@
 #include "PauseScene.h"
 #include "TestScene.h"
 #include "TitleScene.h"
-#include "OptionsScene.h"
+#include "ControlsScene.h"
 
 SceneManager::SceneManager(SharedContext&& sharedContext)
         : m_sharedContext{ std::move(sharedContext) }
@@ -127,7 +127,7 @@ std::unique_ptr<BaseScene> SceneManager::createScene(const Scene::Name name)
         case Scene::Name::TITLE:
             return std::unique_ptr<BaseScene>(std::make_unique<TitleScene>(*this, name));
         case Scene::Name::OPTIONS:
-            return std::unique_ptr<BaseScene>(std::make_unique<OptionsScene>(*this, name));
+            return std::unique_ptr<BaseScene>(std::make_unique<ControlsScene>(*this, name));
         case Scene::Name::GAME:
             return std::unique_ptr<BaseScene>(std::make_unique<GameScene>(*this, name));
         case Scene::Name::PAUSE:
