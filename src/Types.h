@@ -3,9 +3,6 @@
 #include <stdint.h>
 #include <vector>
 
-
-
-
 struct Point
 {
     int32_t x, y;
@@ -16,9 +13,8 @@ struct Rect
     int32_t x, y, w, h;
 };
 
-struct Frame
+struct TexSrc
 {
-    Point origin;
     Rect src;
 };
 
@@ -26,6 +22,7 @@ struct AnimFrame
 {
     uint8_t tick;
     uint8_t index;
+    Point origin;
 };
 
 struct Animation

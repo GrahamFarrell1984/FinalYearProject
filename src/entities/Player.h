@@ -33,10 +33,13 @@ public:
     void setHasFired(bool fire);
 
 private:
-    static constexpr auto NormalSpeed  = 2;
-    static constexpr auto PowerUpSpeed = 4;
-    static constexpr auto BulletTickCD = 8;
-    static constexpr auto InvincibleTickCD = 100;
+    static constexpr auto NormalSpeed        = 2;
+    static constexpr auto PowerUpSpeed       = 4;
+    static constexpr auto MaxHealth          = 4;
+    static constexpr auto BulletTickCD       = 25;
+    static constexpr auto InvisibleDrawTicks = 5;
+    static constexpr auto InvincibleTickCD   = 100;
+    static constexpr Point ClsnOffset        = Point{ 5, 20 };
 
     void updateMovingState();
     void updateFiringState();

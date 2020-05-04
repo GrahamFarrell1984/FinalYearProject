@@ -4,7 +4,7 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         : m_hasFired{ false }
         , m_moving{ false }
         , m_invincible{ false }
-        , m_health{ 5 }
+        , m_health{ MaxHealth }
         , m_speed{ NormalSpeed }
         , m_bulletTick{ BulletTickCD }
         , m_invincibleTick{ 0 }
@@ -13,7 +13,7 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         , m_animState{ Anim::State::STANDFACINGDOWN }
         , m_pos{ position }
         , m_vel{ 0, 0 }
-        , m_rect{ sf::Vector2f(26, 42) }
+        , m_rect{ sf::Vector2f(18, 20) }
         , m_animSprite{ position, texture, PlayerSpriteData, PlayerAnimation }
 {
     // Test
@@ -56,14 +56,6 @@ void Player::processInput(const Keyboard& keyboard)
         } else {
             updateMovingState();
         }
-
-        //        // Testing animation for when the player dies
-        //        if (keyboard.checkKeyAndState(sf::Keyboard::X, State::PRESS)) {
-        //            m_vel   = sf::Vector2f(0, 0);
-        //            m_state = Entity::State::DYING;
-        //            m_animState = Anim::State::DYING;
-        //            m_moving = false;
-        //        }
     }
 }
 
@@ -82,7 +74,7 @@ void Player::update()
     }
 
     m_animSprite.updatePosition(m_pos);
-    m_rect.setPosition(m_pos.x, m_pos.y);
+    m_rect.setPosition(m_pos.x + ClsnOffset.x, m_pos.y + ClsnOffset.y);
 
     if (m_animState == Anim::State::DYING && m_animSprite.isAnimFinishedPlaying()) {
         m_animState = Anim::State::NONE;
@@ -105,7 +97,7 @@ void Player::render(sf::RenderWindow& window)
     m_animSprite.changeState(m_animState);
     m_animSprite.checkForFrameUpdate();
 
-    if (!m_invincible || (m_invincible && m_invincibleTick % 4 == 0)) {
+    if (!m_invincible || (m_invincible && m_invincibleTick % InvisibleDrawTicks == 0)) {
         m_animSprite.render(window);
     }
     // Toggle this to turn on and off collision boxes.
