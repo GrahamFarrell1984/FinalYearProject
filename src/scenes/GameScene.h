@@ -21,9 +21,7 @@ private:
     static constexpr Point WORLDSIZE{ 2048, 1536 };
     static constexpr Point VIEWSIZE {  512,  384 };
 
-//    static constexpr Point WORLDSIZE{ 1024, 768 };
-//    static constexpr Point VIEWSIZE { 1024, 768  };
-
     Camera m_camera;
+    Player* m_player;
     EntityManager m_entityManager;
 };

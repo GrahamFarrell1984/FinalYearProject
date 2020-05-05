@@ -28,6 +28,7 @@ namespace ClsnManager {
             for (auto zombie : zombies) {
                 if (Utils::isIntersecting(bullet->getBounds(), zombie->getBounds())) {
                     bullet->setIsHit();
+                    zombie->m_destroyed = true;
                 }
             }
         }
