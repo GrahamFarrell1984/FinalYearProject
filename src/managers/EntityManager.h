@@ -28,7 +28,7 @@ public:
     }
 
     template <typename T, typename... Args>
-    T& create(Args&&... args)
+    T* create(Args&&... args)
     {
         // Checks to make sure T is of type Entity.
         static_assert(std::is_base_of<BaseEntity, T>::value, "T must be derived from Entity");
@@ -36,7 +36,7 @@ public:
         std::unique_ptr<T> entity = std::make_unique<T>(std::forward<Args>(args)...);
         m_groupedEntities[std::type_index(typeid(T))].emplace_back(entity.get());
         m_entities.emplace_back(std::move(entity));
-        return *static_cast<T*>(m_entities.back().get());
+        return static_cast<T*>(m_entities.back().get());
     }
 private:
     static constexpr auto Offset = 50;

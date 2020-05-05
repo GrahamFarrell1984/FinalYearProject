@@ -4,6 +4,7 @@
 
 Bullet::Bullet(sf::Vector2f position, Entity::Direction direction, const sf::Texture* texture)
         : m_position{ position }
+        , m_startPosition{ position }
         , m_velocity{ 0, 0 }
         , m_rect{ }
         , m_clsnOffset{ }
@@ -53,10 +54,10 @@ void Bullet::update()
         m_rect.setPosition(m_position.x + m_clsnOffset.x, m_position.y + m_clsnOffset.y);
         m_animSprite.updatePosition(m_position);
 
-        // Clean Up this shite
-        if (m_position.x < 0 || m_position.x > 1024 || m_position.y < 0 || m_position.y > 768) {
-            m_destroyed = true;
+        if (std::abs(m_position.x - m_startPosition.x) > MaxDistance || std::abs(m_position.y - m_startPosition.y) > MaxDistance) {
+            setIsHit();
         }
+
     }
     m_animSprite.changeState(m_animState);
     m_animSprite.checkForFrameUpdate();
@@ -68,7 +69,7 @@ void Bullet::render(sf::RenderWindow& window)
 {
     m_animSprite.render(window);
     // Uncomment to see collision boxes
-    window.draw(m_rect);
+    // window.draw(m_rect);
 }
 
 Rect Bullet::getBounds() const

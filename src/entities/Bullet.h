@@ -23,12 +23,14 @@ public:
 private:
     // Diff speed for diff weapons ?
     static constexpr auto BulletSpeed = 8;
+    static constexpr auto MaxDistance = 100;
     static constexpr Rect ClsnUpOffset{ 9, -4, 7, 16 };
     static constexpr Rect ClsnDownOffset{ 9, 24, 7, 16 };
     static constexpr Rect ClsnLeftOffset{ -16, 15, 18, 5 };
     static constexpr Rect ClsnRightOffset{ 24, 15, 18, 5 };
 
     sf::Vector2f m_position;
+    sf::Vector2f m_startPosition;
     sf::Vector2f m_velocity;
     sf::RectangleShape m_rect;
     Point m_clsnOffset;

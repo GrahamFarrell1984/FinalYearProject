@@ -45,7 +45,6 @@ void EntityManager::cleanup()
 
 void EntityManager::sortDrawOrder()
 {
-    // TEST THIS, LOOKS GOOD SO FAR BUT YOU NEVER KNOW
     std::sort(m_entities.begin(),m_entities.end(), [](const auto& e1, const auto& e2){
         return (e1->m_localBounds.y + e1->m_localBounds.w) < (e2->m_localBounds.y + e2->m_localBounds.w);
     });
