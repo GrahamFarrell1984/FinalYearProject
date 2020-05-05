@@ -157,6 +157,11 @@ void Player::setHasFired(bool hasFired)
     m_hasFired = hasFired;
 }
 
+int Player::getHealth() const
+{
+    return m_health;
+}
+
 void Player::updateMovingState()
 {
     switch (m_dir) {

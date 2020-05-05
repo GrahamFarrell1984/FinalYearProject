@@ -83,7 +83,7 @@ void PauseScene::render(sf::RenderWindow& window)
 
     // Draw the paused menu text
     m_sprite.setPosition(static_cast<float>(PAUSED_MENU_POS.x), static_cast<float>(PAUSED_MENU_POS.y));
-    m_sprite.setTextureRect(sf::IntRect(PAUSED_MENU_SRC_RECT.x, PAUSED_MENU_SRC_RECT.y, SIZE, SIZE));
+    m_sprite.setTextureRect(sf::IntRect(PAUSED_MENU_SRC_RECT.x, PAUSED_MENU_SRC_RECT.y, SIZE, PAUSED_MENU_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Draw the cursor
