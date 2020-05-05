@@ -24,4 +24,6 @@ private:
     Camera m_camera;
     Player* m_player;
     EntityManager m_entityManager;
+    sf::Sprite m_sprite;
+    sf::Vector2i m_heartSpritePos;
 };

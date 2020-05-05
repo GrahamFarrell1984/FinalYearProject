@@ -13,6 +13,17 @@ static constexpr auto CURSOROFFSET = 64;
 
 static constexpr auto SIZE = 256;
 
+//static constexpr Rect SMALL_HEART_SRC_RECT {224,32,16,16 };
+//static constexpr Rect MEDIUM_HEART_SRC_RECT {224,48,32,32 };
+//static constexpr Rect BIG_HEART_SRC_RECT {224,80,32,32 };
+//static constexpr Rect BIG_HEART_WHITE_BORDER_SRC_RECT {224,112,32,32 };
+
+static constexpr Rect FIVE_HEARTS_SRC_RECT {0,1408,168,32 };
+static constexpr Rect FOUR_HEARTS_SRC_RECT {0,1408,134,32 };
+static constexpr Rect THREE_HEARTS_SRC_RECT {0,1408,100,32 };
+static constexpr Rect TWO_HEARTS_SRC_RECT {0,1408,66,32 };
+static constexpr Rect ONE_HEART_SRC_RECT {0,1408,32,32 };
+
 // Source rectangle of big grey skull on texture
 static constexpr Rect BIG_GREY_SKULL_SRC_RECT {0,0,224,256 };
 
