@@ -11,10 +11,12 @@ void EntityManager::update(Rect camView)
         if (e->m_visable) {
             e->update();
         }
-        Point p{ static_cast<int32_t>(e->m_localBounds.x + e->m_localBounds.w * 0.5f),
-                 static_cast<int32_t>(e->m_localBounds.y + e->m_localBounds.w * 0.5f) };
-        Utils::contains(camView, p) ? e->m_visable = true : e->m_visable = false;
 
+        Point p{ static_cast<int32_t>(e->m_localBounds.x + e->m_localBounds.w * 0.5f),
+                 static_cast<int32_t>(e->m_localBounds.y + e->m_localBounds.w * 0.5f)
+        };
+
+        Utils::contains(camView, p) ? e->m_visable = true : e->m_visable = false;
     }
     sortDrawOrder();
 }

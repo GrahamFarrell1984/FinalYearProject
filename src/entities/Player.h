@@ -34,6 +34,12 @@ public:
 
     int getHealth() const;
 
+    void setZombiesKilledCount();
+    int getZombiesKilledCount();
+
+    void setCiviliansRescuedCount();
+    int getCiviliansRescuedCount();
+
 private:
     static constexpr auto NormalSpeed        = 2;
     static constexpr auto PowerUpSpeed       = 4;
@@ -61,4 +67,6 @@ private:
     sf::Vector2f m_vel;
     sf::RectangleShape m_rect;
     AnimatedSprite m_animSprite;
+    int m_zombiesKilledCount;
+    int m_civiliansRescuedCount;
 };

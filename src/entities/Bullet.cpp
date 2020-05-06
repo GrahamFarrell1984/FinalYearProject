@@ -54,6 +54,7 @@ void Bullet::update()
         m_rect.setPosition(m_position.x + m_clsnOffset.x, m_position.y + m_clsnOffset.y);
         m_animSprite.updatePosition(m_position);
 
+        // Clean Up this shite
         if (std::abs(m_position.x - m_startPosition.x) > MaxDistance || std::abs(m_position.y - m_startPosition.y) > MaxDistance) {
             setIsHit();
         }

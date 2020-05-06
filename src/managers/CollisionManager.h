@@ -1,15 +1,24 @@
 #pragma once
 
 #include "BaseEntity.h"
-#include "Player.h"
-#include "Zombie.h"
 #include "Bullet.h"
 #include "Civilian.h"
+#include "EntityManager.h"
+#include "Player.h"
 #include "RectangleHelper.h"
+#include "Zombie.h"
 
 namespace ClsnManager {
-    static void pzClsn(std::vector<Player*>players, std::vector<Zombie*>zombies)
+    static void update(EntityManager& entityManager)
     {
+        auto players  = entityManager.getEntityGroup<Player>();
+        auto bullets  = entityManager.getEntityGroup<Bullet>();
+        auto zombies  = entityManager.getEntityGroup<Zombie>();
+        auto civilians = entityManager.getEntityGroup<Civilian>();
+
+        auto player = players.front();
+
+        // Handle All Player Collisions
         for (auto player : players) {
             for (auto zombie : zombies) {
                 if (Utils::isIntersecting(player->getBounds(), zombie->getBounds())) {
@@ -19,29 +28,24 @@ namespace ClsnManager {
                     }
                 }
             }
+            for (auto civilian : civilians) {
+                if (Utils::isIntersecting(player->getBounds(), civilian->getBounds())) {
+                    civilian->m_destroyed = true;
+                    player->setCiviliansRescuedCount();
+                }
+            }
         }
-    }
 
-    static void bzClsn(std::vector<Bullet*> bullets, std::vector<Zombie*> zombies)
-    {
+        // Handle All Bullet Collisions
         for (auto bullet : bullets) {
             for (auto zombie : zombies) {
                 if (Utils::isIntersecting(bullet->getBounds(), zombie->getBounds())) {
                     bullet->setIsHit();
                     zombie->m_destroyed = true;
+                    player->setZombiesKilledCount();
                 }
             }
         }
     }
 
-    static void playerCivilianCollision(std::vector<Player*> players, std::vector<Civilian*> civilians)
-    {
-        for (auto player : players) {
-            for (auto civilian : civilians) {
-                if (Utils::isIntersecting(player->getBounds(), civilian->getBounds())) {
-                    civilian->m_destroyed = true;
-                }
-            }
-        }
-    }
-}
+}  // namespace ClsnManager

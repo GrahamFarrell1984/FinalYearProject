@@ -102,10 +102,10 @@ static const AnimData SpriteAnimation{
         { Anim::State::BULLETDOWN, { true, 0, { { 0, 56, { 9, 24 } } } } },
         { Anim::State::BULLETLEFT, { true, 0, { { 0, 57, { -16, 12 } } } } },
         { Anim::State::BULLETRIGHT, { true, 0, { { 0, 58, { 24, 12 } } } } },
-        { Anim::State::BULLETDYINGUP, { false, 0, { { 5, 59, { 5, -10 } }, { 10, 60, { 0, 0 } } } } },
-        { Anim::State::BULLETDYINGDOWN, { false, 0, { { 5, 59, { 5, 34 } }, { 10, 60, { 0, 0 } } } } },
-        { Anim::State::BULLETDYINGLEFT, { false, 0, { { 5, 59, { -24, 10 } }, { 10, 60, { 0, 0 } } } } },
-        { Anim::State::BULLETDYINGRIGHT, { false, 0, { { 5, 59, { 34, 10 } }, { 10, 60, { 0, 0 } } } } },
+        { Anim::State::BULLETDYINGUP, { false, 0, { { 5, 59, { 5, -10 } }, { 10, 60, { 5, -10 } } } } },
+        { Anim::State::BULLETDYINGDOWN, { false, 0, { { 5, 59, { 5, 34 } }, { 10, 60, { 5, 34 } } } } },
+        { Anim::State::BULLETDYINGLEFT, { false, 0, { { 5, 59, { -24, 8 } }, { 10, 60, { -24, 8 } } } } },
+        { Anim::State::BULLETDYINGRIGHT, { false, 0, { { 5, 59, { 34, 8 } }, { 10, 60, {  34, 8 } } } } },
         { Anim::State::JUMPING, { true, 0, { { 10, 61, {0,0} }, { 10, 62, {0,0} }, { 10, 63, {0,0} }, { 10, 64, {0,0} }, { 10, 65, {0,0} }, { 10, 64, {0,0} }, { 10, 63, {0,0} }, { 10, 62, {0,0} } } } }
 };
 
