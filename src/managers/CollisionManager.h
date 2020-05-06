@@ -5,7 +5,7 @@
 #include "Zombie.h"
 #include "Bullet.h"
 #include "Civilian.h"
-#include "RectUtils.h"
+#include "RectangleHelper.h"
 
 namespace ClsnManager {
     static void pzClsn(std::vector<Player*>players, std::vector<Zombie*>zombies)

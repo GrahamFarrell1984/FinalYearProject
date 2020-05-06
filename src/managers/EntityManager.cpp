@@ -1,5 +1,5 @@
 #include "EntityManager.h"
-#include "RectUtils.h"
+#include "RectangleHelper.h"
 
 
 // Always update each entity the first time to set positions etc.
