@@ -2,8 +2,8 @@
 
 #include <SFML/Graphics/RectangleShape.hpp>
 
-#include "BaseEntity.h"
 #include "AnimatedSprite.h"
+#include "BaseEntity.h"
 
 class Civilian : public BaseEntity
 {

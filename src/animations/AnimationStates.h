@@ -32,5 +32,6 @@ namespace Anim {
         BULLETDYINGLEFT,
         BULLETDYINGRIGHT,
         JUMPING,
+        ZOMBIEWALKINGUP
     };
 } // NS Anim

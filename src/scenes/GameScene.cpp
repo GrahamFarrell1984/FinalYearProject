@@ -87,7 +87,7 @@ void GameScene::onEnter()
     m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), textureHolder.getResource(Assets::Texture::PLAYER.id));
 
     for (int i = 0; i < 10; ++i) {
-        m_entityManager.create<Zombie>(sf::Vector2f(rand() % 250 * (i + 0.3), rand() % 250 * (i + 0.5)), textureHolder.getResource(Assets::Texture::ZOMBIE.id));
+        m_entityManager.create<Zombie>(sf::Vector2f(rand() % 250 * (i + 0.3), rand() % 250 * (i + 0.5)), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
     for (int i = 0; i < 10; ++i) {
