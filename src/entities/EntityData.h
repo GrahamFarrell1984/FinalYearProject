@@ -72,15 +72,49 @@ static const FrameData SpriteData{{
       { { 164, 152, 18, 5 } },  // Index [58] - TexSrc for bullet right
       { { 182, 152, 15, 13 } },  // Index [59] - TexSrc for bullet splash1
       { { 178, 136, 16, 16 } },  // Index [60] - TexSrc for bullet splash2
+
       { { 0, 468, 46, 70 } },       // Index [61] - Frame for cheerleader jumping
       { { 46, 468, 46, 70 } },      // Index [62] - Frame for cheerleader jumping
       { { 92, 468, 46, 70 } },      // Index [63] - Frame for cheerleader jumping
       { { 138, 468, 46, 70 } },     // Index [64] - Frame for cheerleader jumping
       { { 184, 468, 46, 70 } },     // Index [65] - Frame for cheerleader jumping
-      { { 0, 536, 24, 48 } },       // Index [66] - Frame for zombie walking up
-      { { 24, 536, 24, 48 } },      // Index [67] - Frame for zombie walking up
-      { { 48, 536, 24, 48 } },      // Index [68] - Frame for zombie walking up
-      { { 72, 536, 24, 48 } } }     // Index [69] - Frame for zombie walking up
+
+      { { 0, 536, 44, 63 } },       // Index [66] - Frame for zombie spawning
+      { { 44, 536, 44, 63 } },      // Index [67] - Frame for zombie spawning
+      { { 88, 536, 44, 63 } },      // Index [68] - Frame for zombie spawning
+      { { 132, 536, 44, 63 } },     // Index [69] - Frame for zombie spawning
+      { { 176, 536, 44, 63 } },      // Index [70] - Frame for zombie spawning
+      { { 220, 536, 44, 63 } },     // Index [71] - Frame for zombie spawning
+
+      { { 0, 599, 44, 63 } },       // Index [72] - Frame for zombie walking down
+      { { 44, 599, 44, 63 } },      // Index [73] - Frame for zombie walking down
+      { { 88, 599, 44, 63 } },      // Index [74] - Frame for zombie walking down
+      { { 132, 599, 44, 63 } },     // Index [75] - Frame for zombie walking down
+      { { 176, 599, 44, 63 } },      // Index [76] - Frame for zombie walking down
+      { { 220, 599, 44, 63 } },     // Index [77] - Frame for zombie walking down
+
+      { { 0, 662, 44, 63 } },       // Index [78] - Frame for zombie walking up
+      { { 44, 662, 44, 63 } },      // Index [79] - Frame for zombie walking up
+      { { 88, 662, 44, 63 } },      // Index [80] - Frame for zombie walking up
+      { { 132, 662, 44, 63 } },     // Index [81] - Frame for zombie walking up
+
+      { { 0, 725, 44, 63 } },       // Index [82] - Frame for zombie walking left
+      { { 44, 725, 44, 63 } },      // Index [83] - Frame for zombie walking left
+      { { 88, 725, 44, 63 } },      // Index [84] - Frame for zombie walking left
+      { { 132, 725, 44, 63 } },     // Index [85] - Frame for zombie walking right
+      { { 176, 725, 44, 63 } },      // Index [86] - Frame for zombie walking right
+      { { 220, 725, 44, 63 } },     // Index [87] - Frame for zombie walking right
+
+      { { 0, 788, 44, 63 } },       // Index [88] - Frame for zombie exploding
+      { { 44, 788, 44, 63 } },      // Index [89] - Frame for zombie exploding
+      { { 88, 788, 44, 63 } },      // Index [90] - Frame for zombie exploding
+      { { 132, 788, 44, 63 } },     // Index [91] - Frame for zombie exploding
+      { { 176, 788, 44, 63 } },      // Index [92] - Frame for zombie exploding
+
+      { { 0, 851, 44, 63 } },       // Index [93] - Frame for zombie exploding
+      { { 44, 851, 44, 63 } },      // Index [94] - Frame for zombie exploding
+      { { 88, 851, 44, 63 } },      // Index [95] - Frame for zombie exploding
+      { { 132, 851, 44, 63 } } }     // Index [96] - Frame for zombie exploding
 };
 
 static const AnimData SpriteAnimation{
@@ -111,7 +145,13 @@ static const AnimData SpriteAnimation{
         { Anim::State::BULLETDYINGLEFT, { false, 0, { { 5, 59, { -24, 8 } }, { 10, 60, { -24, 8 } } } } },
         { Anim::State::BULLETDYINGRIGHT, { false, 0, { { 5, 59, { 34, 8 } }, { 10, 60, {  34, 8 } } } } },
         { Anim::State::JUMPING, { true, 0, { { 10, 61, {0,0} }, { 10, 62, {0,0} }, { 10, 63, {0,0} }, { 10, 64, {0,0} }, { 10, 65, {0,0} }, { 10, 64, {0,0} }, { 10, 63, {0,0} }, { 10, 62, {0,0} } } } },
-        { Anim::State::ZOMBIEWALKINGUP, { true, 0, { { 20, 66, {0,0} }, { 20, 67, {0,0} }, { 20, 68, {0,0} }, { 20, 69, {0,0} } } } }
+
+        { Anim::State::ZOMBIESPAWNING, { true, 0, { { 20, 66, {0,0} }, { 20, 67, {0,0} }, { 20, 68, {0,0} }, { 20, 69, {0,0} }, { 20, 70, {0,0} }, { 20, 71, {0,0} } } } },
+        { Anim::State::ZOMBIEMOVINGDOWN, { true, 0, { { 20, 72, {0,0} }, { 20, 73, {0,0} }, { 20, 74, {0,0} }, { 20, 75, {0,0} }, { 20, 76, {0,0} }, { 20, 76, {0,0} } } } },
+        { Anim::State::ZOMBIEMOVINGUP, { true, 0, { { 20, 78, {0,0} }, { 20, 79, {0,0} }, { 20, 80, {0,0} }, { 20, 81, {0,0} } } } },
+        { Anim::State::ZOMBIEMOVINGLEFT, { true, 0, { { 20, 82, {0,0} }, { 20, 83, {0,0} }, { 20, 84, {0,0} } } } },
+        { Anim::State::ZOMBIEMOVINGRIGHT, { true, 0, { { 20, 85, {0,0} }, { 20, 86, {0,0} }, { 20, 87, {0,0} } } } },
+        { Anim::State::ZOMBIEEXPLODING, { true, 0, { { 20, 88, {0,0} }, { 20, 89, {0,0} }, { 20, 90, {0,0} }, { 20, 91, {0,0} }, { 20, 92, {0,0} }, { 20, 93, {0,0} }, { 20, 94, {0,0} }, { 20, 95, {0,0} }, { 20, 96, {0,0} } } } }
 };
 
 static const AnimData CivilianAnimation{

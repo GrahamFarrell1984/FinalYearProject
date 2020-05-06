@@ -16,7 +16,7 @@ namespace Assets {
     }  // namespace Texture
 
     namespace Font {
-        static constexpr Data FONTA{ 0, "assets/font/FONT_A.ttf" };
+        static constexpr Data FONTA{ 0, "assets/font/Minecraft.ttf" };
     }  // namespace Font
 
     namespace Sfx {

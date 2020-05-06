@@ -14,7 +14,7 @@ ControlsScene::ControlsScene(SceneManager& sceneManager, const Scene::Name name)
 
 void ControlsScene::processInput(const Keyboard& keyboard)
 {
-    AudioManager& audioManager = getSharedContext().audioManager;
+    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
 
     if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::PRESS)) {
         if (m_options == MENUOPTIONS::RETURN) {
@@ -89,8 +89,8 @@ void ControlsScene::onEnter()
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
-    //    AudioManager& audioManager = getSharedContext().audioManager;
-    //    audioManager.playMusic(Assets::Music::MUSICA);
+    //  AudioManager& audioManager = Singleton<AudioManager>::getInstance();
+    //  audioManager.playMusic(Assets::Music::MUSICA);
 }
 
 void ControlsScene::onExit()

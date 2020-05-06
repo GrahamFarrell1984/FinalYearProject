@@ -77,11 +77,13 @@ void GameScene::render(sf::RenderWindow& window)
 
 void GameScene::onEnter()
 {
-    AudioManager& audioManager = getSharedContext().audioManager;
+    const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
+    const ResourceManager<sf::Font>& fontHolder = getSharedContext().fontHolder;
+
+    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
     audioManager.stopMusic();
     audioManager.stopAllSounds();
 
-    const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
     m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), textureHolder.getResource(Assets::Texture::PLAYER.id));
@@ -94,13 +96,12 @@ void GameScene::onEnter()
         m_entityManager.create<Civilian>(sf::Vector2f(rand() % 250 * (i + 0.1), rand() % 250 * (i + 0.1)), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
-    m_font.loadFromFile("assets/font/Minecraft.ttf");
-    m_zombiesKilledCountText.setFont(m_font);
+    m_zombiesKilledCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_zombiesKilledCountText.setCharacterSize(24);
     m_zombiesKilledCountText.setColor(sf::Color::White);
     m_zombiesKilledCountText.setPosition(static_cast<float>((VIEWSIZE.x / 2) - (ZOMBIE_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 
-    m_civiliansRescuedCountText.setFont(m_font);
+    m_civiliansRescuedCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_civiliansRescuedCountText.setCharacterSize(24);
     m_civiliansRescuedCountText.setColor(sf::Color::White);
     m_civiliansRescuedCountText.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (CIVILIAN_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));

@@ -1,9 +1,9 @@
 #include "Zombie.h"
 
 Zombie::Zombie(sf::Vector2f position, const sf::Texture* texture)
-        : m_animState{ Anim::State::ZOMBIEWALKINGUP }
+        : m_animState{ Anim::State::ZOMBIESPAWNING }
         , m_pos { position }
-        , m_rect{ sf::Vector2f(24, 48) }
+        , m_rect{ sf::Vector2f(44, 63) }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
 {
 //    m_sprite.setTexture(*texture);

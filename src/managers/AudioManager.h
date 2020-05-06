@@ -6,14 +6,15 @@
 
 #include <array>
 
+#include "Singleton.h"
 #include "ResourceManager.h"
 
-class AudioManager
+class AudioManager : public Singleton<AudioManager>
 {
 public:
-    explicit AudioManager(const ResourceManager<sf::SoundBuffer>& sfxBufferManager);
+    void loadResource(uint8_t index, const std::string& filepath);
 
-    void playMusic(Data data, const bool loop = false);
+    void playMusic(Data data, bool loop = false);
     void stopMusic();
     void pauseMusic();
     void resumeMusic();
@@ -24,7 +25,7 @@ public:
 private:
     static constexpr auto MAXSOUNDS = 16;
 
-    const ResourceManager<sf::SoundBuffer>& m_sfxBufferManager;
+    ResourceManager<sf::SoundBuffer> m_sfxBufferManager;
     std::array<sf::Sound, MAXSOUNDS> m_sfx;
     sf::Music m_music;
 };

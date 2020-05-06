@@ -1,5 +1,8 @@
 #include "App.h"
 
+#include "Singleton.h"
+#include "AudioManager.h"
+
 App::App()
         : m_initialised{ false }
         , m_timePerFrame{ sf::seconds(1.f / 60.f) }
@@ -7,19 +10,19 @@ App::App()
         , m_fontManager{}
         , m_sfxBufferManager{}
         , m_textureManager{}
-        , m_audioManager{ m_sfxBufferManager }
-        , m_sceneManager{ SharedContext{ m_fontManager, m_textureManager, m_audioManager } }
+        , m_sceneManager{ SharedContext{ m_fontManager, m_textureManager } }
         , m_keyboard{}
 {
 }
 
 bool App::setup()
 {
-    m_sfxBufferManager.loadResource(Assets::Sfx::SFXA.id, Assets::Sfx::SFXA.filepath);
+    Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXA.id, Assets::Sfx::SFXA.filepath);
     m_textureManager.loadResource(Assets::Texture::TEXA.id, Assets::Texture::TEXA.filepath);
     m_textureManager.loadResource(Assets::Texture::PLAYER.id, Assets::Texture::PLAYER.filepath);
     m_textureManager.loadResource(Assets::Texture::ZOMBIE.id, Assets::Texture::ZOMBIE.filepath);
     m_textureManager.loadResource(Assets::Texture::MUMMY.id, Assets::Texture::MUMMY.filepath);
+    m_fontManager.loadResource(Assets::Font::FONTA.id, Assets::Font::FONTA.filepath);
 
     // Load assets here, failing to load assets should quit the game.
     m_initialised = true;

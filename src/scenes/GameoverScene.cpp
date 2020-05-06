@@ -14,7 +14,7 @@ GameoverScene::GameoverScene(SceneManager& sceneManager, const Scene::Name name)
 
 void GameoverScene::processInput(const Keyboard& keyboard)
 {
-    AudioManager& audioManager = getSharedContext().audioManager;
+    auto& audioManager = Singleton<AudioManager>::getInstance();
 
     if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::PRESS)) {
         if (m_options == MENUOPTIONS::MAINMENU) {
@@ -80,13 +80,12 @@ void GameoverScene::onEnter()
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
-    AudioManager& audioManager = getSharedContext().audioManager;
-    audioManager.playMusic(Assets::Music::MUSICA);
+    Singleton<AudioManager>::getInstance().playMusic(Assets::Music::MUSICA);
 }
 
 void GameoverScene::onExit()
 {
-    AudioManager& audioManager = getSharedContext().audioManager;
-    audioManager.stopMusic();
+    auto& audioManager = Singleton<AudioManager>::getInstance();
     audioManager.stopAllSounds();
+    audioManager.stopMusic();
 }
