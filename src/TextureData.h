@@ -18,11 +18,7 @@ static constexpr auto SIZE = 256;
 //static constexpr Rect BIG_HEART_SRC_RECT {224,80,32,32 };
 //static constexpr Rect BIG_HEART_WHITE_BORDER_SRC_RECT {224,112,32,32 };
 
-static constexpr Rect FIVE_HEARTS_SRC_RECT {0,1408,168,32 };
-static constexpr Rect FOUR_HEARTS_SRC_RECT {0,1408,134,32 };
-static constexpr Rect THREE_HEARTS_SRC_RECT {0,1408,100,32 };
-static constexpr Rect TWO_HEARTS_SRC_RECT {0,1408,66,32 };
-static constexpr Rect ONE_HEART_SRC_RECT {0,1408,32,32 };
+static constexpr Rect BIG_HEART_WHITE_BORDER_SRC_RECT {0,1408,32,32 };
 
 static constexpr Rect ZOMBIE_HEAD_SRC_RECT {32,1408,48,48 };
 static constexpr Rect CIVILIAN_HEAD_SRC_RECT {80,1408,48,48 };

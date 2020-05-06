@@ -49,7 +49,7 @@ void GameScene::render(sf::RenderWindow& window)
 
     // Will this sprite be reused again ?
     m_sprite.setPosition(10, 10);
-    m_sprite.setTextureRect(sf::IntRect(ONE_HEART_SRC_RECT.x, ONE_HEART_SRC_RECT.y, ONE_HEART_SRC_RECT.w, ONE_HEART_SRC_RECT.h));
+    m_sprite.setTextureRect(sf::IntRect(BIG_HEART_WHITE_BORDER_SRC_RECT.x, BIG_HEART_WHITE_BORDER_SRC_RECT.y, BIG_HEART_WHITE_BORDER_SRC_RECT.w, BIG_HEART_WHITE_BORDER_SRC_RECT.h));
 
     // No need to store 5 hearts and change source rect.
     // Store one heart and draw it multiple times with an offset
