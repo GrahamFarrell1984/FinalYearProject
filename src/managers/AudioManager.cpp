@@ -1,10 +1,11 @@
 #include "AudioManager.h"
 
-AudioManager::AudioManager(const ResourceManager<sf::SoundBuffer>& sfxBufferManager)
-        : m_sfxBufferManager{ sfxBufferManager }
-        , m_sfx             { }
+
+void AudioManager::loadResource(uint8_t index, const std::string& filepath)
 {
+    m_sfxBufferManager.loadResource(index, filepath);
 }
+
 
 void AudioManager::playMusic(const Data data, const bool loop)
 {

@@ -6,7 +6,6 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Time.hpp>
 
-#include "AudioManager.h"
 #include "Keyboard.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
@@ -31,7 +30,6 @@ private:
     ResourceManager<sf::Font> m_fontManager;
     ResourceManager<sf::SoundBuffer> m_sfxBufferManager;
     ResourceManager<sf::Texture> m_textureManager;
-    AudioManager m_audioManager;
     SceneManager m_sceneManager;
     Keyboard m_keyboard;
 };

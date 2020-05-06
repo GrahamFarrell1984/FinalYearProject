@@ -17,7 +17,7 @@ PauseScene::PauseScene(SceneManager& sceneManager, const Scene::Name name)
 
 void PauseScene::processInput(const Keyboard& keyboard)
 {
-    AudioManager& audioManager = getSharedContext().audioManager;
+    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
 
     if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::PRESS)) {
         if (m_options == MENUOPTIONS::RESUME) {
@@ -97,14 +97,12 @@ void PauseScene::onEnter()
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
-    AudioManager& audioManager = getSharedContext().audioManager;
-    audioManager.pauseMusic();
+    Singleton<AudioManager>::getInstance().pauseMusic();
 
     // Add Pause sounds
 }
 
 void PauseScene::onExit()
 {
-    AudioManager& audioManager = getSharedContext().audioManager;
-    audioManager.resumeMusic();
+    Singleton<AudioManager>::getInstance().resumeMusic();
 }

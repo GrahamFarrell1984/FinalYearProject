@@ -28,7 +28,6 @@ private:
     Player* m_player;
     EntityManager m_entityManager;
     sf::Sprite m_sprite;
-    sf::Font m_font;
     sf::Text m_zombiesKilledCountText;
     sf::Text m_civiliansRescuedCountText;
 };
