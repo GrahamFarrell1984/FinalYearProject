@@ -24,8 +24,8 @@ static constexpr Rect THREE_HEARTS_SRC_RECT {0,1408,100,32 };
 static constexpr Rect TWO_HEARTS_SRC_RECT {0,1408,66,32 };
 static constexpr Rect ONE_HEART_SRC_RECT {0,1408,32,32 };
 
-static constexpr Rect ZOMBIE_HEAD_SRC_RECT {0,1440,48,48 };
-static constexpr Rect CIVILIAN_HEAD_SRC_RECT {48,1440,48,48 };
+static constexpr Rect ZOMBIE_HEAD_SRC_RECT {32,1408,48,48 };
+static constexpr Rect CIVILIAN_HEAD_SRC_RECT {80,1408,48,48 };
 
 // Source rectangle of big grey skull on texture
 static constexpr Rect BIG_GREY_SKULL_SRC_RECT {0,0,224,256 };
