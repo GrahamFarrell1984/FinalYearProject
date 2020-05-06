@@ -1,9 +1,12 @@
 #pragma once
 
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Text.hpp>
+
 #include "BaseScene.h"
-#include "Player.h"
-#include "EntityManager.h"
 #include "Camera.h"
+#include "EntityManager.h"
+#include "Player.h"
 
 class GameScene final : public BaseScene
 {
@@ -25,5 +28,7 @@ private:
     Player* m_player;
     EntityManager m_entityManager;
     sf::Sprite m_sprite;
-    sf::Vector2i m_heartSpritePos;
+    sf::Font m_font;
+    sf::Text m_zombiesKilledCountText;
+    sf::Text m_civiliansRescuedCountText;
 };

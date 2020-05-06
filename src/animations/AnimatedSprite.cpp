@@ -10,7 +10,7 @@ AnimatedSprite::AnimatedSprite(sf::Vector2f pos,
         , m_tick{ 0 }
         , m_frameIndex{ 0 }
         , m_frame{}
-        , m_animFrame {}
+        , m_animFrame{}
         , m_state{ Anim::State::NONE }
         , m_sprite{}
         , m_frameData{ frameData }
@@ -53,10 +53,12 @@ void AnimatedSprite::checkForFrameUpdate()
                     m_frameIndex = animState->second.loopFrameIndex;
                 } else {
                     m_finishedPlaying = true;
+                    return;
                 }
             }
-            m_frame = m_frameData[animState->second.frames[m_frameIndex].index];
-            m_tick  = 0;
+            m_animFrame = animState->second.frames[m_frameIndex];
+            m_frame     = m_frameData[m_animFrame.index];
+            m_tick      = 0;
         }
     }
 }
@@ -79,6 +81,5 @@ Rect AnimatedSprite::getBounds() const
     return Rect{ static_cast<sf::Int32>(m_sprite.getPosition().x + m_animFrame.origin.x),
                  static_cast<sf::Int32>(m_sprite.getPosition().y + m_animFrame.origin.y),
                  static_cast<sf::Int32>(m_frame.src.w),
-                 static_cast<sf::Int32>(m_frame.src.h)
-    };
+                 static_cast<sf::Int32>(m_frame.src.h) };
 }

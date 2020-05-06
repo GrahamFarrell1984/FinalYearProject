@@ -15,6 +15,8 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         , m_vel{ 0, 0 }
         , m_rect{ sf::Vector2f(18, 20) }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
+        , m_zombiesKilledCount{ 0 }
+        , m_civiliansRescuedCount{ 0 }
 {
     // Test
     m_rect.setPosition(m_pos.x, m_pos.y);
@@ -76,7 +78,8 @@ void Player::update()
     if (m_animState == Anim::State::DYING && m_animSprite.isAnimFinishedPlaying()) {
         m_animState = Anim::State::NONE;
         m_state     = Entity::State::DEAD;
-    } else if (m_state == Entity::State::HIT && m_animSprite.isAnimFinishedPlaying()) {
+    }
+    else if (m_state == Entity::State::HIT && m_animSprite.isAnimFinishedPlaying()) {
         if (m_health <= 0) {
             m_state      = Entity::State::DYING;
             m_animState  = Anim::State::DYING;
@@ -84,6 +87,7 @@ void Player::update()
         } else {
             m_invincible = true;
             m_state      = Entity::State::STANDING;
+            m_moving     = false;
             updateMovingState();
         }
     }
@@ -160,6 +164,26 @@ void Player::setHasFired(bool hasFired)
 int Player::getHealth() const
 {
     return m_health;
+}
+
+void Player::setZombiesKilledCount()
+{
+    m_zombiesKilledCount += 1;
+}
+
+int Player::getZombiesKilledCount()
+{
+    return m_zombiesKilledCount;
+}
+
+void Player::setCiviliansRescuedCount()
+{
+    m_civiliansRescuedCount += 1;
+}
+
+int Player::getCiviliansRescuedCount()
+{
+    return m_civiliansRescuedCount;
 }
 
 void Player::updateMovingState()
