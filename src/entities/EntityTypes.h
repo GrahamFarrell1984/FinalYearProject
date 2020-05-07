@@ -12,6 +12,7 @@ namespace Entity {
         MOVING,
         SHOOTING,
         HIT,
+        SPAWNING,
         DYING,
         DEAD,
     };

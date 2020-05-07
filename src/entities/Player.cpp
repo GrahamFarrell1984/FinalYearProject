@@ -78,8 +78,7 @@ void Player::update()
     if (m_animState == Anim::State::DYING && m_animSprite.isAnimFinishedPlaying()) {
         m_animState = Anim::State::NONE;
         m_state     = Entity::State::DEAD;
-    }
-    else if (m_state == Entity::State::HIT && m_animSprite.isAnimFinishedPlaying()) {
+    } else if (m_state == Entity::State::HIT && m_animSprite.isAnimFinishedPlaying()) {
         if (m_health <= 0) {
             m_state      = Entity::State::DYING;
             m_animState  = Anim::State::DYING;
@@ -118,7 +117,7 @@ Rect Player::getBounds() const
     };
 }
 
-sf::Vector2f Player::getPos() const
+const sf::Vector2f& Player::getPos() const
 {
     return m_pos;
 }
@@ -145,10 +144,12 @@ bool Player::isInvincible() const
 
 void Player::setIsHit()
 {
-    --m_health;
-    m_vel   = sf::Vector2f(0, 0);
-    m_state = Entity::State::HIT;
-    updateHitState();
+    if (!isInvincible() && m_state != Entity::State::HIT &&  m_state != Entity::State::DYING) {
+        --m_health;
+        m_vel   = sf::Vector2f(0, 0);
+        m_state = Entity::State::HIT;
+        updateHitState();
+    }
 }
 
 bool Player::checkHasFired() const

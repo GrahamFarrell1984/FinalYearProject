@@ -22,10 +22,7 @@ namespace ClsnManager {
         for (auto player : players) {
             for (auto zombie : zombies) {
                 if (Utils::isIntersecting(player->getBounds(), zombie->getBounds())) {
-                    //zombie->setPosition(sf::Vector2f(rand() % 700 + 1, rand() % 700 + 1));
-                    if (!player->isInvincible() && player->getState() != Entity::State::HIT && player->getState() != Entity::State::DYING) {
-                        player->setIsHit();
-                    }
+                    player->setIsHit();
                 }
             }
             for (auto civilian : civilians) {
@@ -41,8 +38,10 @@ namespace ClsnManager {
             for (auto zombie : zombies) {
                 if (Utils::isIntersecting(bullet->getBounds(), zombie->getBounds())) {
                     bullet->setIsHit();
-                    zombie->m_destroyed = true;
-                    player->setZombiesKilledCount();
+                    if (zombie->getState() != Entity::State::DYING) {
+                        zombie->setIsHit();
+                        player->setZombiesKilledCount();
+                    }
                 }
             }
         }
