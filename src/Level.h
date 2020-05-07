@@ -9,15 +9,16 @@
 class Level
 {
 public:
-    explicit Level(const sf::Texture* texture);
+    explicit Level(const sf::Texture* texture, Point viewSize);
     void render(sf::RenderWindow& window, Rect camView);
 
 private:
     sf::Sprite m_sprite;
+    Point m_viewSize;
     static constexpr uint8_t Row          = 24;
     static constexpr uint8_t Col          = 32;
-    static constexpr uint8_t MaxRowRender = 8;
-    static constexpr uint8_t MaxColRender = 6;
+    static constexpr uint8_t MaxRowRender = 7;
+    static constexpr uint8_t MaxColRender = 9;
     static constexpr uint8_t TileSize  = 64;
     static constexpr std::array<std::array<uint8_t, Col>, Row> LevelData = {
             { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},

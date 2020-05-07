@@ -3,8 +3,8 @@
 #include "Types.h"
 
 namespace Utils {
-    static bool contains(const Rect& r, const Point& p) noexcept {
-        return p.x > r.x && p.x < r.x + r.w && p.y > r.y && p.y < r.y + r.h;
+    static bool contains(const Rect& r, const Point& p, const int32_t offset) {
+        return p.x > r.x - offset && p.x < r.x + r.w + offset && p.y > r.y - offset && p.y < r.y + r.h + offset;
     }
 
     static bool isIntersecting(const Rect& a, const Rect& b) noexcept {

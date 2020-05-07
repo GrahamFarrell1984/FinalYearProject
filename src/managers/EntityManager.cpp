@@ -5,8 +5,6 @@
 // Always update each entity the first time to set positions etc.
 void EntityManager::update(Rect camView)
 {
-    // Extending the camera view so partial sprites inside the camera get updated and drawn also.
-    camView = Rect{ camView.x - Offset, camView.y - Offset, camView.w + Offset, camView.h + Offset };
     for (const auto& e : m_entities) {
         if (e->m_visable) {
             e->update();
@@ -16,7 +14,7 @@ void EntityManager::update(Rect camView)
                  static_cast<int32_t>(e->m_localBounds.y + e->m_localBounds.w * 0.5f)
         };
 
-        Utils::contains(camView, p) ? e->m_visable = true : e->m_visable = false;
+        Utils::contains(camView, p, Offset) ? e->m_visable = true : e->m_visable = false;
     }
     sortDrawOrder();
 }

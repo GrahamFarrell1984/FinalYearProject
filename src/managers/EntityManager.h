@@ -43,7 +43,6 @@ private:
 
     void sortDrawOrder();
 
-
     std::vector<std::unique_ptr<BaseEntity>> m_entities;
     std::map<std::type_index, std::vector<BaseEntity*>> m_groupedEntities;
 };
