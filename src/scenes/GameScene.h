@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "EntityManager.h"
 #include "Player.h"
+#include "Level.h"
 
 class GameScene final : public BaseScene
 {
@@ -25,6 +26,7 @@ private:
     static constexpr Point VIEWSIZE {  512,  384 };
 
     Camera m_camera;
+    Level m_level;
     Player* m_player;
     EntityManager m_entityManager;
     sf::Sprite m_sprite;

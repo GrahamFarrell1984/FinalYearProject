@@ -13,6 +13,7 @@
 GameScene::GameScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
         , m_camera { WORLDSIZE, VIEWSIZE }
+        , m_level  { getSharedContext().textureHolder.getResource(Assets::Texture::LEVEL.id) }
         , m_sprite { }
 {
 }
@@ -44,6 +45,7 @@ void GameScene::update()
 void GameScene::render(sf::RenderWindow& window)
 {
     window.setView(m_camera.update(m_player->getPos()));
+    m_level.render(window, m_camera.getBounds());
     m_entityManager.render(window);
     window.setView(window.getDefaultView());
 
