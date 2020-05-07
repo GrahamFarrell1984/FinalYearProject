@@ -22,6 +22,7 @@ namespace Assets {
 
     namespace Sfx {
         static constexpr Data SFXA{ 0, "assets/sfx/SFX_A.wav" };
+        static constexpr Data SFXB{ 1, "assets/sfx/rescue.ogg" };
     }  // namespace Sfx
 
     namespace Music {
