@@ -44,6 +44,7 @@ namespace ClsnManager {
                     if (zombie->getState() != Entity::State::DYING) {
                         zombie->setIsHit();
                         player->setZombiesKilledCount();
+                        audioManager.playSound(Assets::Sfx::SFXC.id);
                     }
                 }
             }
