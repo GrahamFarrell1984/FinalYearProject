@@ -23,7 +23,7 @@ public:
 private:
     // Diff speed for diff weapons ?
     static constexpr auto BulletSpeed = 8;
-    static constexpr auto MaxDistance = 100;
+    static constexpr auto MaxDistance = 200;
     static constexpr Rect ClsnUpOffset{ 9, -4, 7, 16 };
     static constexpr Rect ClsnDownOffset{ 9, 24, 7, 16 };
     static constexpr Rect ClsnLeftOffset{ -16, 15, 18, 5 };

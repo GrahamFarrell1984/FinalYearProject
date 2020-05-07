@@ -7,13 +7,13 @@ Zombie::Zombie(sf::Vector2f position, const sf::Vector2f& playerPos, const sf::T
         , m_animState{ Anim::State::ZOMBIESPAWNING }
         , m_pos{ position }
         , m_vel{ 0, 0 }
-        , m_rect{ sf::Vector2f(44, 63) }
+        , m_rect{ sf::Vector2f(34, 53) }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
         , m_playerPos { playerPos }
 {
 
     // Test
-    m_rect.setPosition(m_pos.x, m_pos.y);
+    m_rect.setPosition(m_pos.x + 5, m_pos.y + 10);
     m_rect.setFillColor(sf::Color(255,0,0,100));
 }
 

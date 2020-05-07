@@ -1,6 +1,6 @@
-#include "Bullet.h"
-
 #include <SFML/Graphics/Texture.hpp>
+
+#include "Bullet.h"
 
 Bullet::Bullet(sf::Vector2f position, Entity::Direction direction, const sf::Texture* texture)
         : m_position{ position }
