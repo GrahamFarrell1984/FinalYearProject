@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseEntity.h"
+
 class Mummy : public BaseEntity
 {
 public:

@@ -1,14 +1,14 @@
 #include "GameScene.h"
 
 #include "AudioManager.h"
+#include "Bullet.h"
+#include "Civilian.h"
 #include "CollisionManager.h"
 #include "Mummy.h"
 #include "Player.h"
 #include "ResourceManager.h"
-#include "Zombie.h"
-#include "Bullet.h"
-#include "Civilian.h"
 #include "TextureData.h"
+#include "Zombie.h"
 
 GameScene::GameScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
@@ -49,16 +49,14 @@ void GameScene::render(sf::RenderWindow& window)
     m_entityManager.render(window);
     window.setView(window.getDefaultView());
 
-    // Will this sprite be reused again ?
     m_sprite.setPosition(10, 10);
     m_sprite.setTextureRect(sf::IntRect(BIG_HEART_WHITE_BORDER_SRC_RECT.x, BIG_HEART_WHITE_BORDER_SRC_RECT.y, BIG_HEART_WHITE_BORDER_SRC_RECT.w, BIG_HEART_WHITE_BORDER_SRC_RECT.h));
 
-    // No need to store 5 hearts and change source rect.
-    // Store one heart and draw it multiple times with an offset
     for (int i = 0; i < m_player->getHealth(); i++) {
         m_sprite.setPosition(40 * i + 10, 18);
         window.draw(m_sprite);
     }
+
     // Draw the zombie head counter
     m_sprite.setPosition(static_cast<float>((VIEWSIZE.x / 2) - (ZOMBIE_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
     m_sprite.setTextureRect(sf::IntRect(ZOMBIE_HEAD_SRC_RECT.x, ZOMBIE_HEAD_SRC_RECT.y, ZOMBIE_HEAD_SRC_RECT.w, ZOMBIE_HEAD_SRC_RECT.h));
@@ -90,12 +88,12 @@ void GameScene::onEnter()
 
     m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), textureHolder.getResource(Assets::Texture::PLAYER.id));
 
-    for (int i = 0; i < 10; ++i) {
-        m_entityManager.create<Zombie>(sf::Vector2f(rand() % 250 * (i + 0.3), rand() % 250 * (i + 0.5)), m_player->getPos(), textureHolder.getResource(Assets::Texture::PLAYER.id));
+    for (int i = 0; i < 100; ++i) {
+        m_entityManager.create<Zombie>(sf::Vector2f(rand() % 75 * (i + 0.3), rand() % 75 * (i + 0.5)), m_player->getPos(), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
-    for (int i = 0; i < 10; ++i) {
-        m_entityManager.create<Civilian>(sf::Vector2f(rand() % 250 * (i + 0.1), rand() % 250 * (i + 0.1)), textureHolder.getResource(Assets::Texture::PLAYER.id));
+    for (int i = 0; i < 25; ++i) {
+        m_entityManager.create<Civilian>(sf::Vector2f(rand() % 25 * (i + 0.1), rand() % 250 * (i + 0.1)), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
     m_zombiesKilledCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
