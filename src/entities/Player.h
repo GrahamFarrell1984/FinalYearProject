@@ -21,7 +21,7 @@ public:
     void render(sf::RenderWindow& window) override;
 
     Rect getBounds() const;
-    sf::Vector2f getPos() const;
+    const sf::Vector2f& getPos() const;
     Entity::Direction getDir() const;
     Entity::State getState() const;
 
