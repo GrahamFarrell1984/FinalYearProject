@@ -11,6 +11,8 @@
 namespace ClsnManager {
     static void update(EntityManager& entityManager)
     {
+        AudioManager& audioManager = Singleton<AudioManager>::getInstance();
+
         auto players  = entityManager.getEntityGroup<Player>();
         auto bullets  = entityManager.getEntityGroup<Bullet>();
         auto zombies  = entityManager.getEntityGroup<Zombie>();
@@ -29,6 +31,7 @@ namespace ClsnManager {
                 if (Utils::isIntersecting(player->getBounds(), civilian->getBounds())) {
                     civilian->m_destroyed = true;
                     player->setCiviliansRescuedCount();
+                    audioManager.playSound(Assets::Sfx::SFXB.id);
                 }
             }
         }
