@@ -20,6 +20,8 @@ bool App::setup()
     Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXA.id, Assets::Sfx::SFXA.filepath);
     Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXB.id, Assets::Sfx::SFXB.filepath);
     Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXC.id, Assets::Sfx::SFXC.filepath);
+    Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXD.id, Assets::Sfx::SFXD.filepath);
+    Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXE.id, Assets::Sfx::SFXE.filepath);
     m_textureManager.loadResource(Assets::Texture::TEXA.id, Assets::Texture::TEXA.filepath);
     m_textureManager.loadResource(Assets::Texture::PLAYER.id, Assets::Texture::PLAYER.filepath);
     m_textureManager.loadResource(Assets::Texture::ZOMBIE.id, Assets::Texture::ZOMBIE.filepath);

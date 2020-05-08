@@ -1,3 +1,4 @@
+#include "AudioManager.h"
 #include "Player.h"
 
 Player::Player(sf::Vector2f position, const sf::Texture* texture)
@@ -149,6 +150,7 @@ void Player::setIsHit()
         m_vel   = sf::Vector2f(0, 0);
         m_state = Entity::State::HIT;
         updateHitState();
+        Singleton<AudioManager>::getInstance().playSound(Assets::Sfx::SFXE.id);
     }
 }
 

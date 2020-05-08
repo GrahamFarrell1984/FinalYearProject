@@ -30,6 +30,7 @@ void GameScene::update()
 {
     if (m_player->checkHasFired()) {
         m_entityManager.create<Bullet>(m_player->getPos(), m_player->getDir(), getSharedContext().textureHolder.getResource(Assets::Texture::PLAYER.id));
+        Singleton<AudioManager>::getInstance().playSound(Assets::Sfx::SFXD.id);
         m_player->setHasFired(false);
     }
 
@@ -88,13 +89,13 @@ void GameScene::onEnter()
 
     m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), textureHolder.getResource(Assets::Texture::PLAYER.id));
 
-    for (int i = 0; i < 1; ++i) {
+    for (int i = 0; i < 100; ++i) {
         m_entityManager.create<Zombie>(sf::Vector2f(rand() % 75 * (i + 0.3), rand() % 75 * (i + 0.5)), m_player->getPos(), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
-//    for (int i = 0; i < 25; ++i) {
-//        m_entityManager.create<Civilian>(sf::Vector2f(rand() % 25 * (i + 0.1), rand() % 250 * (i + 0.1)), textureHolder.getResource(Assets::Texture::PLAYER.id));
-//    }
+    for (int i = 0; i < 25; ++i) {
+        m_entityManager.create<Civilian>(sf::Vector2f(rand() % 25 * (i + 0.1), rand() % 250 * (i + 0.1)), textureHolder.getResource(Assets::Texture::PLAYER.id));
+    }
 
     m_zombiesKilledCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_zombiesKilledCountText.setCharacterSize(24);
