@@ -41,10 +41,9 @@ namespace ClsnManager {
             for (auto zombie : zombies) {
                 if (Utils::isIntersecting(bullet->getBounds(), zombie->getBounds())) {
                     bullet->setIsHit();
-                    if (zombie->getState() != Entity::State::DYING) {
+                    if (zombie->getState() != Entity::State::DYING && zombie->getState() != Entity::State::SPAWNING) {
                         zombie->setIsHit();
                         player->setZombiesKilledCount();
-                        audioManager.playSound(Assets::Sfx::SFXC.id);
                     }
                 }
             }

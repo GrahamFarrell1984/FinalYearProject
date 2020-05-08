@@ -1,4 +1,7 @@
 #include "Zombie.h"
+#include "math.h"
+
+#include "AudioManager.h"
 
 Zombie::Zombie(sf::Vector2f position, const sf::Vector2f& playerPos, const sf::Texture* texture)
         : m_dir{ Entity::Direction::Down }
@@ -6,11 +9,12 @@ Zombie::Zombie(sf::Vector2f position, const sf::Vector2f& playerPos, const sf::T
         , m_animState{ Anim::State::ZOMBIESPAWNING }
         , m_pos{ position }
         , m_vel{ 0, 0 }
-        , m_rect{ sf::Vector2f(34, 53) }
+        , m_speed { WanderSpeed }
+        , m_tick { 0 }
+        , m_rect{ sf::Vector2f(20, 20) }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
         , m_playerPos { playerPos }
 {
-
     // Test
     m_rect.setPosition(m_pos.x + 5, m_pos.y + 10);
     m_rect.setFillColor(sf::Color(255,0,0,100));
@@ -18,22 +22,62 @@ Zombie::Zombie(sf::Vector2f position, const sf::Vector2f& playerPos, const sf::T
 
 void Zombie::update()
 {
-    if (m_state == Entity::State::SPAWNING && m_animSprite.isAnimFinishedPlaying()) {
-        m_state = Entity::State::STANDING;
-        m_animState = Anim::State::ZOMBIEMOVINGDOWN;
-        m_dir = Entity::Direction::Down;
-    } else if (m_state == Entity::State::DYING && m_animSprite.isAnimFinishedPlaying()) {
-        m_destroyed = true;
+    if (m_state == Entity::State::SPAWNING) {
+        if (m_animSprite.isAnimFinishedPlaying()) {
+            changeDirection();
+        }
+    } else if (m_state == Entity::State::DYING) {
+        if (m_animSprite.isAnimFinishedPlaying()) {
+            m_destroyed = true;
+        }
     } else {
-//        double distance = sqrt(pow(m_pos.x - m_playerPos.x, 2) + pow(m_pos.y - m_playerPos.y, 2));
-//        if (distance < MaxDistanceFollow) {
-//            m_animState = Anim::State::ZOMBIEEXPLODING;
-//        } else {
-//            m_animState = Anim::State::ZOMBIEMOVINGDOWN;
-//        }
+        m_speed = ChaseSpeed;
+        double distance = sqrt(pow(m_pos.x - m_playerPos.x, 2) + pow(m_pos.y - m_playerPos.y, 2));
+        if (distance < CloseDistance) {
+            m_vel = sf::Vector2f(0, 0);
+        } else if (distance < MaxDistanceFollow) {
+            ++m_tick;
+            if (m_tick >= ChaseDirectionTicks) {
+                m_tick = 0;
+                int32_t xDist = m_playerPos.x - m_pos.x;
+                int32_t yDist = m_playerPos.y - m_pos.y;
+                if (std::abs(xDist) >= std::abs(yDist)) {
+                    if (xDist < 0) {
+                        m_vel       = sf::Vector2f(-1, 0);
+                        m_dir       = Entity::Direction::Left;
+                        m_animState = Anim::State::ZOMBIEMOVINGLEFT;
+                    } else {
+                        m_vel       = sf::Vector2f(1, 0);
+                        m_dir       = Entity::Direction::Right;
+                        m_animState = Anim::State::ZOMBIEMOVINGRIGHT;
+                    }
+                } else {
+                    if (yDist < 0) {
+                        m_vel       = sf::Vector2f(0, -1);
+                        m_dir       = Entity::Direction::Up;
+                        m_animState = Anim::State::ZOMBIEMOVINGUP;
+                    } else {
+                        m_vel       = sf::Vector2f(0, 1);
+                        m_dir       = Entity::Direction::Down;
+                        m_animState = Anim::State::ZOMBIEMOVINGDOWN;
+                    }
+                }
+            }
+        } else {
+            ++m_tick;
+            m_speed = WanderSpeed;
+            if (m_tick >= DirectionTicks) {
+                changeDirection();
+            }
+            checkBounds();
+        }
 
-        // Logic to move around here.
     }
+    m_pos.x += m_vel.x * m_speed;
+    m_pos.y += m_vel.y * m_speed;
+
+    m_animSprite.updatePosition(m_pos);
+    m_rect.setPosition(m_pos.x + 10, m_pos.y + 30);
 
     m_animSprite.changeState(m_animState);
     m_animSprite.checkForFrameUpdate();
@@ -63,13 +107,68 @@ Rect Zombie::getBounds() const
 
 void Zombie::setIsHit()
 {
-    if (m_state != Entity::State::SPAWNING && m_state != Entity::State::DYING) {
-        m_state     = Entity::State::DYING;
-        m_animState = Anim::State::ZOMBIEEXPLODING;
-        m_vel       = sf::Vector2f(0, 0);
-    }
+    m_state     = Entity::State::DYING;
+    m_animState = Anim::State::ZOMBIEEXPLODING;
+    m_vel       = sf::Vector2f(0, 0);
+    m_rect.setPosition(sf::Vector2f(-1000, -1000));
+    Singleton<AudioManager>::getInstance().playSound(Assets::Sfx::SFXC.id);
 }
 Entity::State Zombie::getState() const
 {
     return m_state;
+}
+
+void Zombie::changeDirection()
+{
+    m_tick         = 0;
+    m_state        = Entity::State::MOVING;
+    auto randomNum = static_cast<uint32_t>(rand() % 4);
+    switch (randomNum) {
+        case 0:
+            m_vel       = sf::Vector2f(0, -1);
+            m_dir       = Entity::Direction::Up;
+            m_animState = Anim::State::ZOMBIEMOVINGUP;
+            break;
+        case 1:
+            m_vel       = sf::Vector2f(0, 1);
+            m_dir       = Entity::Direction::Down;
+            m_animState = Anim::State::ZOMBIEMOVINGDOWN;
+            break;
+        case 2:
+            m_vel       = sf::Vector2f(-1, 0);
+            m_dir       = Entity::Direction::Left;
+            m_animState = Anim::State::ZOMBIEMOVINGLEFT;
+            break;
+        case 3:
+            m_vel       = sf::Vector2f(1, 0);
+            m_dir       = Entity::Direction::Right;
+            m_animState = Anim::State::ZOMBIEMOVINGRIGHT;
+            break;
+        default:
+            break;
+    }
+}
+void Zombie::checkBounds()
+{
+    if (m_pos.x <= 50) {
+        m_vel       = sf::Vector2f(1, 0);
+        m_dir       = Entity::Direction::Right;
+        m_animState = Anim::State::ZOMBIEMOVINGRIGHT;
+        m_tick = 0;
+    } else if (m_pos.x + m_localBounds.w >= 1998) {
+        m_vel       = sf::Vector2f(-1, 0);
+        m_dir       = Entity::Direction::Left;
+        m_animState = Anim::State::ZOMBIEMOVINGLEFT;
+        m_tick = 0;
+    } else if (m_pos.y + m_localBounds.h <= 50) {
+        m_vel       = sf::Vector2f(0, 1);
+        m_dir       = Entity::Direction::Down;
+        m_animState = Anim::State::ZOMBIEMOVINGDOWN;
+        m_tick = 0;
+    } else if (m_pos.y + m_localBounds.h >= 1480) {
+        m_vel       = sf::Vector2f(0, -1);
+        m_dir       = Entity::Direction::Up;
+        m_animState = Anim::State::ZOMBIEMOVINGUP;
+        m_tick = 0;
+    }
 }

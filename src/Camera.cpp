@@ -12,7 +12,8 @@ Camera::Camera(Point worldSize, Point viewSize)
 
 sf::View Camera::update(sf::Vector2f target)
 {
-    // Boundary Checks
+
+//    // Boundary Checks
     if (target.x < m_viewSize.x * 0.5f) {
         target.x = m_viewSize.x * 0.5f;
     } else if (target.x > static_cast<float>(m_worldSize.x - m_viewSize.x * 0.5f)) {
