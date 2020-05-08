@@ -19,13 +19,23 @@ public:
     void setIsHit();
 
 private:
+    void changeDirection();
+    void checkBounds();
+
+    static constexpr auto CloseDistance = 10;
     static constexpr auto MaxDistanceFollow = 100;
+    static constexpr auto WanderSpeed = 1;
+    static constexpr auto ChaseSpeed = 1.5f;
+    static constexpr auto DirectionTicks = 50;
+    static constexpr auto ChaseDirectionTicks = 20;
 
     Entity::Direction m_dir;
     Entity::State m_state;
     Anim::State m_animState;
     sf::Vector2f m_pos;
     sf::Vector2f m_vel;
+    float m_speed;
+    uint32_t m_tick;
     sf::RectangleShape m_rect;
     AnimatedSprite m_animSprite;
     const sf::Vector2f& m_playerPos;
