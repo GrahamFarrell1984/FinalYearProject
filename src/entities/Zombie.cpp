@@ -87,6 +87,7 @@ void Zombie::update()
 void Zombie::render(sf::RenderWindow& window)
 {
     m_animSprite.render(window);
+    // Toggle this to turn on and off collision boxes.
     window.draw(m_rect);
 }
 

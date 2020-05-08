@@ -30,6 +30,7 @@ namespace Assets {
 
     namespace Music {
         static constexpr Data MUSICA{ 0, "assets/music/MUSIC_A.ogg" };
+        static constexpr Data MUSICB{ 1, "assets/music/killing-zombies-loop.ogg" };
     }  // namespace Sfx
 
 

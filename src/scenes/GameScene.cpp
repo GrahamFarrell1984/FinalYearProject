@@ -84,6 +84,7 @@ void GameScene::onEnter()
     AudioManager& audioManager = Singleton<AudioManager>::getInstance();
     audioManager.stopMusic();
     audioManager.stopAllSounds();
+    audioManager.playMusic(Assets::Music::MUSICB, true);
 
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
