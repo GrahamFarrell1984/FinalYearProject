@@ -18,25 +18,25 @@ Bullet::Bullet(sf::Vector2f position, Entity::Direction direction, const sf::Tex
             m_velocity = sf::Vector2f(0, -1);
             m_clsnOffset = { ClsnUpOffset.x, ClsnUpOffset.y };
             m_rect.setSize(sf::Vector2f(ClsnUpOffset.w, ClsnUpOffset.h));
-            m_animState = Anim::State::BULLETUP;
+            m_animState = Anim::State::BULLET_UP;
             break;
         case Entity::Direction::Down:
             m_velocity = sf::Vector2f(0, 1);
             m_clsnOffset = { ClsnDownOffset.x, ClsnDownOffset.y };
             m_rect.setSize(sf::Vector2f(ClsnDownOffset.w, ClsnDownOffset.h));
-            m_animState = Anim::State::BULLETDOWN;
+            m_animState = Anim::State::BULLET_DOWN;
             break;
         case Entity::Direction::Left:
             m_velocity = sf::Vector2f(-1, 0);
             m_clsnOffset = { ClsnLeftOffset.x, ClsnLeftOffset.y };
             m_rect.setSize(sf::Vector2f(ClsnLeftOffset.w, ClsnLeftOffset.h));
-            m_animState = Anim::State::BULLETLEFT;
+            m_animState = Anim::State::BULLET_LEFT;
             break;
         case Entity::Direction::Right:
             m_velocity = sf::Vector2f(1, 0);
             m_clsnOffset = { ClsnRightOffset.x, ClsnRightOffset.y };
             m_rect.setSize(sf::Vector2f(ClsnRightOffset.w, ClsnRightOffset.h));
-            m_animState = Anim::State::BULLETRIGHT;
+            m_animState = Anim::State::BULLET_RIGHT;
             break;
     }
     m_rect.setPosition(m_position.x, m_position.y);
@@ -92,16 +92,16 @@ void Bullet::setIsHit()
     m_velocity = sf::Vector2f(0,0);
     switch (m_direction) {
         case Entity::Direction::Up:
-            m_animState = Anim::State::BULLETDYINGUP;
+            m_animState = Anim::State::BULLET_DYING_UP;
             break;
         case Entity::Direction::Down:
-            m_animState = Anim::State::BULLETDYINGDOWN;
+            m_animState = Anim::State::BULLET_DYING_DOWN;
             break;
         case Entity::Direction::Left:
-            m_animState = Anim::State::BULLETDYINGLEFT;
+            m_animState = Anim::State::BULLET_DYING_LEFT;
             break;
         case Entity::Direction::Right:
-            m_animState = Anim::State::BULLETDYINGRIGHT;
+            m_animState = Anim::State::BULLET_DYING_RIGHT;
             break;
     }
 }

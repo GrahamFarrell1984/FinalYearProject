@@ -10,7 +10,7 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         , m_invincibleTick{ 0 }
         , m_dir{ Entity::Direction::Down }
         , m_state{ Entity::State::STANDING }
-        , m_animState{ Anim::State::STANDFACINGDOWN }
+        , m_animState{ Anim::State::STAND_FACING_DOWN }
         , m_pos{ position }
         , m_vel{ 0, 0 }
         , m_rect{ sf::Vector2f(18, 20) }
@@ -191,16 +191,16 @@ void Player::updateMovingState()
 {
     switch (m_dir) {
         case Entity::Direction::Up:
-            m_animState = m_moving ? Anim::State::MOVEUP : Anim::State::STANDFACINGUP;
+            m_animState = m_moving ? Anim::State::MOVE_UP : Anim::State::STAND_FACING_UP;
             break;
         case Entity::Direction::Down:
-            m_animState = m_moving ? Anim::State::MOVEDOWN : Anim::State::STANDFACINGDOWN;
+            m_animState = m_moving ? Anim::State::MOVE_DOWN : Anim::State::STAND_FACING_DOWN;
             break;
         case Entity::Direction::Left:
-            m_animState = m_moving ? Anim::State::MOVELEFT : Anim::State::STANDFACINGLEFT;
+            m_animState = m_moving ? Anim::State::MOVE_LEFT : Anim::State::STAND_FACING_LEFT;
             break;
         case Entity::Direction::Right:
-            m_animState = m_moving ? Anim::State::MOVERIGHT : Anim::State::STANDFACINGRIGHT;
+            m_animState = m_moving ? Anim::State::MOVE_RIGHT : Anim::State::STAND_FACING_RIGHT;
             break;
     }
 }
@@ -209,19 +209,19 @@ void Player::updateFiringState()
 {
     switch (m_dir) {
         case Entity::Direction::Up:
-            m_animState = Anim::State::SHOOTUP;
+            m_animState = Anim::State::SHOOT_UP;
             //m_state = m_moving ? Entity::State::MOVEUP : Entity::State::STANDFACINGUP;
             break;
         case Entity::Direction::Down:
-            m_animState = Anim::State::SHOOTDOWN;
+            m_animState = Anim::State::SHOOT_DOWN;
             //m_state = m_moving ? Entity::State::MOVEDOWN : Entity::State::STANDFACINGDOWN;
             break;
         case Entity::Direction::Left:
-            m_animState = Anim::State::SHOOTLEFT;
+            m_animState = Anim::State::SHOOT_LEFT;
             //m_state = m_moving ? Entity::State::MOVELEFT : Entity::State::STANDFACINGLEFT;
             break;
         case Entity::Direction::Right:
-            m_animState = Anim::State::SHOOTRIGHT;
+            m_animState = Anim::State::SHOOT_RIGHT;
             //m_state = m_moving ? Entity::State::MOVERIGHT : Entity::State::STANDFACINGRIGHT;
             break;
     }
@@ -231,16 +231,16 @@ void Player::updateHitState()
 {
     switch (m_dir) {
         case Entity::Direction::Up:
-            m_animState = Anim::State::HITFACINGUP;
+            m_animState = Anim::State::HIT_FACING_UP;
             break;
         case Entity::Direction::Down:
-            m_animState = Anim::State::HITFACINGDOWN;
+            m_animState = Anim::State::HIT_FACING_DOWN;
             break;
         case Entity::Direction::Left:
-            m_animState = Anim::State::HITFACINGLEFT;
+            m_animState = Anim::State::HIT_FACING_LEFT;
             break;
         case Entity::Direction::Right:
-            m_animState = Anim::State::HITFACINGRIGHT;
+            m_animState = Anim::State::HIT_FACING_RIGHT;
             break;
     }
 }
