@@ -18,6 +18,7 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
         , m_zombiesKilledCount{ 0 }
         , m_civiliansRescuedCount{ 0 }
+        , m_bulletCount{ 100 }
 {
     // Test
     m_rect.setPosition(m_pos.x, m_pos.y);
@@ -162,6 +163,7 @@ bool Player::checkHasFired() const
 void Player::setHasFired(bool hasFired)
 {
     m_hasFired = hasFired;
+    setBulletCount(-1);
 }
 
 int Player::getHealth() const
@@ -187,6 +189,29 @@ void Player::setCiviliansRescuedCount()
 int Player::getCiviliansRescuedCount()
 {
     return m_civiliansRescuedCount;
+}
+
+void Player::setBulletCount(int bulletCount)
+{
+    if (!getBulletCount() == 0) {
+        m_bulletCount += bulletCount;
+    } else {
+        m_bulletCount = 0;
+    }
+}
+
+int Player::getBulletCount()
+{
+    return m_bulletCount;
+}
+
+void Player::increaseBulletCount()
+{
+    if (getBulletCount() >= 0 && getBulletCount() <= 90) {
+        m_bulletCount += 10;
+    } else if (getBulletCount() >= 91 && getBulletCount() <= 100) {
+        m_bulletCount = 100;
+    }
 }
 
 void Player::updateMovingState()

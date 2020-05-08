@@ -31,6 +31,8 @@ namespace ClsnManager {
                 if (Utils::isIntersecting(player->getBounds(), civilian->getBounds())) {
                     civilian->m_destroyed = true;
                     player->setCiviliansRescuedCount();
+                    // Just testing
+                    player->increaseBulletCount();
                     audioManager.playSound(Assets::Sfx::SFXB.id);
                 }
             }

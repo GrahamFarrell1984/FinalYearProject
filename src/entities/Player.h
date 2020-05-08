@@ -40,6 +40,10 @@ public:
     void setCiviliansRescuedCount();
     int getCiviliansRescuedCount();
 
+    void setBulletCount(int bulletCount);
+    int getBulletCount();
+    void increaseBulletCount();
+
 private:
     static constexpr auto NormalSpeed        = 2;
     static constexpr auto PowerUpSpeed       = 4;
@@ -69,4 +73,5 @@ private:
     AnimatedSprite m_animSprite;
     int m_zombiesKilledCount;
     int m_civiliansRescuedCount;
+    int m_bulletCount;
 };

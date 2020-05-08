@@ -15,6 +15,7 @@ GameScene::GameScene(SceneManager& sceneManager, const Scene::Name name)
         , m_camera { WORLDSIZE, VIEWSIZE }
         , m_level  { getSharedContext().textureHolder.getResource(Assets::Texture::LEVEL.id), VIEWSIZE }
         , m_sprite { }
+        , m_bulletCountText { }
 {
 }
 
@@ -29,9 +30,11 @@ void GameScene::processInput(const Keyboard& keyboard)
 void GameScene::update()
 {
     if (m_player->checkHasFired()) {
-        m_entityManager.create<Bullet>(m_player->getPos(), m_player->getDir(), getSharedContext().textureHolder.getResource(Assets::Texture::PLAYER.id));
-        Singleton<AudioManager>::getInstance().playSound(Assets::Sfx::SFXD.id);
-        m_player->setHasFired(false);
+        if (!m_player->getBulletCount() == 0) {
+            m_entityManager.create<Bullet>(m_player->getPos(), m_player->getDir(), getSharedContext().textureHolder.getResource(Assets::Texture::PLAYER.id));
+            Singleton<AudioManager>::getInstance().playSound(Assets::Sfx::SFXD.id);
+            m_player->setHasFired(false);
+        }
     }
 
     ClsnManager::update(m_entityManager);
@@ -68,11 +71,21 @@ void GameScene::render(sf::RenderWindow& window)
     m_sprite.setTextureRect(sf::IntRect(CIVILIAN_HEAD_SRC_RECT.x, CIVILIAN_HEAD_SRC_RECT.y, CIVILIAN_HEAD_SRC_RECT.w, CIVILIAN_HEAD_SRC_RECT.h));
     window.draw(m_sprite);
 
+    // Draw the bullet counter
+    m_sprite.setPosition(static_cast<float>(VIEWSIZE.x - (MEDIUM_GUN_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setTextureRect(sf::IntRect(MEDIUM_GUN_SRC_RECT.x, MEDIUM_GUN_SRC_RECT.y, MEDIUM_GUN_SRC_RECT.w, MEDIUM_GUN_SRC_RECT.h));
+    window.draw(m_sprite);
+
+    m_bulletCountText.setPosition(static_cast<float>(VIEWSIZE.x - (MEDIUM_GUN_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+
     m_zombiesKilledCountText.setString(std::to_string(m_player->getZombiesKilledCount()));
     window.draw(m_zombiesKilledCountText);
 
     m_civiliansRescuedCountText.setString(std::to_string(m_player->getCiviliansRescuedCount()));
     window.draw(m_civiliansRescuedCountText);
+
+    m_bulletCountText.setString(std::to_string(m_player->getBulletCount()));
+    window.draw(m_bulletCountText);
 
 }
 
@@ -94,7 +107,7 @@ void GameScene::onEnter()
         m_entityManager.create<Zombie>(sf::Vector2f(rand() % WORLDSIZE.x, rand() % WORLDSIZE.y), m_player->getPos(), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
-    for (int i = 0; i < 25; ++i) {
+    for (int i = 0; i < 100; ++i) {
         m_entityManager.create<Civilian>(sf::Vector2f(rand() % WORLDSIZE.x, rand() % WORLDSIZE.y), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
@@ -108,6 +121,10 @@ void GameScene::onEnter()
     m_civiliansRescuedCountText.setColor(sf::Color::White);
     m_civiliansRescuedCountText.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (CIVILIAN_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 
+    m_bulletCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
+    m_bulletCountText.setCharacterSize(24);
+    m_bulletCountText.setColor(sf::Color::White);
+    m_bulletCountText.setPosition(static_cast<float>(VIEWSIZE.x - (MEDIUM_GUN_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 }
 
 void GameScene::onExit()
