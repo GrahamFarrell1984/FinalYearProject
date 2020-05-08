@@ -32,4 +32,5 @@ private:
     sf::Sprite m_sprite;
     sf::Text m_zombiesKilledCountText;
     sf::Text m_civiliansRescuedCountText;
+    sf::Text m_bulletCountText;
 };
