@@ -91,11 +91,11 @@ void GameScene::onEnter()
     m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), textureHolder.getResource(Assets::Texture::PLAYER.id));
 
     for (int i = 0; i < 100; ++i) {
-        m_entityManager.create<Zombie>(sf::Vector2f(rand() % 75 * (i + 0.3), rand() % 75 * (i + 0.5)), m_player->getPos(), textureHolder.getResource(Assets::Texture::PLAYER.id));
+        m_entityManager.create<Zombie>(sf::Vector2f(rand() % WORLDSIZE.x, rand() % WORLDSIZE.y), m_player->getPos(), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
     for (int i = 0; i < 25; ++i) {
-        m_entityManager.create<Civilian>(sf::Vector2f(rand() % 25 * (i + 0.1), rand() % 250 * (i + 0.1)), textureHolder.getResource(Assets::Texture::PLAYER.id));
+        m_entityManager.create<Civilian>(sf::Vector2f(rand() % WORLDSIZE.x, rand() % WORLDSIZE.y), textureHolder.getResource(Assets::Texture::PLAYER.id));
     }
 
     m_zombiesKilledCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
