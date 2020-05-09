@@ -11,7 +11,7 @@ namespace Assets {
     namespace Texture {
         static constexpr Data SCENES   { 0, "assets/texture/scenes.png" };
         static constexpr Data ENTITIES { 1, "assets/texture/entities.png" };
-        static constexpr Data LEVEL    { 3, "assets/texture/level.png" };
+        static constexpr Data LEVEL    { 2, "assets/texture/level.png" };
     }  // namespace Texture
 
     namespace Font {
