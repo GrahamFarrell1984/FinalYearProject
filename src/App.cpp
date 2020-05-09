@@ -24,7 +24,6 @@ bool App::setup()
     Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXE.id, Assets::Sfx::SFXE.filepath);
     m_textureManager.loadResource(Assets::Texture::TEXA.id, Assets::Texture::TEXA.filepath);
     m_textureManager.loadResource(Assets::Texture::PLAYER.id, Assets::Texture::PLAYER.filepath);
-    m_textureManager.loadResource(Assets::Texture::ZOMBIE.id, Assets::Texture::ZOMBIE.filepath);
     m_textureManager.loadResource(Assets::Texture::MUMMY.id, Assets::Texture::MUMMY.filepath);
     m_textureManager.loadResource(Assets::Texture::LEVEL.id, Assets::Texture::LEVEL.filepath);
     m_fontManager.loadResource(Assets::Font::FONTA.id, Assets::Font::FONTA.filepath);
