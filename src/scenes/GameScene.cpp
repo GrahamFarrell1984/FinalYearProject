@@ -62,31 +62,32 @@ void GameScene::render(sf::RenderWindow& window)
         window.draw(m_sprite);
     }
 
+    // Draw the bullet counter
+    m_sprite.setPosition(static_cast<float>((VIEWSIZE.x / 2) - (MEDIUM_GUN_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setTextureRect(sf::IntRect(MEDIUM_GUN_SRC_RECT.x, MEDIUM_GUN_SRC_RECT.y, MEDIUM_GUN_SRC_RECT.w, MEDIUM_GUN_SRC_RECT.h));
+    window.draw(m_sprite);
+
     // Draw the zombie head counter
-    m_sprite.setPosition(static_cast<float>((VIEWSIZE.x / 2) - (ZOMBIE_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (ZOMBIE_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
     m_sprite.setTextureRect(sf::IntRect(ZOMBIE_HEAD_SRC_RECT.x, ZOMBIE_HEAD_SRC_RECT.y, ZOMBIE_HEAD_SRC_RECT.w, ZOMBIE_HEAD_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Draw the civilian head counter
-    m_sprite.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (CIVILIAN_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setPosition(static_cast<float>(VIEWSIZE.x - (CIVILIAN_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
     m_sprite.setTextureRect(sf::IntRect(CIVILIAN_HEAD_SRC_RECT.x, CIVILIAN_HEAD_SRC_RECT.y, CIVILIAN_HEAD_SRC_RECT.w, CIVILIAN_HEAD_SRC_RECT.h));
     window.draw(m_sprite);
 
-    // Draw the bullet counter
-    m_sprite.setPosition(static_cast<float>(VIEWSIZE.x - (MEDIUM_GUN_SRC_RECT.w / 2)), static_cast<float>(10));
-    m_sprite.setTextureRect(sf::IntRect(MEDIUM_GUN_SRC_RECT.x, MEDIUM_GUN_SRC_RECT.y, MEDIUM_GUN_SRC_RECT.w, MEDIUM_GUN_SRC_RECT.h));
-    window.draw(m_sprite);
+    // Set and draw the bullet counter value
+    m_bulletCountText.setString(std::to_string(m_player->getBulletCount()));
+    window.draw(m_bulletCountText);
 
-    m_bulletCountText.setPosition(static_cast<float>(VIEWSIZE.x - (MEDIUM_GUN_SRC_RECT.w / 2) + 60), static_cast<float>(20));
-
+    // Set and draw the zombie head counter value
     m_zombiesKilledCountText.setString(std::to_string(m_player->getZombiesKilledCount()));
     window.draw(m_zombiesKilledCountText);
 
+    // Set and draw the civilian head counter value
     m_civiliansRescuedCountText.setString(std::to_string(m_player->getCiviliansRescuedCount()));
     window.draw(m_civiliansRescuedCountText);
-
-    m_bulletCountText.setString(std::to_string(m_player->getBulletCount()));
-    window.draw(m_bulletCountText);
 
 }
 
@@ -104,9 +105,9 @@ void GameScene::onEnter()
 
     m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), sf::Vector2f(WORLDSIZE.x, WORLDSIZE.y), textureHolder.getResource(Assets::Texture::ENTITIES.id));
 
-//    for (int i = 0; i < 100; ++i) {
-//        m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::ENTITIES.id));
-//    }
+    for (int i = 0; i < 100; ++i) {
+        m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::ENTITIES.id));
+    }
 
     for (int i = 0; i < 100; ++i) {
         m_entityManager.create<Cheerleader>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
@@ -116,20 +117,20 @@ void GameScene::onEnter()
         m_entityManager.create<Soldier>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
+    m_bulletCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
+    m_bulletCountText.setCharacterSize(24);
+    m_bulletCountText.setColor(sf::Color::White);
+    m_bulletCountText.setPosition(static_cast<float>((VIEWSIZE.x / 2) - (MEDIUM_GUN_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+
     m_zombiesKilledCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_zombiesKilledCountText.setCharacterSize(24);
     m_zombiesKilledCountText.setColor(sf::Color::White);
-    m_zombiesKilledCountText.setPosition(static_cast<float>((VIEWSIZE.x / 2) - (ZOMBIE_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+    m_zombiesKilledCountText.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (ZOMBIE_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 
     m_civiliansRescuedCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_civiliansRescuedCountText.setCharacterSize(24);
     m_civiliansRescuedCountText.setColor(sf::Color::White);
-    m_civiliansRescuedCountText.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (CIVILIAN_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
-
-    m_bulletCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
-    m_bulletCountText.setCharacterSize(24);
-    m_bulletCountText.setColor(sf::Color::White);
-    m_bulletCountText.setPosition(static_cast<float>(VIEWSIZE.x - (MEDIUM_GUN_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+    m_civiliansRescuedCountText.setPosition(static_cast<float>(VIEWSIZE.x - (CIVILIAN_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 }
 
 void GameScene::onExit()
