@@ -1,13 +1,12 @@
-#include "GameScene.h"
-
 #include "AudioManager.h"
 #include "Bullet.h"
 #include "Cheerleader.h"
-#include "Soldier.h"
 #include "CollisionManager.h"
+#include "GameScene.h"
 #include "Mummy.h"
 #include "Player.h"
 #include "ResourceManager.h"
+#include "Soldier.h"
 #include "TextureData.h"
 #include "Zombie.h"
 

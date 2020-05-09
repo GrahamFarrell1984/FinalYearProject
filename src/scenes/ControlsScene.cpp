@@ -1,6 +1,5 @@
-#include "ControlsScene.h"
-
 #include "AudioManager.h"
+#include "ControlsScene.h"
 #include "ResourceManager.h"
 #include "TextureData.h"
 

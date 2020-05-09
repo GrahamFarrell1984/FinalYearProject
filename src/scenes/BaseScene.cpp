@@ -1,5 +1,4 @@
 #include "BaseScene.h"
-
 #include "SceneManager.h"
 
 BaseScene::BaseScene(SceneManager& sceneManager, const Scene::Name name, const bool isTransparent)

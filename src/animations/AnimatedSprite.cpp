@@ -1,5 +1,4 @@
 #include "AnimatedSprite.h"
-
 #include "EntityData.h"
 
 AnimatedSprite::AnimatedSprite(sf::Vector2f pos,

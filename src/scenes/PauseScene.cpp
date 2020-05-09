@@ -1,8 +1,7 @@
-#include "PauseScene.h"
-
-#include "TextureData.h"
 #include "AudioManager.h"
+#include "PauseScene.h"
 #include "ResourceManager.h"
+#include "TextureData.h"
 
 #include <iostream>
 using namespace std;

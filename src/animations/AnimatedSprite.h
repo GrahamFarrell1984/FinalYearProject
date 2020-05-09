@@ -5,8 +5,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "EntityData.h"
 #include "AnimationStates.h"
+#include "EntityData.h"
 #include "Types.h"
 
 class AnimatedSprite

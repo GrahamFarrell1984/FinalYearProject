@@ -1,11 +1,10 @@
-#include "SceneManager.h"
-
-#include "GameScene.h"
+#include "ControlsScene.h"
 #include "GameoverScene.h"
+#include "GameScene.h"
 #include "PauseScene.h"
+#include "SceneManager.h"
 #include "TestScene.h"
 #include "TitleScene.h"
-#include "ControlsScene.h"
 
 SceneManager::SceneManager(SharedContext&& sharedContext)
         : m_sharedContext{ std::move(sharedContext) }

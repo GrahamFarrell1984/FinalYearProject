@@ -1,8 +1,7 @@
-#include "GameoverScene.h"
-
-#include "TextureData.h"
 #include "AudioManager.h"
+#include "GameoverScene.h"
 #include "ResourceManager.h"
+#include "TextureData.h"
 
 GameoverScene::GameoverScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }

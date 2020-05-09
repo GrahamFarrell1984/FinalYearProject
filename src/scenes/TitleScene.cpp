@@ -1,8 +1,7 @@
-#include "TitleScene.h"
-
-#include "TextureData.h"
 #include "AudioManager.h"
 #include "ResourceManager.h"
+#include "TitleScene.h"
+#include "TextureData.h"
 
 TitleScene::TitleScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }

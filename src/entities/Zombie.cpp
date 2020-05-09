@@ -1,7 +1,6 @@
-#include "Zombie.h"
-#include "math.h"
-
 #include "AudioManager.h"
+#include "math.h"
+#include "Zombie.h"
 
 Zombie::Zombie(sf::Vector2f position, const sf::Vector2f& playerPos, const sf::Texture* texture)
         : m_dir{ Entity::Direction::Down }

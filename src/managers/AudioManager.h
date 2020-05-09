@@ -6,8 +6,8 @@
 
 #include <array>
 
-#include "Singleton.h"
 #include "ResourceManager.h"
+#include "Singleton.h"
 
 class AudioManager : public Singleton<AudioManager>
 {
