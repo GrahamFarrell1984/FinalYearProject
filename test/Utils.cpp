@@ -24,7 +24,7 @@ TEST_CASE("Test Contain", "[utils]")
     Rect  r { 0, 0, 100, 100};
     Point p { 50, 50 };
 
-    REQUIRE(Utils::contains(r, p));
+    REQUIRE(Utils::contains(r, p, 10));
 }
 
 TEST_CASE("Test doesn't contain", "[utils]")
@@ -32,7 +32,7 @@ TEST_CASE("Test doesn't contain", "[utils]")
     Rect  r { 0, 0, 100, 100};
     Point p { 200, 50 };
 
-    REQUIRE(!Utils::contains(r, p));
+    REQUIRE(!Utils::contains(r, p, 10));
 }
 
 TEST_CASE("Test IntersectionDepth", "[utils]")
