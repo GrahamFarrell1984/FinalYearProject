@@ -1,7 +1,7 @@
 #include "AudioManager.h"
 #include "Player.h"
 
-Player::Player(sf::Vector2f position, const sf::Texture* texture)
+Player::Player(sf::Vector2f position, sf::Vector2f worldsize, const sf::Texture* texture)
         : m_hasFired{ false }
         , m_moving{ false }
         , m_invincible{ false }
@@ -14,6 +14,7 @@ Player::Player(sf::Vector2f position, const sf::Texture* texture)
         , m_animState{ Anim::State::STAND_FACING_DOWN }
         , m_pos{ position }
         , m_vel{ 0, 0 }
+        , m_worldSize{ worldsize }
         , m_rect{ sf::Vector2f(18, 20) }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
         , m_zombiesKilledCount{ 0 }
@@ -94,6 +95,16 @@ void Player::update()
     }
 
     m_animSprite.updatePosition(m_pos);
+    if (m_pos.x < 0 ) {
+        m_pos.x = 0;
+    } else if (m_pos.x + m_localBounds.w > m_worldSize.x) {
+        m_pos.x  = m_worldSize.x - m_localBounds.w;
+    } else if (m_pos.y < 0 ) {
+        m_pos.y = 0;
+    } else if (m_pos.y + m_localBounds.h > m_worldSize.y) {
+        m_pos.y  = m_worldSize.y - m_localBounds.h;
+    }
+
     m_rect.setPosition(m_pos.x + ClsnOffset.x, m_pos.y + ClsnOffset.y);
     m_animSprite.changeState(m_animState);
     m_animSprite.checkForFrameUpdate();
