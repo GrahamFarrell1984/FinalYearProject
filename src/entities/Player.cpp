@@ -95,14 +95,14 @@ void Player::update()
     }
 
     m_animSprite.updatePosition(m_pos);
-    if (m_pos.x < 0 ) {
-        m_pos.x = 0;
-    } else if (m_pos.x + m_localBounds.w > m_worldSize.x) {
-        m_pos.x  = m_worldSize.x - m_localBounds.w;
-    } else if (m_pos.y < 0 ) {
-        m_pos.y = 0;
-    } else if (m_pos.y + m_localBounds.h > m_worldSize.y) {
-        m_pos.y  = m_worldSize.y - m_localBounds.h;
+    if (m_pos.x < 16 ) { // Checking world boundary on left
+        m_pos.x = 16;
+    } else if (m_pos.x + m_localBounds.w > (m_worldSize.x - 16)) { // Checking world boundary on right
+        m_pos.x  = (m_worldSize.x - 16) - m_localBounds.w;
+    } else if (m_pos.y < 32 ) { // Checking world boundary on top
+        m_pos.y = 32;
+    } else if (m_pos.y + m_localBounds.h > (m_worldSize.y - 48)) { // Checking world boundary on bottom
+        m_pos.y  = (m_worldSize.y - 48) - m_localBounds.h;
     }
 
     m_rect.setPosition(m_pos.x + ClsnOffset.x, m_pos.y + ClsnOffset.y);
