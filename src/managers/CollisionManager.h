@@ -6,6 +6,7 @@
 #include "EntityManager.h"
 #include "Player.h"
 #include "RectangleHelper.h"
+#include "Soldier.h"
 #include "Zombie.h"
 
 namespace ClsnManager {
