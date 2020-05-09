@@ -27,8 +27,8 @@ namespace Assets {
     }  // namespace Sfx
 
     namespace Music {
-        static constexpr Data MUSICA { 0, "assets/music/main-title.ogg" };
-        static constexpr Data MUSICB { 1, "assets/music/killing-zombies.ogg" };
+        static constexpr Data MUSICA { 0, "assets/music/killing-zombies.ogg" };
+        static constexpr Data MUSICB { 1, "assets/music/main-title.ogg" };
     }  // namespace Sfx
 
 

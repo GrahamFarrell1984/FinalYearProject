@@ -95,10 +95,10 @@ void GameScene::onEnter()
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     const ResourceManager<sf::Font>& fontHolder = getSharedContext().fontHolder;
 
-    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
-    audioManager.stopMusic();
-    audioManager.stopAllSounds();
-    audioManager.playMusic(Assets::Music::MUSICB, true);
+//    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
+//    audioManager.stopMusic();
+//    audioManager.stopAllSounds();
+//    audioManager.playMusic(Assets::Music::MUSICB, true);
 
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 

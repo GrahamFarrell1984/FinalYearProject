@@ -94,12 +94,12 @@ void TitleScene::onEnter()
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 
-    Singleton<AudioManager>::getInstance().playMusic(Assets::Music::MUSICA);
+    Singleton<AudioManager>::getInstance().playMusic(Assets::Music::MUSICA, true);
 }
 
 void TitleScene::onExit()
 {
-    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
-    audioManager.stopMusic();
-    audioManager.stopAllSounds();
+//    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
+//    audioManager.stopMusic();
+//    audioManager.stopAllSounds();
 }

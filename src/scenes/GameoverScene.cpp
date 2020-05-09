@@ -79,12 +79,12 @@ void GameoverScene::onEnter()
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 
-    Singleton<AudioManager>::getInstance().playMusic(Assets::Music::MUSICA);
+//    Singleton<AudioManager>::getInstance().playMusic(Assets::Music::MUSICA);
 }
 
 void GameoverScene::onExit()
 {
-    auto& audioManager = Singleton<AudioManager>::getInstance();
-    audioManager.stopAllSounds();
-    audioManager.stopMusic();
+//    auto& audioManager = Singleton<AudioManager>::getInstance();
+//    audioManager.stopAllSounds();
+//    audioManager.stopMusic();
 }

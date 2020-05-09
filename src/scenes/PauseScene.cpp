@@ -49,12 +49,15 @@ void PauseScene::processInput(const Keyboard& keyboard)
         switch (m_options) {
             case MENUOPTIONS::RESUME:
                 requestSceneChange(Scene::Action::POP);
+                audioManager.resumeMusic();
                 break;
             case MENUOPTIONS::MAINMENU:
                 requestSceneChange(Scene::Action::POPUNTIL, Scene::Name::TITLE);
+                audioManager.playMusic(Assets::Music::MUSICA, true);
                 break;
             case MENUOPTIONS::QUIT:
                 requestSceneChange(Scene::Action::POPALL);
+                audioManager.stopMusic();
                 break;
         }
     }
@@ -103,5 +106,5 @@ void PauseScene::onEnter()
 
 void PauseScene::onExit()
 {
-    Singleton<AudioManager>::getInstance().resumeMusic();
+//    Singleton<AudioManager>::getInstance().resumeMusic();
 }
