@@ -101,7 +101,7 @@ void GameScene::onEnter()
 
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
 
-    m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), textureHolder.getResource(Assets::Texture::PLAYER.id));
+    m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), sf::Vector2f(WORLDSIZE.x, WORLDSIZE.y), textureHolder.getResource(Assets::Texture::PLAYER.id));
 
     for (int i = 0; i < 100; ++i) {
         m_entityManager.create<Zombie>(sf::Vector2f(rand() % WORLDSIZE.x, rand() % WORLDSIZE.y), m_player->getPos(), textureHolder.getResource(Assets::Texture::PLAYER.id));

@@ -14,7 +14,7 @@
 class Player : public BaseEntity
 {
 public:
-    Player(sf::Vector2f position, const sf::Texture* texture);
+    Player(sf::Vector2f position, sf::Vector2f worldsize, const sf::Texture* texture);
 
     void processInput(const Keyboard& keyboard);
     void update() override;
@@ -69,6 +69,7 @@ private:
     Anim::State m_animState;
     sf::Vector2f m_pos;
     sf::Vector2f m_vel;
+    sf::Vector2f m_worldSize;
     sf::RectangleShape m_rect;
     AnimatedSprite m_animSprite;
     int m_zombiesKilledCount;

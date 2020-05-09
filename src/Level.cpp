@@ -21,10 +21,10 @@ void Level::render(sf::RenderWindow& window, Rect camView)
         const int32_t tilePosY = row * TileSize;
         for (int32_t col = startTileCol; col < endTileCol; col++) {
             const int32_t tilePosX = col * TileSize;
-            //Set texture rect based on index on [col][row]
-            if (LevelData[row][col] != 0) {
-                m_sprite.setPosition(tilePosX, tilePosY);
-            }
+            m_sprite.setPosition(tilePosX, tilePosY);
+            int32_t spriteOffsetX = (LevelData[row][col] % 10);
+            int32_t spriteOffsetY = LevelData[row][col] / 10;
+            m_sprite.setTextureRect(sf::IntRect(spriteOffsetX * TileSize + spriteOffsetX, spriteOffsetY * TileSize + spriteOffsetY, TileSize, TileSize));
             window.draw(m_sprite);
         }
     }
