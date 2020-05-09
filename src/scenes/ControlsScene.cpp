@@ -87,7 +87,7 @@ void ControlsScene::render(sf::RenderWindow& window)
 void ControlsScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 
     //  AudioManager& audioManager = Singleton<AudioManager>::getInstance();
     //  audioManager.playMusic(Assets::Music::MUSICA);

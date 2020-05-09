@@ -78,7 +78,7 @@ void GameoverScene::render(sf::RenderWindow& window)
 void GameoverScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 
     Singleton<AudioManager>::getInstance().playMusic(Assets::Music::MUSICA);
 }

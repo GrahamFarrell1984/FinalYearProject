@@ -31,7 +31,7 @@ void GameScene::update()
 {
     if (m_player->checkHasFired()) {
         if (!m_player->getBulletCount() == 0) {
-            m_entityManager.create<Bullet>(m_player->getPos(), m_player->getDir(), getSharedContext().textureHolder.getResource(Assets::Texture::PLAYER.id));
+            m_entityManager.create<Bullet>(m_player->getPos(), m_player->getDir(), getSharedContext().textureHolder.getResource(Assets::Texture::ENTITIES.id));
             Singleton<AudioManager>::getInstance().playSound(Assets::Sfx::SFXD.id);
             m_player->setHasFired(false);
         }
@@ -99,16 +99,16 @@ void GameScene::onEnter()
     audioManager.stopAllSounds();
     audioManager.playMusic(Assets::Music::MUSICB, true);
 
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 
-    m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), sf::Vector2f(WORLDSIZE.x, WORLDSIZE.y), textureHolder.getResource(Assets::Texture::PLAYER.id));
+    m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), sf::Vector2f(WORLDSIZE.x, WORLDSIZE.y), textureHolder.getResource(Assets::Texture::ENTITIES.id));
 
     for (int i = 0; i < 100; ++i) {
-        m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::PLAYER.id));
+        m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
     for (int i = 0; i < 100; ++i) {
-        m_entityManager.create<Civilian>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::PLAYER.id));
+        m_entityManager.create<Civilian>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
     m_zombiesKilledCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));

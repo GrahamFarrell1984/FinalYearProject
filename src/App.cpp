@@ -1,7 +1,6 @@
 #include "App.h"
-
-#include "Singleton.h"
 #include "AudioManager.h"
+#include "Singleton.h"
 
 App::App()
         : m_initialised{ false }
@@ -22,9 +21,8 @@ bool App::setup()
     Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXC.id, Assets::Sfx::SFXC.filepath);
     Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXD.id, Assets::Sfx::SFXD.filepath);
     Singleton<AudioManager>::getInstance().loadResource(Assets::Sfx::SFXE.id, Assets::Sfx::SFXE.filepath);
-    m_textureManager.loadResource(Assets::Texture::TEXA.id, Assets::Texture::TEXA.filepath);
-    m_textureManager.loadResource(Assets::Texture::PLAYER.id, Assets::Texture::PLAYER.filepath);
-    m_textureManager.loadResource(Assets::Texture::MUMMY.id, Assets::Texture::MUMMY.filepath);
+    m_textureManager.loadResource(Assets::Texture::SCENES.id, Assets::Texture::SCENES.filepath);
+    m_textureManager.loadResource(Assets::Texture::ENTITIES.id, Assets::Texture::ENTITIES.filepath);
     m_textureManager.loadResource(Assets::Texture::LEVEL.id, Assets::Texture::LEVEL.filepath);
     m_fontManager.loadResource(Assets::Font::FONTA.id, Assets::Font::FONTA.filepath);
 

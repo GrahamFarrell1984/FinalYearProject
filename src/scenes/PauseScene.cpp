@@ -95,7 +95,7 @@ void PauseScene::render(sf::RenderWindow& window)
 void PauseScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
-    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::TEXA.id));
+    m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 
     Singleton<AudioManager>::getInstance().pauseMusic();
 
