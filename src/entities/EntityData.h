@@ -28,10 +28,10 @@ static const FrameData SpriteData{
         { 156, 42, 38, 42 },  // Index [13] - TexSrc for player aiming fire extinguisher left
 
         { 0, 84, 26, 42 },  // Index [14] - TexSrc for player facing right
-        { 26, 84, 26, 42 },  // Index [15] - TexSrc for player moving right
-        { 52, 84, 26, 42 },  // Index [16] - TexSrc for player moving right
-        { 78, 84, 26, 42 },  // Index [17] - TexSrc for player moving right
-        { 104, 84, 26, 42 },  // Index [18] - TexSrc for player moving right
+        { 26, 84, 25, 42 },  // Index [15] - TexSrc for player moving right
+        { 52, 84, 25, 42 },  // Index [16] - TexSrc for player moving right
+        { 78, 84, 25, 42 },  // Index [17] - TexSrc for player moving right
+        { 104, 84, 25, 42 },  // Index [18] - TexSrc for player moving right
         { 130, 84, 32, 42 },  // Index [19] - TexSrc for player firing gun right
         { 156, 84, 38, 42 },  // Index [20] - TexSrc for player aiming fire extinguisher right
 
@@ -79,11 +79,11 @@ static const FrameData SpriteData{
         { 182, 152, 15, 13 },  // Index [59] - TexSrc for bullet splash1
         { 178, 136, 16, 16 },  // Index [60] - TexSrc for bullet splash2
 
-        { 0, 468, 46, 70 },  // Index [61] - Frame for cheerleader jumping
-        { 46, 468, 46, 70 },  // Index [62] - Frame for cheerleader jumping
-        { 92, 468, 46, 70 },  // Index [63] - Frame for cheerleader jumping
-        { 138, 468, 46, 70 },  // Index [64] - Frame for cheerleader jumping
-        { 184, 468, 46, 70 },  // Index [65] - Frame for cheerleader jumping
+        { 0, 468, 45, 70 },  // Index [61] - Frame for cheerleader jumping
+        { 46, 468, 45, 70 },  // Index [62] - Frame for cheerleader jumping
+        { 92, 468, 45, 70 },  // Index [63] - Frame for cheerleader jumping
+        { 138, 468, 45, 70 },  // Index [64] - Frame for cheerleader jumping
+        { 184, 468, 45, 70 },  // Index [65] - Frame for cheerleader jumping
 
         { 0, 536, 44, 63 },  // Index [66] - Frame for zombie spawning
         { 44, 536, 44, 63 },  // Index [67] - Frame for zombie spawning
@@ -121,7 +121,11 @@ static const FrameData SpriteData{
         { 0, 914, 44, 63 },  // Index [93] - Frame for zombie exploding
         { 44, 914, 44, 63 },  // Index [94] - Frame for zombie exploding
         { 88, 914, 44, 63 },  // Index [95] - Frame for zombie exploding
-        { 132, 914, 44, 63 } }  // Index [96] - Frame for zombie exploding
+        { 132, 914, 44, 63 },  // Index [96] - Frame for zombie exploding
+
+        { 0, 978, 36, 49 },  // Index [97] - Frame for soldier looking around
+        { 36, 978, 36, 49 },  // Index [98] - Frame for soldier looking around
+        { 72, 978, 36, 49 } }  // Index [99] - Frame for soldier looking around
 };
 
 static const AnimData SpriteAnimation{
@@ -165,7 +169,9 @@ static const AnimData SpriteAnimation{
         { Anim::State::ZOMBIE_MOVING_LEFT, { true, 0, { { 20, 80, {0,0} }, { 20, 81, {0,0} }, { 20, 82, {0,0} }, { 20, 83, {0,0} } } } },
         { Anim::State::ZOMBIE_MOVING_RIGHT, { true, 0, { { 20, 76, {0,0} }, { 20, 77, {0,0} }, { 20, 78, {0,0} }, { 20, 79, {0,0} } } } },
         { Anim::State::ZOMBIE_MOVING_UP, { true, 0, { { 20, 84, {0,0} }, { 20, 85, {0,0} }, { 20, 86, {0,0} }, { 20, 87, {0,0} } } } },
-        { Anim::State::ZOMBIE_EXPLODING, { false, 0, { { 10, 88, {0,0} }, { 10, 89, {0,0} }, { 10, 90, {0,0} }, { 10, 91, {0,0} }, { 10, 92, {0,0} }, { 10, 93, {0,0} }, { 10, 94, {0,0} }, { 30, 95, {0,0} }, { 30, 96, {0,0} } } } }
+        { Anim::State::ZOMBIE_EXPLODING, { false, 0, { { 10, 88, {0,0} }, { 10, 89, {0,0} }, { 10, 90, {0,0} }, { 10, 91, {0,0} }, { 10, 92, {0,0} }, { 10, 93, {0,0} }, { 10, 94, {0,0} }, { 30, 95, {0,0} }, { 30, 96, {0,0} } } } },
+
+        { Anim::State::LOOKING_AROUND, { true, 0, { { 60, 97, {0,0} }, { 120, 98, {0,0} }, { 60, 99, {0,0} }, { 120, 98, {0,0} } } } }
 };
 
 static const AnimData CivilianAnimation{

@@ -2,7 +2,7 @@
 
 #include "BaseEntity.h"
 #include "Bullet.h"
-#include "Civilian.h"
+#include "Cheerleader.h"
 #include "EntityManager.h"
 #include "Player.h"
 #include "RectangleHelper.h"
@@ -16,7 +16,8 @@ namespace ClsnManager {
         auto players  = entityManager.getEntityGroup<Player>();
         auto bullets  = entityManager.getEntityGroup<Bullet>();
         auto zombies  = entityManager.getEntityGroup<Zombie>();
-        auto civilians = entityManager.getEntityGroup<Civilian>();
+        auto cheerleaders = entityManager.getEntityGroup<Cheerleader>();
+        auto soldiers = entityManager.getEntityGroup<Soldier>();
 
         auto player = players.front();
 
@@ -27,9 +28,18 @@ namespace ClsnManager {
                     player->setIsHit();
                 }
             }
-            for (auto civilian : civilians) {
-                if (Utils::isIntersecting(player->getBounds(), civilian->getBounds())) {
-                    civilian->m_destroyed = true;
+            for (auto cheerleader : cheerleaders) {
+                if (Utils::isIntersecting(player->getBounds(), cheerleader->getBounds())) {
+                    cheerleader->m_destroyed = true;
+                    player->setCiviliansRescuedCount();
+                    // Just testing
+                    player->increaseBulletCount();
+                    audioManager.playSound(Assets::Sfx::SFXB.id);
+                }
+            }
+            for (auto soldier : soldiers) {
+                if (Utils::isIntersecting(player->getBounds(), soldier->getBounds())) {
+                    soldier->m_destroyed = true;
                     player->setCiviliansRescuedCount();
                     // Just testing
                     player->increaseBulletCount();

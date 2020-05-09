@@ -5,10 +5,10 @@
 #include "AnimatedSprite.h"
 #include "BaseEntity.h"
 
-class Civilian : public BaseEntity
+class Soldier : public BaseEntity
 {
 public:
-    Civilian(sf::Vector2f position, const sf::Texture* texture);
+    Soldier(sf::Vector2f position, const sf::Texture* texture);
 
     void update() override;
     void render(sf::RenderWindow& window) override;

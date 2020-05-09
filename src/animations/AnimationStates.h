@@ -37,6 +37,7 @@ namespace Anim {
         ZOMBIE_MOVING_UP,
         ZOMBIE_MOVING_LEFT,
         ZOMBIE_MOVING_RIGHT,
-        ZOMBIE_EXPLODING
+        ZOMBIE_EXPLODING,
+        LOOKING_AROUND
     };
 } // NS Anim

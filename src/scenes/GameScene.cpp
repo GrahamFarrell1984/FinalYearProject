@@ -2,7 +2,8 @@
 
 #include "AudioManager.h"
 #include "Bullet.h"
-#include "Civilian.h"
+#include "Cheerleader.h"
+#include "Soldier.h"
 #include "CollisionManager.h"
 #include "Mummy.h"
 #include "Player.h"
@@ -103,12 +104,16 @@ void GameScene::onEnter()
 
     m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), sf::Vector2f(WORLDSIZE.x, WORLDSIZE.y), textureHolder.getResource(Assets::Texture::ENTITIES.id));
 
+//    for (int i = 0; i < 100; ++i) {
+//        m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::ENTITIES.id));
+//    }
+
     for (int i = 0; i < 100; ++i) {
-        m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::ENTITIES.id));
+        m_entityManager.create<Cheerleader>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
     for (int i = 0; i < 100; ++i) {
-        m_entityManager.create<Civilian>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
+        m_entityManager.create<Soldier>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
     m_zombiesKilledCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
