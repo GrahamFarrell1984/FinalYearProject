@@ -111,15 +111,15 @@ void GameScene::onEnter()
 
     m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), sf::Vector2f(WORLD_SIZE.x, WORLD_SIZE.y), textureHolder.getResource(Assets::Texture::ENTITIES.id));
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 150; ++i) {
         m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLD_SIZE.x - 50), rand() % (WORLD_SIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 75; ++i) {
         m_entityManager.create<Cheerleader>(sf::Vector2f(rand() % (WORLD_SIZE.x - 50), rand() % (WORLD_SIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 75; ++i) {
         m_entityManager.create<Soldier>(sf::Vector2f(rand() % (WORLD_SIZE.x - 50), rand() % (WORLD_SIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
