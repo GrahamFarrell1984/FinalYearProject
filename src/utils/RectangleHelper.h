@@ -5,6 +5,11 @@
 namespace Utils {
     static bool contains(const Rect& r, const Point& p, const int32_t offset) {
         return p.x > r.x - offset && p.x < r.x + r.w + offset && p.y > r.y - offset && p.y < r.y + r.h + offset;
+        /* If the x coordinate of p is greater than the top left corner of rectangle r minus the offset
+         * and the x coordinate of p is less than the top right corner of rectangle r plus the offset
+         * and the y coordinate of p is greater than the top left corner of rectangle r minus the offset
+         * and the y coordinate of p is less than bottom left corner of rectangle r plus the offset.
+         * This is checking if a specific point is inside a rectangle and is used to check what to update and render. */
     }
 
     static bool isIntersecting(const Rect& a, const Rect& b) noexcept {
@@ -16,6 +21,7 @@ namespace Utils {
          * them a collision has occurred. */
     }
 
+    // Not used.
     static Point intersectingDepth(const Rect& a, const Rect& b) noexcept {
 
         // Calculate centers.
