@@ -32,16 +32,16 @@ namespace ClsnManager {
             for (auto cheerleader : cheerleaders) {
                 if (Utils::isIntersecting(player->getBounds(), cheerleader->getBounds())) {
                     cheerleader->m_destroyed = true;
-                    player->setCiviliansRescuedCount();
+                    player->setCheerleadersRescuedCount();
                     // Just testing
-                    player->increaseBulletCount();
+                    player->increaseHealth();
                     audioManager.playSound(Assets::Sfx::SFXB.id);
                 }
             }
             for (auto soldier : soldiers) {
                 if (Utils::isIntersecting(player->getBounds(), soldier->getBounds())) {
                     soldier->m_destroyed = true;
-                    player->setCiviliansRescuedCount();
+                    player->setSoldiersRescuedCount();
                     // Just testing
                     player->increaseBulletCount();
                     audioManager.playSound(Assets::Sfx::SFXB.id);

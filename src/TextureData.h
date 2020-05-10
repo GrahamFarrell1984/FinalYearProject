@@ -15,9 +15,10 @@ static constexpr auto SIZE = 256;
 
 static constexpr Rect BIG_HEART_WHITE_BORDER_SRC_RECT {0,1408,32,32 };
 
-static constexpr Rect ZOMBIE_HEAD_SRC_RECT {32,1408,48,48 };
-static constexpr Rect CIVILIAN_HEAD_SRC_RECT {80,1408,48,48 };
 static constexpr Rect MEDIUM_GUN_SRC_RECT {128,1408,48,48 };
+static constexpr Rect ZOMBIE_HEAD_SRC_RECT {32,1408,48,48 };
+static constexpr Rect CHEERLEADER_HEAD_SRC_RECT {80,1408,48,48 };
+static constexpr Rect SOLDIER_HEAD_SRC_RECT {272,1406,48,48 };
 
 // Source rectangle of big grey skull on texture
 static constexpr Rect BIG_GREY_SKULL_SRC_RECT {0,0,224,256 };
@@ -51,8 +52,8 @@ static constexpr Point PAUSED_MENU_POS {384,544 };
 
 // Source rectangles of main, options, paused and game over menus
 static constexpr Rect  MAIN_TITLE_MENU_SRC_RECT {0,1024,256,192 };
-static constexpr Rect  OPTIONS_AND_GAME_OVER_MENU_SRC_RECT {0,1280,256,128 };
-static constexpr Rect  PAUSED_MENU_SRC_RECT {0,1216,256,192 };
+static constexpr Rect  OPTIONS_AND_GAME_OVER_MENU_SRC_RECT {0,1280,256,120 };
+static constexpr Rect  PAUSED_MENU_SRC_RECT {0,1216,256,184 };
 
 // Source rectangle of small white skull used for cursor
 static constexpr Rect  CURSOR_SRC_RECT {224,0,32,32 };
@@ -61,7 +62,7 @@ static constexpr Rect  CURSOR_SRC_RECT {224,0,32,32 };
 static constexpr Point GAME_CONTROLS_TEXT_POS {256,192 };
 
 // Source rectangle of game controls text used in options scene
-static constexpr Rect  GAME_CONTROLS_TEXT_SRC_RECT {256,1024,512,384 };
+static constexpr Rect  GAME_CONTROLS_TEXT_SRC_RECT {256,1024,512,376 };
 
 // Player
 static constexpr Rect  PUP    {42,0,20,44 };

@@ -23,7 +23,7 @@ void Cheerleader::render(sf::RenderWindow& window)
 
     m_animSprite.render(window);
     // Toggle this to turn on and off collision boxes.
-    window.draw(m_rect);
+//    window.draw(m_rect);
 }
 
 Rect Cheerleader::getBounds() const

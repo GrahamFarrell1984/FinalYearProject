@@ -16,6 +16,9 @@ GameScene::GameScene(SceneManager& sceneManager, const Scene::Name name)
         , m_level  { getSharedContext().textureHolder.getResource(Assets::Texture::LEVEL.id), VIEWSIZE }
         , m_sprite { }
         , m_bulletCountText { }
+        , m_zombiesKilledCountText { }
+        , m_cheerleadersRescuedCountText { }
+        , m_soldiersRescuedCountText { }
 {
 }
 
@@ -71,9 +74,14 @@ void GameScene::render(sf::RenderWindow& window)
     m_sprite.setTextureRect(sf::IntRect(ZOMBIE_HEAD_SRC_RECT.x, ZOMBIE_HEAD_SRC_RECT.y, ZOMBIE_HEAD_SRC_RECT.w, ZOMBIE_HEAD_SRC_RECT.h));
     window.draw(m_sprite);
 
-    // Draw the civilian head counter
-    m_sprite.setPosition(static_cast<float>(VIEWSIZE.x - (CIVILIAN_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
-    m_sprite.setTextureRect(sf::IntRect(CIVILIAN_HEAD_SRC_RECT.x, CIVILIAN_HEAD_SRC_RECT.y, CIVILIAN_HEAD_SRC_RECT.w, CIVILIAN_HEAD_SRC_RECT.h));
+    // Draw the cheerleader head counter
+    m_sprite.setPosition(static_cast<float>(VIEWSIZE.x - (CHEERLEADER_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setTextureRect(sf::IntRect(CHEERLEADER_HEAD_SRC_RECT.x, CHEERLEADER_HEAD_SRC_RECT.y, CHEERLEADER_HEAD_SRC_RECT.w, CHEERLEADER_HEAD_SRC_RECT.h));
+    window.draw(m_sprite);
+
+    // Draw the soldier head counter
+    m_sprite.setPosition(static_cast<float>((VIEWSIZE.x + (VIEWSIZE.x / 4)) - (SOLDIER_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setTextureRect(sf::IntRect(SOLDIER_HEAD_SRC_RECT.x, SOLDIER_HEAD_SRC_RECT.y, SOLDIER_HEAD_SRC_RECT.w, SOLDIER_HEAD_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Set and draw the bullet counter value
@@ -84,9 +92,13 @@ void GameScene::render(sf::RenderWindow& window)
     m_zombiesKilledCountText.setString(std::to_string(m_player->getZombiesKilledCount()));
     window.draw(m_zombiesKilledCountText);
 
-    // Set and draw the civilian head counter value
-    m_civiliansRescuedCountText.setString(std::to_string(m_player->getCiviliansRescuedCount()));
-    window.draw(m_civiliansRescuedCountText);
+    // Set and draw the cheerleader head counter value
+    m_cheerleadersRescuedCountText.setString(std::to_string(m_player->getCheerleadersRescuedCount()));
+    window.draw(m_cheerleadersRescuedCountText);
+
+    // Set and draw the soldier head counter value
+    m_soldiersRescuedCountText.setString(std::to_string(m_player->getSoldiersRescuedCount()));
+    window.draw(m_soldiersRescuedCountText);
 
 }
 
@@ -126,10 +138,15 @@ void GameScene::onEnter()
     m_zombiesKilledCountText.setColor(sf::Color::White);
     m_zombiesKilledCountText.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (ZOMBIE_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 
-    m_civiliansRescuedCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
-    m_civiliansRescuedCountText.setCharacterSize(24);
-    m_civiliansRescuedCountText.setColor(sf::Color::White);
-    m_civiliansRescuedCountText.setPosition(static_cast<float>(VIEWSIZE.x - (CIVILIAN_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+    m_cheerleadersRescuedCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
+    m_cheerleadersRescuedCountText.setCharacterSize(24);
+    m_cheerleadersRescuedCountText.setColor(sf::Color::White);
+    m_cheerleadersRescuedCountText.setPosition(static_cast<float>(VIEWSIZE.x - (CHEERLEADER_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+
+    m_soldiersRescuedCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
+    m_soldiersRescuedCountText.setCharacterSize(24);
+    m_soldiersRescuedCountText.setColor(sf::Color::White);
+    m_soldiersRescuedCountText.setPosition(static_cast<float>((VIEWSIZE.x + (VIEWSIZE.x / 4)) - (SOLDIER_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 }
 
 void GameScene::onExit()

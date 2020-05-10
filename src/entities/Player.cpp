@@ -18,7 +18,8 @@ Player::Player(sf::Vector2f position, sf::Vector2f worldsize, const sf::Texture*
         , m_rect{ sf::Vector2f(18, 20) }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
         , m_zombiesKilledCount{ 0 }
-        , m_civiliansRescuedCount{ 0 }
+        , m_cheerleadersRescuedCount{ 0 }
+        , m_soldiersRescuedCount { 0 }
         , m_bulletCount{ 100 }
 {
     // Test
@@ -118,7 +119,7 @@ void Player::render(sf::RenderWindow& window)
         m_animSprite.render(window);
     }
     // Toggle this to turn on and off collision boxes.
-    window.draw(m_rect);
+//    window.draw(m_rect);
 }
 
 Rect Player::getBounds() const
@@ -192,14 +193,24 @@ int Player::getZombiesKilledCount()
     return m_zombiesKilledCount;
 }
 
-void Player::setCiviliansRescuedCount()
+void Player::setCheerleadersRescuedCount()
 {
-    m_civiliansRescuedCount += 1;
+    m_cheerleadersRescuedCount += 1;
 }
 
-int Player::getCiviliansRescuedCount()
+int Player::getCheerleadersRescuedCount()
 {
-    return m_civiliansRescuedCount;
+    return m_cheerleadersRescuedCount;
+}
+
+void Player::setSoldiersRescuedCount()
+{
+    m_soldiersRescuedCount += 1;
+}
+
+int Player::getSoldiersRescuedCount()
+{
+    return m_soldiersRescuedCount;
 }
 
 void Player::setBulletCount(int bulletCount)
@@ -222,6 +233,17 @@ void Player::increaseBulletCount()
         m_bulletCount += 10;
     } else if (getBulletCount() >= 91 && getBulletCount() <= 100) {
         m_bulletCount = 100;
+    }
+}
+
+void Player::increaseHealth()
+{
+    if (getHealth() == 0) {
+        m_health = 0;
+    } else if (getHealth() > 0 && getHealth() < 5) {
+        m_health += 1;
+    } else if (getHealth() == 5) {
+        m_health = 5;
     }
 }
 

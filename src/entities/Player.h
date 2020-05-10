@@ -37,12 +37,16 @@ public:
     void setZombiesKilledCount();
     int getZombiesKilledCount();
 
-    void setCiviliansRescuedCount();
-    int getCiviliansRescuedCount();
+    void setCheerleadersRescuedCount();
+    int getCheerleadersRescuedCount();
+
+    void setSoldiersRescuedCount();
+    int getSoldiersRescuedCount();
 
     void setBulletCount(int bulletCount);
     int getBulletCount();
     void increaseBulletCount();
+    void increaseHealth();
 
 private:
     static constexpr auto NormalSpeed        = 2;
@@ -73,6 +77,7 @@ private:
     sf::RectangleShape m_rect;
     AnimatedSprite m_animSprite;
     int m_zombiesKilledCount;
-    int m_civiliansRescuedCount;
+    int m_cheerleadersRescuedCount;
+    int m_soldiersRescuedCount;
     int m_bulletCount;
 };
