@@ -3,7 +3,6 @@
 #include "Cheerleader.h"
 #include "CollisionManager.h"
 #include "GameScene.h"
-#include "Mummy.h"
 #include "Player.h"
 #include "ResourceManager.h"
 #include "Soldier.h"
@@ -12,8 +11,8 @@
 
 GameScene::GameScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
-        , m_camera { WORLDSIZE, VIEWSIZE }
-        , m_level  { getSharedContext().textureHolder.getResource(Assets::Texture::LEVEL.id), VIEWSIZE }
+        , m_camera { WORLD_SIZE, VIEW_SIZE }
+        , m_level  { getSharedContext().textureHolder.getResource(Assets::Texture::LEVEL.id), VIEW_SIZE }
         , m_sprite { }
         , m_bulletCountText { }
         , m_zombiesKilledCountText { }
@@ -40,12 +39,12 @@ void GameScene::update()
         }
     }
 
-    ClsnManager::update(m_entityManager);
+    CollisionManager::update(m_entityManager);
     m_entityManager.update(m_camera.getBounds());
     m_entityManager.cleanup();
 
     if (m_player->isDead()) {
-        requestSceneChange(Scene::Action::POPANDADD, Scene::Name::GAMEOVER);
+        requestSceneChange(Scene::Action::POP_AND_ADD, Scene::Name::GAME_OVER);
     }
 }
 
@@ -59,28 +58,29 @@ void GameScene::render(sf::RenderWindow& window)
     m_sprite.setPosition(10, 10);
     m_sprite.setTextureRect(sf::IntRect(BIG_HEART_WHITE_BORDER_SRC_RECT.x, BIG_HEART_WHITE_BORDER_SRC_RECT.y, BIG_HEART_WHITE_BORDER_SRC_RECT.w, BIG_HEART_WHITE_BORDER_SRC_RECT.h));
 
+    // Draw the hearts for the players health
     for (int i = 0; i < m_player->getHealth(); i++) {
         m_sprite.setPosition(40 * i + 10, 18);
         window.draw(m_sprite);
     }
 
     // Draw the bullet counter
-    m_sprite.setPosition(static_cast<float>((VIEWSIZE.x / 2) - (MEDIUM_GUN_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setPosition(static_cast<float>((VIEW_SIZE.x / 2) - (MEDIUM_GUN_SRC_RECT.w / 2)), static_cast<float>(10));
     m_sprite.setTextureRect(sf::IntRect(MEDIUM_GUN_SRC_RECT.x, MEDIUM_GUN_SRC_RECT.y, MEDIUM_GUN_SRC_RECT.w, MEDIUM_GUN_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Draw the zombie head counter
-    m_sprite.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (ZOMBIE_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setPosition(static_cast<float>(((VIEW_SIZE.x / 4) * 3) - (ZOMBIE_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
     m_sprite.setTextureRect(sf::IntRect(ZOMBIE_HEAD_SRC_RECT.x, ZOMBIE_HEAD_SRC_RECT.y, ZOMBIE_HEAD_SRC_RECT.w, ZOMBIE_HEAD_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Draw the cheerleader head counter
-    m_sprite.setPosition(static_cast<float>(VIEWSIZE.x - (CHEERLEADER_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setPosition(static_cast<float>(VIEW_SIZE.x - (CHEERLEADER_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
     m_sprite.setTextureRect(sf::IntRect(CHEERLEADER_HEAD_SRC_RECT.x, CHEERLEADER_HEAD_SRC_RECT.y, CHEERLEADER_HEAD_SRC_RECT.w, CHEERLEADER_HEAD_SRC_RECT.h));
     window.draw(m_sprite);
 
     // Draw the soldier head counter
-    m_sprite.setPosition(static_cast<float>((VIEWSIZE.x + (VIEWSIZE.x / 4)) - (SOLDIER_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
+    m_sprite.setPosition(static_cast<float>((VIEW_SIZE.x + (VIEW_SIZE.x / 4)) - (SOLDIER_HEAD_SRC_RECT.w / 2)), static_cast<float>(10));
     m_sprite.setTextureRect(sf::IntRect(SOLDIER_HEAD_SRC_RECT.x, SOLDIER_HEAD_SRC_RECT.y, SOLDIER_HEAD_SRC_RECT.w, SOLDIER_HEAD_SRC_RECT.h));
     window.draw(m_sprite);
 
@@ -107,46 +107,41 @@ void GameScene::onEnter()
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     const ResourceManager<sf::Font>& fontHolder = getSharedContext().fontHolder;
 
-//    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
-//    audioManager.stopMusic();
-//    audioManager.stopAllSounds();
-//    audioManager.playMusic(Assets::Music::MUSICB, true);
-
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 
-    m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), sf::Vector2f(WORLDSIZE.x, WORLDSIZE.y), textureHolder.getResource(Assets::Texture::ENTITIES.id));
+    m_player = m_entityManager.create<Player>(sf::Vector2f(100, 100), sf::Vector2f(WORLD_SIZE.x, WORLD_SIZE.y), textureHolder.getResource(Assets::Texture::ENTITIES.id));
 
     for (int i = 0; i < 100; ++i) {
-        m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::ENTITIES.id));
+        m_entityManager.create<Zombie>(sf::Vector2f(rand() % (WORLD_SIZE.x - 50), rand() % (WORLD_SIZE.y - 125)), m_player->getPos(), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
     for (int i = 0; i < 100; ++i) {
-        m_entityManager.create<Cheerleader>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
+        m_entityManager.create<Cheerleader>(sf::Vector2f(rand() % (WORLD_SIZE.x - 50), rand() % (WORLD_SIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
     for (int i = 0; i < 100; ++i) {
-        m_entityManager.create<Soldier>(sf::Vector2f(rand() % (WORLDSIZE.x - 50), rand() % (WORLDSIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
+        m_entityManager.create<Soldier>(sf::Vector2f(rand() % (WORLD_SIZE.x - 50), rand() % (WORLD_SIZE.y - 125)), textureHolder.getResource(Assets::Texture::ENTITIES.id));
     }
 
     m_bulletCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_bulletCountText.setCharacterSize(24);
     m_bulletCountText.setColor(sf::Color::White);
-    m_bulletCountText.setPosition(static_cast<float>((VIEWSIZE.x / 2) - (MEDIUM_GUN_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+    m_bulletCountText.setPosition(static_cast<float>((VIEW_SIZE.x / 2) - (MEDIUM_GUN_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 
     m_zombiesKilledCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_zombiesKilledCountText.setCharacterSize(24);
     m_zombiesKilledCountText.setColor(sf::Color::White);
-    m_zombiesKilledCountText.setPosition(static_cast<float>(((VIEWSIZE.x / 4) * 3) - (ZOMBIE_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+    m_zombiesKilledCountText.setPosition(static_cast<float>(((VIEW_SIZE.x / 4) * 3) - (ZOMBIE_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 
     m_cheerleadersRescuedCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_cheerleadersRescuedCountText.setCharacterSize(24);
     m_cheerleadersRescuedCountText.setColor(sf::Color::White);
-    m_cheerleadersRescuedCountText.setPosition(static_cast<float>(VIEWSIZE.x - (CHEERLEADER_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+    m_cheerleadersRescuedCountText.setPosition(static_cast<float>(VIEW_SIZE.x - (CHEERLEADER_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 
     m_soldiersRescuedCountText.setFont(*fontHolder.getResource(Assets::Font::FONTA.id));
     m_soldiersRescuedCountText.setCharacterSize(24);
     m_soldiersRescuedCountText.setColor(sf::Color::White);
-    m_soldiersRescuedCountText.setPosition(static_cast<float>((VIEWSIZE.x + (VIEWSIZE.x / 4)) - (SOLDIER_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
+    m_soldiersRescuedCountText.setPosition(static_cast<float>((VIEW_SIZE.x + (VIEW_SIZE.x / 4)) - (SOLDIER_HEAD_SRC_RECT.w / 2) + 60), static_cast<float>(20));
 }
 
 void GameScene::onExit()

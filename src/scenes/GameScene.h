@@ -22,8 +22,8 @@ public:
 
 
 private:
-    static constexpr Point WORLDSIZE{ 2048, 1536 };
-    static constexpr Point VIEWSIZE {  512,  384 };
+    static constexpr Point WORLD_SIZE{ 2048, 1536 };
+    static constexpr Point VIEW_SIZE {  512,  384 };
 
     Camera m_camera;
     Level m_level;

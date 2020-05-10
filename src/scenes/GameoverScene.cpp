@@ -5,9 +5,9 @@
 
 GameoverScene::GameoverScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
-        , m_options   { MENUOPTIONS::MAINMENU }
+        , m_options   { MENU_OPTIONS::MAIN_MENU }
         , m_sprite    { }
-        , m_cursorPos { 320, 623} // Testing cursor position. x was 384
+        , m_cursorPos { 320, 623}
 {
 }
 
@@ -16,14 +16,14 @@ void GameoverScene::processInput(const Keyboard& keyboard)
     auto& audioManager = Singleton<AudioManager>::getInstance();
 
     if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::PRESS)) {
-        if (m_options == MENUOPTIONS::MAINMENU) {
-            m_options = MENUOPTIONS::QUIT;
+        if (m_options == MENU_OPTIONS::MAIN_MENU) {
+            m_options = MENU_OPTIONS::QUIT;
             m_cursorPos.y += CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
         }
     } else if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::PRESS)) {
-        if (m_options == MENUOPTIONS::QUIT) {
-            m_options = MENUOPTIONS::MAINMENU;
+        if (m_options == MENU_OPTIONS::QUIT) {
+            m_options = MENU_OPTIONS::MAIN_MENU;
             m_cursorPos.y -= CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
         }
@@ -32,12 +32,12 @@ void GameoverScene::processInput(const Keyboard& keyboard)
     if (keyboard.checkKeyAndState(sf::Keyboard::Enter, State::PRESS)) {
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
-            case MENUOPTIONS::MAINMENU:
-                requestSceneChange(Scene::Action::POPALL);
+            case MENU_OPTIONS::MAIN_MENU:
+                requestSceneChange(Scene::Action::POP_ALL);
                 requestSceneChange(Scene::Action::PUSH, Scene::Name::TITLE);
                 break;
-            case MENUOPTIONS::QUIT:
-                requestSceneChange(Scene::Action::POPALL);
+            case MENU_OPTIONS::QUIT:
+                requestSceneChange(Scene::Action::POP_ALL);
                 break;
         }
     }
@@ -58,7 +58,7 @@ void GameoverScene::render(sf::RenderWindow& window)
         }
     }
 
-    // Draw the gamer over title text
+    // Draw the game over title text
     m_sprite.setPosition(static_cast<float>(TITLE_POS.x), static_cast<float>(TITLE_POS.y));
     m_sprite.setTextureRect(sf::IntRect(GAME_OVER_TITLE_SRC_RECT.x, GAME_OVER_TITLE_SRC_RECT.y, GAME_OVER_TITLE_SRC_RECT.w, GAME_OVER_TITLE_SRC_RECT.h));
     window.draw(m_sprite);
@@ -78,13 +78,8 @@ void GameoverScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
-
-//    Singleton<AudioManager>::getInstance().playMusic(Assets::Music::MUSICA);
 }
 
 void GameoverScene::onExit()
 {
-//    auto& audioManager = Singleton<AudioManager>::getInstance();
-//    audioManager.stopAllSounds();
-//    audioManager.stopMusic();
 }

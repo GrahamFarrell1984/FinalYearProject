@@ -6,7 +6,6 @@ Soldier::Soldier(sf::Vector2f position, const sf::Texture* texture)
         , m_rect{ sf::Vector2f(27, 10) }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
 {
-    // Test
     m_rect.setPosition(m_pos.x + 2, m_pos.y + 39);
     m_rect.setFillColor(sf::Color(0, 255, 0, 100));
 }

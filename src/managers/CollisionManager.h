@@ -9,7 +9,7 @@
 #include "Soldier.h"
 #include "Zombie.h"
 
-namespace ClsnManager {
+namespace CollisionManager {
     static void update(EntityManager& entityManager)
     {
         AudioManager& audioManager = Singleton<AudioManager>::getInstance();
@@ -63,4 +63,4 @@ namespace ClsnManager {
         }
     }
 
-}  // namespace ClsnManager
+}  // namespace CollisionManager

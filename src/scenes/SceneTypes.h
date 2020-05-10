@@ -3,7 +3,7 @@
 
 namespace Scene {
     // Inc when adding new scenes. NONE is not added.
-    static constexpr uint8_t SCENECOUNT = 6;
+    static constexpr uint8_t SCENE_COUNT = 6;
 
     enum class Name : uint8_t
     {
@@ -12,7 +12,7 @@ namespace Scene {
         OPTIONS,
         GAME,
         PAUSE,
-        GAMEOVER,
+        GAME_OVER,
         TEST
     };
 
@@ -21,9 +21,9 @@ namespace Scene {
         NONE,
         PUSH,
         POP,
-        POPUNTIL,
-        POPANDADD,
-        POPALL
+        POP_UNTIL,
+        POP_AND_ADD,
+        POP_ALL
     };
 
     struct Request

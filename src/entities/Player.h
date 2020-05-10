@@ -14,7 +14,7 @@
 class Player : public BaseEntity
 {
 public:
-    Player(sf::Vector2f position, sf::Vector2f worldsize, const sf::Texture* texture);
+    Player(sf::Vector2f position, sf::Vector2f worldSize, const sf::Texture* texture);
 
     void processInput(const Keyboard& keyboard);
     void update() override;

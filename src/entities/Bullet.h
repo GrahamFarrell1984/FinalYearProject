@@ -21,7 +21,6 @@ public:
     void setIsHit();
 
 private:
-    // Diff speed for diff weapons ?
     static constexpr auto BulletSpeed = 8;
     static constexpr auto MaxDistance = 200;
     static constexpr Rect ClsnUpOffset{ 9, -4, 7, 16 };

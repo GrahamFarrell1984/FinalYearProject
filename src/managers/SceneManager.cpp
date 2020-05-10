@@ -3,14 +3,13 @@
 #include "GameScene.h"
 #include "PauseScene.h"
 #include "SceneManager.h"
-#include "TestScene.h"
 #include "TitleScene.h"
 
 SceneManager::SceneManager(SharedContext&& sharedContext)
         : m_sharedContext{ std::move(sharedContext) }
         , m_sceneRequest { Scene::Action::PUSH, Scene::Name::TITLE }
 {
-    m_sceneStack.reserve(Scene::SCENECOUNT);
+    m_sceneStack.reserve(Scene::SCENE_COUNT);
 }
 
 void SceneManager::processInput(const Keyboard& keyboard) const
@@ -41,16 +40,16 @@ void SceneManager::checkForUpdates()
             case Scene::Action::PUSH:
                 pushScene();
                 break;
-            case Scene::Action::POPUNTIL:
+            case Scene::Action::POP_UNTIL:
                 popUntilScene();
                 break;
             case Scene::Action::POP:
                 popScene();
                 break;
-            case Scene::Action::POPANDADD:
+            case Scene::Action::POP_AND_ADD:
                 popAndPushScene();
                 break;
-            case Scene::Action::POPALL:
+            case Scene::Action::POP_ALL:
                 popAllScenes();
                 break;
             default:
@@ -131,10 +130,8 @@ std::unique_ptr<BaseScene> SceneManager::createScene(const Scene::Name name)
             return std::unique_ptr<BaseScene>(std::make_unique<GameScene>(*this, name));
         case Scene::Name::PAUSE:
             return std::unique_ptr<BaseScene>(std::make_unique<PauseScene>(*this, name));
-        case Scene::Name::GAMEOVER:
+        case Scene::Name::GAME_OVER:
             return std::unique_ptr<BaseScene>(std::make_unique<GameoverScene>(*this, name));
-        case Scene::Name::TEST:
-            return std::unique_ptr<BaseScene>(std::make_unique<TestScene>(*this, name));
         default:
             return std::unique_ptr<BaseScene>(nullptr);
     }

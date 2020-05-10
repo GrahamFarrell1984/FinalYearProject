@@ -5,7 +5,7 @@
 #include "AnimationStates.h"
 #include "Types.h"
 
-// Player Sprite Data - Maybe move to texture data
+// Player Sprite Data
 using FrameData = std::vector<TexSrc>;
 using AnimData  = std::unordered_map<Anim::State, Animation>;
 

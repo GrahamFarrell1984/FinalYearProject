@@ -8,9 +8,9 @@ using namespace std;
 
 PauseScene::PauseScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name, true }
-        , m_options   { MENUOPTIONS::RESUME }
+        , m_options   { MENU_OPTIONS::RESUME }
         , m_sprite { }
-        , m_cursorPos { 320, 559} // Testing cursor position. x was 384
+        , m_cursorPos { 320, 559 }
 {
 }
 
@@ -19,25 +19,25 @@ void PauseScene::processInput(const Keyboard& keyboard)
     AudioManager& audioManager = Singleton<AudioManager>::getInstance();
 
     if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::PRESS)) {
-        if (m_options == MENUOPTIONS::RESUME) {
-            m_options = MENUOPTIONS::MAINMENU;
+        if (m_options == MENU_OPTIONS::RESUME) {
+            m_options = MENU_OPTIONS::MAIN_MENU;
             m_cursorPos.y += CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
             cout << "Pause Scene Down Key Pressed \n";
-        } else if (m_options == MENUOPTIONS::MAINMENU) {
-            m_options = MENUOPTIONS::QUIT;
+        } else if (m_options == MENU_OPTIONS::MAIN_MENU) {
+            m_options = MENU_OPTIONS::QUIT;
             m_cursorPos.y += CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
             cout << "Pause Scene Down Key Pressed \n";
         }
     } else if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::PRESS)) {
-        if (m_options == MENUOPTIONS::MAINMENU) {
-            m_options = MENUOPTIONS::RESUME;
+        if (m_options == MENU_OPTIONS::MAIN_MENU) {
+            m_options = MENU_OPTIONS::RESUME;
             m_cursorPos.y -= CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
             cout << "Pause Scene Up Key Pressed \n";
-        } else if (m_options == MENUOPTIONS::QUIT) {
-            m_options = MENUOPTIONS::MAINMENU;
+        } else if (m_options == MENU_OPTIONS::QUIT) {
+            m_options = MENU_OPTIONS::MAIN_MENU;
             m_cursorPos.y -= CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
             cout << "Pause Scene Up Key Pressed \n";
@@ -47,16 +47,16 @@ void PauseScene::processInput(const Keyboard& keyboard)
     if (keyboard.checkKeyAndState(sf::Keyboard::Enter, State::PRESS)) {
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
-            case MENUOPTIONS::RESUME:
+            case MENU_OPTIONS::RESUME:
                 requestSceneChange(Scene::Action::POP);
                 audioManager.resumeMusic();
                 break;
-            case MENUOPTIONS::MAINMENU:
-                requestSceneChange(Scene::Action::POPUNTIL, Scene::Name::TITLE);
+            case MENU_OPTIONS::MAIN_MENU:
+                requestSceneChange(Scene::Action::POP_UNTIL, Scene::Name::TITLE);
                 audioManager.playMusic(Assets::Music::MUSICA, true);
                 break;
-            case MENUOPTIONS::QUIT:
-                requestSceneChange(Scene::Action::POPALL);
+            case MENU_OPTIONS::QUIT:
+                requestSceneChange(Scene::Action::POP_ALL);
                 audioManager.stopMusic();
                 break;
         }
@@ -100,11 +100,8 @@ void PauseScene::onEnter()
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
 
     Singleton<AudioManager>::getInstance().pauseMusic();
-
-    // Add Pause sounds
 }
 
 void PauseScene::onExit()
 {
-//    Singleton<AudioManager>::getInstance().resumeMusic();
 }

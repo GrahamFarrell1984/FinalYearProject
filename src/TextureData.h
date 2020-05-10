@@ -3,7 +3,7 @@
 #include "Types.h"
 
 // POS              = position on screen
-// SRCPOS / SRCRECT = position / rectangle on texture
+// SRC_POS / SRC_RECT = position / rectangle on texture
 
 // Texture menu data
 static constexpr auto MAXROW       = 3;

@@ -6,7 +6,7 @@
 void EntityManager::update(Rect camView)
 {
     for (const auto& e : m_entities) {
-        if (e->m_visable) {
+        if (e->m_visible) {
             e->update();
         }
 
@@ -14,7 +14,7 @@ void EntityManager::update(Rect camView)
                  static_cast<int32_t>(e->m_localBounds.y + e->m_localBounds.w * 0.5f)
         };
 
-        Utils::contains(camView, p, Offset) ? e->m_visable = true : e->m_visable = false;
+        Utils::contains(camView, p, Offset) ? e->m_visible = true : e->m_visible = false;
     }
     sortDrawOrder();
 }
@@ -22,7 +22,7 @@ void EntityManager::update(Rect camView)
 void EntityManager::render(sf::RenderWindow &window)
 {
     for (const auto& e : m_entities) {
-        if (e->m_visable) {
+        if (e->m_visible) {
             e->render(window);
         }
     }

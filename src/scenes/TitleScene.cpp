@@ -5,9 +5,9 @@
 
 TitleScene::TitleScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
-        , m_options   { MENUOPTIONS::START }
+        , m_options   { MENU_OPTIONS::START }
         , m_sprite    { }
-        , m_cursorPos { 320, 559} // Testing cursor position. x was 384
+        , m_cursorPos {320,559 }
 {
 }
 
@@ -16,22 +16,22 @@ void TitleScene::processInput(const Keyboard& keyboard)
     AudioManager& audioManager = Singleton<AudioManager>::getInstance();
 
     if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::PRESS)) {
-        if (m_options == MENUOPTIONS::START) {
-            m_options = MENUOPTIONS::OPTIONS;
+        if (m_options == MENU_OPTIONS::START) {
+            m_options = MENU_OPTIONS::OPTIONS;
             m_cursorPos.y += CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
-        } else if (m_options == MENUOPTIONS::OPTIONS) {
-            m_options = MENUOPTIONS::QUIT;
+        } else if (m_options == MENU_OPTIONS::OPTIONS) {
+            m_options = MENU_OPTIONS::QUIT;
             m_cursorPos.y += CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
         }
     } else if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::PRESS)) {
-        if (m_options == MENUOPTIONS::OPTIONS) {
-            m_options = MENUOPTIONS::START;
+        if (m_options == MENU_OPTIONS::OPTIONS) {
+            m_options = MENU_OPTIONS::START;
             m_cursorPos.y -= CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
-        } else if (m_options == MENUOPTIONS::QUIT) {
-            m_options = MENUOPTIONS::OPTIONS;
+        } else if (m_options == MENU_OPTIONS::QUIT) {
+            m_options = MENU_OPTIONS::OPTIONS;
             m_cursorPos.y -= CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
         }
@@ -40,14 +40,14 @@ void TitleScene::processInput(const Keyboard& keyboard)
     if (keyboard.checkKeyAndState(sf::Keyboard::Enter, State::PRESS)) {
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
-            case MENUOPTIONS::START:
+            case MENU_OPTIONS::START:
                 requestSceneChange(Scene::Action::PUSH, Scene::Name::GAME);
                 break;
-            case MENUOPTIONS::OPTIONS:
+            case MENU_OPTIONS::OPTIONS:
                 requestSceneChange(Scene::Action::PUSH, Scene::Name::OPTIONS);
                 break;
-            case MENUOPTIONS::QUIT:
-                requestSceneChange(Scene::Action::POPALL);
+            case MENU_OPTIONS::QUIT:
+                requestSceneChange(Scene::Action::POP_ALL);
                 break;
         }
     }
@@ -99,7 +99,4 @@ void TitleScene::onEnter()
 
 void TitleScene::onExit()
 {
-//    AudioManager& audioManager = Singleton<AudioManager>::getInstance();
-//    audioManager.stopMusic();
-//    audioManager.stopAllSounds();
 }

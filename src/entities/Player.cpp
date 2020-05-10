@@ -1,7 +1,7 @@
 #include "AudioManager.h"
 #include "Player.h"
 
-Player::Player(sf::Vector2f position, sf::Vector2f worldsize, const sf::Texture* texture)
+Player::Player(sf::Vector2f position, sf::Vector2f worldSize, const sf::Texture* texture)
         : m_hasFired{ false }
         , m_moving{ false }
         , m_invincible{ false }
@@ -14,7 +14,7 @@ Player::Player(sf::Vector2f position, sf::Vector2f worldsize, const sf::Texture*
         , m_animState{ Anim::State::STAND_FACING_DOWN }
         , m_pos{ position }
         , m_vel{ 0, 0 }
-        , m_worldSize{ worldsize }
+        , m_worldSize{worldSize }
         , m_rect{ sf::Vector2f(18, 20) }
         , m_animSprite{ position, texture, SpriteData, SpriteAnimation }
         , m_zombiesKilledCount{ 0 }
@@ -22,7 +22,6 @@ Player::Player(sf::Vector2f position, sf::Vector2f worldsize, const sf::Texture*
         , m_soldiersRescuedCount { 0 }
         , m_bulletCount{ 100 }
 {
-    // Test
     m_rect.setPosition(m_pos.x, m_pos.y);
     m_rect.setFillColor(sf::Color(255, 0, 0, 100));
 }

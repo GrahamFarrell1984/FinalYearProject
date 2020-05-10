@@ -5,9 +5,9 @@
 
 ControlsScene::ControlsScene(SceneManager& sceneManager, const Scene::Name name)
         : BaseScene{ sceneManager, name }
-        , m_options{ MENUOPTIONS::RETURN }
+        , m_options{ MENU_OPTIONS::RETURN }
         , m_sprite{}
-        , m_cursorPos{ 320, 623 }  // Testing cursor position. x was 384
+        , m_cursorPos{ 320, 623 }
 {
 }
 
@@ -16,14 +16,14 @@ void ControlsScene::processInput(const Keyboard& keyboard)
     AudioManager& audioManager = Singleton<AudioManager>::getInstance();
 
     if (keyboard.checkKeyAndState(sf::Keyboard::Down, State::PRESS)) {
-        if (m_options == MENUOPTIONS::RETURN) {
-            m_options = MENUOPTIONS::QUIT;
+        if (m_options == MENU_OPTIONS::RETURN) {
+            m_options = MENU_OPTIONS::QUIT;
             m_cursorPos.y += CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
         }
     } else if (keyboard.checkKeyAndState(sf::Keyboard::Up, State::PRESS)) {
-        if (m_options == MENUOPTIONS::QUIT) {
-            m_options = MENUOPTIONS::RETURN;
+        if (m_options == MENU_OPTIONS::QUIT) {
+            m_options = MENU_OPTIONS::RETURN;
             m_cursorPos.y -= CURSOROFFSET;
             audioManager.playSound(Assets::Sfx::SFXA.id);
         }
@@ -32,17 +32,13 @@ void ControlsScene::processInput(const Keyboard& keyboard)
     if (keyboard.checkKeyAndState(sf::Keyboard::Enter, State::PRESS)) {
         audioManager.playSound(Assets::Sfx::SFXA.id);
         switch (m_options) {
-            case MENUOPTIONS::RETURN:
+            case MENU_OPTIONS::RETURN:
                 requestSceneChange(Scene::Action::POP);
                 break;
-            case MENUOPTIONS::QUIT:
-                requestSceneChange(Scene::Action::POPALL);
+            case MENU_OPTIONS::QUIT:
+                requestSceneChange(Scene::Action::POP_ALL);
                 break;
         }
-    }
-
-    if (keyboard.checkKeyAndState(sf::Keyboard::X, State::PRESS)) {
-        requestSceneChange(Scene::Action::POP);
     }
 }
 
@@ -87,9 +83,6 @@ void ControlsScene::onEnter()
 {
     const ResourceManager<sf::Texture>& textureHolder = getSharedContext().textureHolder;
     m_sprite.setTexture(*textureHolder.getResource(Assets::Texture::SCENES.id));
-
-    //  AudioManager& audioManager = Singleton<AudioManager>::getInstance();
-    //  audioManager.playMusic(Assets::Music::MUSICA);
 }
 
 void ControlsScene::onExit()
